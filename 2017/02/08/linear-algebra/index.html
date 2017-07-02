@@ -1,0 +1,1211 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="基础,机器学习,线性代数," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍线性代数中与机器学习相关的重要概念，方便不懂的时候进行查阅。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【不周山之数据科学】基础知识 线性代数">
+<meta property="og:url" content="http://wdxtub.com/2017/02/08/linear-algebra/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="本文主要介绍线性代数中与机器学习相关的重要概念，方便不懂的时候进行查阅。">
+<meta property="og:updated_time" content="2017-03-16T11:58:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【不周山之数据科学】基础知识 线性代数">
+<meta name="twitter:description" content="本文主要介绍线性代数中与机器学习相关的重要概念，方便不懂的时候进行查阅。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/2017/02/08/linear-algebra/"/>
+
+
+
+
+
+  <title> 【不周山之数据科学】基础知识 线性代数 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/2017/02/08/linear-algebra/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                【不周山之数据科学】基础知识 线性代数
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-08T07:19:50+08:00">
+                2017-02-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-16T19:58:54+08:00">
+                2017-03-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technique/" itemprop="url" rel="index">
+                    <span itemprop="name">Technique</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/02/08/linear-algebra/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      4,566
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      18
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要介绍线性代数中与机器学习相关的重要概念，方便不懂的时候进行查阅。</p>
+<a id="more"></a>
+<hr>
+<p>更新历史</p>
+<ul>
+<li>2017.03.16: 并入【不周山之数据科学】系列</li>
+<li>2017.02.18: 完成初稿</li>
+<li>2017.02.08: 开始编写</li>
+</ul>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>线性代数是是代数学的一个分支，主要处理线性关系问题，即数学对象之间的关系是以<strong>一次形式</strong>来表达的。线性关系问题简称线性问题，解线性方程组的问题是最简单的线性问题。</p>
+<p>很多实际问题的处理，最后往往归结为线性问题，它比较容易处理。因此，线性代数在许多领域都有着广泛的应用，是一门基本且重要的学科。</p>
+<h2 id="向量-Vector"><a href="#向量-Vector" class="headerlink" title="向量 Vector"></a>向量 Vector</h2><p>向量的可以用列的形式表示，但是为了书写和打印方便，一般会用圆括号括起来，转换为行的形式。如：$\mathbf{v}=(v_1,v_2)$。</p>
+<p>若有向量 $\mathbf{v}=(v_1,v_2),\; \mathbf{w}=(w_1, w_2)$ 和常数 $c, d$，则</p>
+<ul>
+<li>向量相加 $\mathbf{v+w}=(v_1+w_1,v_2+w_2)$</li>
+<li>向量数乘 $c\mathbf{v}=(cv_1,cv_2)$</li>
+<li>$c\mathbf{v}+d\mathbf{w}$ 是向量 $\mathbf{v}$ 和 $\mathbf{w}$ 的线性组合</li>
+<li>$\mathbf{v\cdot w}$ 是向量 $\mathbf{v}$ 和 $\mathbf{w}$ 的内积（点积），值为 $\mathbf{v\cdot w}=\sum v_iw_i$，显然 $\mathbf{v\cdot w}=\mathbf{w\cdot v}$</li>
+<li>$\Vert \mathbf{v} \Vert$ 是向量 $\mathbf{v}$ 的长度，$\Vert\mathbf{v}=\sqrt{\mathbf{v\cdot v}}\Vert$</li>
+<li>单位向量 $\mathbf{u}$ 的长度为1，$\mathbf{u}=\frac{\mathbf{v}}{\Vert\mathbf{v} \Vert}$ 是与 $\mathbf{v}$ 同方向的单位向量</li>
+</ul>
+<p>如果 $\mathbf{v}$ 和 $\mathbf{w}$ 是非零向量，则有</p>
+<p>$$\frac{\mathbf{v\cdot w}}{\Vert\mathbf{v} \Vert \Vert\mathbf{w} \Vert}=cos\;\theta$$</p>
+<p>据此我们可以得到两个重要不等式：</p>
+<ul>
+<li>$|\mathbf{v\cdot w}| \le \Vert\mathbf{v}\Vert \Vert\mathbf{w} \Vert$</li>
+<li>$\Vert\mathbf{v+w}\Vert \le \Vert\mathbf{v}\Vert + \Vert\mathbf{w} \Vert$</li>
+</ul>
+<p><strong>有关向量的线性表示，下面的说法是等价的：</strong></p>
+<ul>
+<li>向量 $b$ 能由向量组 $\mathbf{a_1,a_2,\cdots,a_m }$ 线性表示</li>
+<li>线性方程组 $x_1\mathbf{a_1}+x_2\mathbf{a_2}+\cdots+x_m\mathbf{a_m}=\mathbf{b}$ 有解</li>
+<li>秩相同 $R(\mathbf{a_1,a_2,\cdots,a_m }) = R(\mathbf{a_1,a_2,\cdots,a_m,b})$，因为 $\mathbf{b}$ 可以被向量组 $\mathbf{a_1,a_2,\cdots,a_m }$ 线性表示</li>
+</ul>
+<p>如果向量组 $A: \mathbf{a_1,a_2,\cdots,a_m }(m \ge 2)$ 线性相关，下面说法等价：</p>
+<ul>
+<li>向量组 $A$ 至少存在一个向量是其余 $m-1$ 个向量的线性组合</li>
+<li>线性方程组 $x_1\mathbf{a_1}+x_2\mathbf{a_2}+\cdots+x_m\mathbf{a_m}=0$ 有非零解</li>
+<li>$\mathbf{a_1,a_2,\cdots,a_m }$ 的秩小于向量的个数 $m$，即 $R(\mathbf{a_1,a_2,\cdots,a_m })&lt;m$</li>
+</ul>
+<p>如果向量组 $A: \mathbf{a_1,a_2,\cdots,a_m }(m \ge 2)$ 线性无关，下面说法等价：</p>
+<ul>
+<li>线性方程组 $x_1\mathbf{a_1}+x_2\mathbf{a_2}+\cdots+x_m\mathbf{a_m}=0$ 只有零解</li>
+<li>$\mathbf{a_1,a_2,\cdots,a_m }$ 的秩等于向量的个数 $m$，即 $R(\mathbf{a_1,a_2,\cdots,a_m })=m$</li>
+</ul>
+<p>这里我们可以看到向量、方程组和矩阵问题实际上是可以相互转换的。但需要注意<strong>向量组等价，可得矩阵等价</strong>，但<strong>矩阵等价不能得到向量组等价</strong></p>
+<h2 id="行列式-Determinant"><a href="#行列式-Determinant" class="headerlink" title="行列式 Determinant"></a>行列式 Determinant</h2><blockquote>
+<p>线性代数中最重要的内容就是行列式和矩阵，虽然表面上看，行列式和矩阵不过是一种符号或速记，但从数学史上来看，优良的数学符号和生动的概念是数学思想产生的动力和钥匙。</p>
+</blockquote>
+<p>行列式最初用于求解线性方程，行列式是否为零可用来判定一个线性方程是否有解。</p>
+<p><strong>行列式的三种变换：</strong></p>
+<ul>
+<li>互换某两行（列），记为 $r_i \leftrightarrow r_j\;(c_i \leftrightarrow c_j)$</li>
+<li>提出某一行（列）的公因子，记为 $r_i \div k\;(c_i \div k)$</li>
+<li>把某一行（列）的 $k$ 倍加到另一行（列），记为 $r_i+kr_j\;(c_i+kc_j)$</li>
+</ul>
+<p>计算行列式最常用的一种方法就是利用变换 $r_i+kr_j\;(c_i+kc_j)$ 和 $r_i \leftrightarrow r_j\;(c_i \leftrightarrow c_j)$，把行列式转化为上三角形行列式，从而算得行列式的值。</p>
+<p>行列式为零，要么是两行（列）相同，要么是两行（列）成比例。</p>
+<p>行列式按某行展开可以按任一行展开，而一行元素乘以另一行对应元素的代数余子式，其和为零。综合起来是：</p>
+$$a_{k1}A_{i1}+a_{k2}A_{i2}+ \cdots + a_{kn}A_{in}=\sum_{s=1}^n a_{ks}A_{is}=\begin{cases}D&, k=i\\ 0&,k\ne i\end{cases}$$
+<p>另外 $D^T=D$ 也是行列式的性质，这里提一下。</p>
+<h2 id="矩阵-Matrix"><a href="#矩阵-Matrix" class="headerlink" title="矩阵 Matrix"></a>矩阵 Matrix</h2><p>若有矩阵 $A$ 和矩阵 $B$，那么</p>
+<ul>
+<li>两个大小相同的矩阵才可以相加，记为 $A+B$，是对应位置的元素进行相加</li>
+<li>如果矩阵 $A$ 有 $n$ 列且矩阵 $B$ 有 $n$ 行，这两个矩阵可以相乘得到 $AB$</li>
+</ul>
+<p>一个 $m \times n$ 的矩阵与一个 $n\times p$ 的矩阵相乘所需的乘法次数是 $mnp$ 次，一般我们会采用动态规划的方法来对乘法进行优化。</p>
+<p>矩阵加法满足：</p>
+<ul>
+<li>交换率 $A+B=B+A$</li>
+<li>分配率 $c(A+B)=cA+cB$</li>
+<li>结合律 $A+(B+C)=(A+B)+C$</li>
+</ul>
+<p>矩阵乘法满足：</p>
+<ul>
+<li>左分配率 $C(A+B)=CA+CB$</li>
+<li>右分配率 $(A+B)C=AC+BC$</li>
+<li>结合律 $A(BC)=(AB)C$</li>
+</ul>
+<p>矩阵 $A$ 可逆当且仅当存在矩阵 $A^{-1}$，使得 $A^{-1}A=I$ 和 $AA^{-1}=I$，其中 $A^{-1}$ 称为 $A$ 的逆矩(inverse)阵。如果 $A$ 不可逆，称 $A$ 为奇异(singular)矩阵。</p>
+<p>转置(transpose)是把一个矩阵行与列进行互换，如对于矩阵 $A$ 转置为 $(A^T)_{ij}=A_{ji}$。</p>
+<p>对于矩阵 $A$ 和 $B$，$(A+B)^T=A^T+B^T,\;(AB)^T=B^TA^T,\;(A^{-1})^T=(A^T)^{-1}$</p>
+<p>如果对于矩阵 $A$ 有 $a_{ij}=a_{ji}$，则称 $A$ 为对称矩阵。对称矩阵 $A$ 可分解为 $A=LDL^T$</p>
+<p>对任意矩阵 $R$，$R^TR$ 和 $RR^T$ 都是对称矩阵且它们对角线上元素非负，大多数科学问题都是从一个矩阵 $R$ 开始，以 $R^TR$ 或 $RR^T$ 结束。</p>
+<p>对于非零矩阵 $A$，$A^2$ 可以是零矩阵，但 $A^TA$ 不可能是零矩阵。</p>
+<p><strong>求解线性方程组是线性代数的核心问题。</strong></p>
+<p>求解 $A\mathbf{x}=\mathbf{b}$ 是寻找一个特定组合来产生 $\mathbf{b}$，其中 $\mathbf{A}$ 被称为系数矩阵。这个求解的过程，从另外一个角度来看是寻找多条线（平面或超平面）的交点。</p>
+<p>每个超级计算机都会拿求解 $A\mathbf{x}=\mathbf{b}$ 来测试速度，计算机编程中应该直接进行消元或者置换，而不应该采用矩阵相乘来实现，因为矩阵相乘的方式带来更多冗余计算。</p>
+<p>$n$ 阶矩阵 $A$，可以认为下列说法是等价的：</p>
+<ol>
+<li>$\mathbf{A}$ 是满秩矩阵</li>
+<li>$\mathbf{A}$ 的标准形是 $E$</li>
+<li>$\mathbf{A}$ 可以表达为有限个初等矩阵的乘积</li>
+<li>齐次线性方程组 $Ax=0$ 只有零解</li>
+<li>非齐次线性方程组 $Ax=b$ 有唯一解</li>
+</ol>
+<p><strong>对称矩阵</strong></p>
+<p>对称矩阵是线性代数中（无论理论还是实践）最重要的矩阵。</p>
+<ul>
+<li>实对称矩阵的特征向量一定可以选为相互正交（不同特征值对应的特征向量相互正交），而特征值一定是实数，同时特征值的符号与主元符号相符</li>
+<li>所有实对称矩阵都可以对角化，对角化变为 $A=Q\Lambda Q^T$，其中 $Q$ 是正交矩阵</li>
+<li>每个方阵都可以分解为 $A=QTQ^{-1}$，如果A的特征值是实数则存在实数矩阵 $Q$ 和 $T$</li>
+</ul>
+<p><strong>正定矩阵 Positive Definite Matrix</strong></p>
+<ul>
+<li>对任何非零向量 $\mathbf{x}$ 都有 $\mathbf{x}^TA\mathbf{x}&gt;0$ 时，我们称 $A$ 为正定矩阵</li>
+<li>矩阵 $A$ 正定当且仅当它的特征值或主元都为正数，正定矩阵的对角线上不会出现零</li>
+<li>如果 $A$ 与 $B$ 都对称正定，则 $A+B$ 也对称正定</li>
+<li>如果 $R$ 的列向量线性无关，则 $A=R^TR$ 不但是对称矩阵，而且正定</li>
+<li>椭圆 $\mathbf{x}^TA\mathbf{x}=1$ 的轴沿着 $A$ 的特征向量方向，轴长为 $\frac{1}{\sqrt \lambda}$</li>
+</ul>
+<p><strong>相似矩阵 Similar Matrix</strong></p>
+<ul>
+<li>如果存在任一矩阵 $M$ 使得 $B=M^{-1}AM$，则 $B$ 与 $A$ 相似，从定义上就可以看出相似是可逆的</li>
+<li>没有被 $M$ 改变的有：特征值、迹、行列式、秩和无关特征向量个数</li>
+<li>被 $M$ 改变的有：特征向量、NULL空间、列空间、行空间、左NULL空间和奇异值；</li>
+<li>如果 $A$ 有 n 个线性无关的特征向量，则 $A$ 与 $\Lambda$ 相似且 $M=S$，这里 $S$ 为特征向量矩阵，并且$AS=SA,\;S^{-1}AS=\Lambda$（其实这也就是对角化的过程）</li>
+</ul>
+<h2 id="向量空间和子空间"><a href="#向量空间和子空间" class="headerlink" title="向量空间和子空间"></a>向量空间和子空间</h2><p>空间 $R^n$ 包含任何含有 $n$ 个实数元素的列向量 $\mathbf{v}$，我们可以把 $R^n$ 中任意向量加在一起，也可以为任何向量乘上一个数字 $c$，得到的结果都在这个空间中。</p>
+<ul>
+<li>对于一个集合，如果集合中元素对加法和数乘（即向量乘以一个常数）是封闭的，那么这个集合构成一个空间。</li>
+<li>只包含一个零向量的空间称为空间 $Z$</li>
+</ul>
+<p>一个向量空间的子空间(Subspace)满足如下条件：如果 $\mathbf{v}$ 和 $\mathbf{w}$ 都在这个子空间中，则 $\mathbf{v+w}$ 与 $c\mathbf{v}$ 也在这个子空间中，而他们的线性组合 $c\mathbf{v}+d\mathbf{w}$ 也在子空间中。</p>
+<ul>
+<li>矩阵 $A$ 列向量的线性组合构成它的列空间，一般记为 $C(A)$，当 $\mathbf{b}$ 在 $C(A)$ 时 $A\mathbf{x}=\mathbf{b}$ 有解。</li>
+<li>矩阵 $A$ 的 NULL 空间包括满足 $A\mathbf{x}=0$ 的所有 $\mathbf{x}$，记为 $N(A)$</li>
+<li>一个矩阵的行空间和它的 NULL 空间相互正交</li>
+<li>矩阵的秩是矩阵主元的数量，可以记为 $r$，它不但是行向量的维度还是列向量的维度，而且 NULL 空间的维度是列空间的维度减去 $r$</li>
+<li>对于矩阵 $A$ 和 $B$，存在结论 $rank(AB) \le min(rank(A),rank(B))$</li>
+</ul>
+<p><strong>$A\mathbf{x}=\mathbf{b}$ 的全部解</strong></p>
+<ul>
+<li>求解 $A\mathbf{x}=\mathbf{b}$ 可以看做求以 $A$ 列向量为坐标轴时 $\mathbf{b}$ 的坐标值 $\mathbf{x}$</li>
+<li>$A\mathbf{x}=\mathbf{b}$ 可解当且仅当最后 $m-r$ 个等式变成 $0=0$</li>
+<li>$A\mathbf{x}=\mathbf{b}$ 的所有解是满足 $A\mathbf{x}=\mathbf{b}$ 的一个特解 $x_p$ 加上 $A\mathbf{x}=0$ </li>
+<li>根据秩 $r$ 的取值，线性方程组有如下四种可能（其中 $m,n$ 为行数、列数）<ul>
+<li>$r=m,r=n$，方阵且可逆，$A\mathbf{x}=\mathbf{b}$ 有且只有一个解</li>
+<li>$r=m,r&lt;n$，矮又宽型，$A\mathbf{x}=\mathbf{b}$ 有无穷多解</li>
+<li>$r&lt;m,r=n$，高又瘦型，$A\mathbf{x}=\mathbf{b}$ 有一个解或无解</li>
+<li>$r&lt;m,r&lt;n$，行和列都不满秩，$A\mathbf{x}=\mathbf{b}$ 有无穷多解或无解</li>
+</ul>
+</li>
+</ul>
+<p>一组向量 $\mathbf{v_1,\cdots,v_n}$ <strong>线性无关</strong>，当且仅当 $x_1\mathbf{v_1}+x_2\mathbf{v_2}+\cdots+x_n\mathbf{v_n}=\mathbf{0}$ 中的 $x$ 全为零。</p>
+<ul>
+<li>一组向量的线性组合所构成的空间是这组向量所张成的空间，空间中线性无关且能张成这一空间的一组向量可以作为这一空间的基。</li>
+<li>所有基包含向量个数相同，我们把这个数称为该空间的维度，矩阵 $A$ 列向量所张成空间的维度等于矩阵的秩</li>
+<li>空间中每个向量表示为一组基线性组合是唯一的</li>
+<li>空间 $Z$ 只包含零向量，这一空间的维度为 0，空集构成此空间的一组基</li>
+<li>对于空间 $V$ 和 $W$ 有 $dim(V)+dim(W)=dim(V\cap W)+dim(V\cup W)$</li>
+</ul>
+<p><strong>最小二乘法</strong></p>
+<p>求解$A\mathbf{x}=\mathbf{b}$时经常会遇到无解的情况，这个时候我们就需要近似找到一个<strong>最小二乘解</strong>（也就是让误差最小的解），一般来说可以直接对 $\Vert A\mathbf{x-b}\Vert ^2$ 求导并令其等于 0 就可以求的最小二乘解（有最小的平方误差）</p>
+<p>注：一般这里的 $A$ 的列向量需要线性无关，这样才能保证 $A^TA$ 是可逆的，否则有多个解。</p>
+<h2 id="特征值与特征向量"><a href="#特征值与特征向量" class="headerlink" title="特征值与特征向量"></a>特征值与特征向量</h2><blockquote>
+<p>矩阵乘以向量，在功能上相当于把一个向量变换为另一个向量。一个矩阵的特征向量是这样一种特定的向量，它经过这种变换后方向不变（或正好相反），只发生长度上的伸缩，特征值则反映了特征向量的伸缩倍数（及方向）。</p>
+</blockquote>
+<p>用公式表示为：</p>
+<p>$$\mathbf{Ax}=\lambda \mathbf{x}$$</p>
+<ul>
+<li>满足上式的向量 $\mathbf{x}$ 称为矩阵 $\mathbf{A}$ 的特征向量</li>
+<li>数 $\lambda$ 反应了伸缩的倍数及方向，称为与 $\mathbf{x}$ 对应的特征值</li>
+</ul>
+<p>一些重要性质</p>
+<p>设 $\lambda_1,\lambda_2,\cdots,\lambda_n$ 是 n 阶矩阵 $\mathbf{A}$ 的 $n$ 个特征值，则：</p>
+<ul>
+<li>$\lambda_1,\lambda_2,\cdots,\lambda_n=a_{11}+a_{22}+\cdots+a_{nn}$</li>
+<li>$\lambda_1\lambda_2\cdots\lambda_n=|\mathbf{A}|$</li>
+<li>当对 $A$ 平方时特征向量不会发生改变，而特征值会被平方，另外拥有特殊性质的矩阵会有特殊的特征值与特征向量</li>
+<li>对一个矩阵进行消元或者行变换都会改变这个矩阵的特征值</li>
+<li>n 个特征值的乘积等于矩阵的行列式的值，n 个特征值的和等于矩阵的迹，矩阵的迹是矩阵对角线元素之和</li>
+</ul>
+<p><strong>特征向量之间的关系：</strong></p>
+<ul>
+<li>矩阵 $\mathbf{A}$ 的属于不同特征值的特征向量是线性无关的</li>
+<li>设 $\lambda_1,\lambda_2,\cdots,\lambda_n$ 是矩阵 $\mathbf{A}$ 的 $m$ 个互异特征值，对应于 $\lambda_i\;(i=1,2,\cdots,m)$ 的线性无关的特征向量有 $r_i$ 个，则→所有这些特征向量构成的向量组是线性无关的</li>
+<li>对称矩阵 $\mathbf{A}$ 的属于不同特征值的特征向量是两两相交的</li>
+</ul>
+<p><strong>特征值所对应的特征向量的个数：</strong></p>
+<ul>
+<li>每个特征值都对应着至少一个特征向量</li>
+<li>$k$ 重特征值对应的线性无关的特征向量的个数不超过 $k$</li>
+<li>若 $A$ 为对称矩阵，则 $A$ 的每个特征值对应的线性无关特征向量的个数恰好等于该特征值的重数</li>
+</ul>
+<p><strong>奇异值分解 Singular Value Decomposition</strong></p>
+<p>奇异值分解在线性代数中非常重要，它可以对角化任意矩阵，有很多实际用途，如降维等。把秩为 $r$ 的 $A$ 通过 SVD 分解为 $U\Sigma V^T$，$\Sigma$ 对角线上是奇异值 $\sigma_1 \ge \sigma_2 \ge \cdots \sigma_r > 0$:</p>
+<ul>
+<li>$\sigma_1^2,\cdots,\sigma_r^2$ 是 $AA^T$ 或 $A^TA$ 特征值（两者特征值相同）</li>
+<li>$U$ 是 $AA^T$ 的特征向量，前 $r$ 列来源于 $A$ 的列空间，后 $m−r$ 列来源于 $N(A^T)$</li>
+<li>$V$ 是 $A^TA$ 的特征向量，$r$ 列是 $A$ 的行空间，后$n−r$ 列来源于 $N(A)$</li>
+<li>$\Sigma$ 对角线上奇异值从小到大排列，奇异值越大对整个矩阵的重要性也越大</li>
+<li>$U$ 和 $V$ 的列向量分别是输出空间和输入空间的坐标轴</li>
+</ul>
+<p>对任意实数方阵 $A$ 根据 SVG 且 $V^TV$ 分解有</p>
+<p>$$A=U\Sigma V^T=UV^TV\Sigma V^T=(UV^T)(V\Sigma V^T)=(Q)(H)$$</p>
+<p>其中 $Q$ 是正交阵，$H$ 是对称半正定的，如果 $A$ 可逆则 $H$ 是对称正定的。这个过程便是极分解，它把线性变换中旋转（在 $Q$ 中）与伸展（在 $H$ 中）分开</p>
+<h2 id="行列式-Determinant-1"><a href="#行列式-Determinant-1" class="headerlink" title="行列式 Determinant"></a>行列式 Determinant</h2><p>方阵 $A$ 主元的乘积称为这个方阵的行列式，它包含大量关于 $A$ 的信息，一般记为 $det\;A$ 或 $|A|$，我们需要了解关于行列式的十个性质：</p>
+<ol>
+<li>$n\times n$ 单位阵的行列式为 1</li>
+<li>当两行交换时行列式符号会改变</li>
+<li>行列式是分别关于每一行的线性函数</li>
+<li>如果矩阵中两行相等则行列式等于 0</li>
+<li>从一行中减去另外一行的若干倍整个行列式不变</li>
+<li>如果矩阵中有一行都等于零则行列式等于 0</li>
+<li>如果矩阵是对焦矩阵则行列式等于对角元素的乘积</li>
+<li>如果矩阵奇异则行列式等于 0，非奇异时行列式不为 0</li>
+<li>$|AB|=|A|\;|B|$</li>
+<li>$|A^T|=|A|$</li>
+</ol>
+<p>行列式是分别关于每一行的线性函数。例如：在其他行不变的情况下，当第一行数乘t时行列式数乘t，当第一行相加是行列式相加。</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ul>
+<li>工程问题常常产生对称矩阵 $K$，它通常是正定的，一般来源于 $K=A^TA$ 或 $K=A^TCT$，矩阵 $C$ 往往是对角的，包含一些正的物理常数</li>
+<li>图关联矩阵告诉我们 $m$ 条边与 $n$ 个结点的连接情况，通常情况下 $m&gt;n$，关联矩阵的元素是 -1、0 或者 1。对关联矩阵进行消元就是把对应的图变成树（树是没有闭环的图）</li>
+<li>如果一个矩阵 $A$ 每个元素都是非负的且每一列的和都为 1，则它是一个马尔科夫矩阵<ul>
+<li>如果 $A$ 是一个正马尔科夫矩阵（$a_{ij}>0$），则 $\lambda_1=1$ 比其它特征值都大，与之对应的特征向量 $x_1=1$ 是稳态</li>
+<li>马尔科夫矩阵 $A$ 的第二大特征值的绝对值 $|\lambda_2|$ 控制收敛到稳态的收敛速度，非正马尔科夫矩阵中可能有 $|\lambda_2|=1$，则不存在稳态</li>
+</ul>
+</li>
+<li>假设现在有一代价向量 $\mathbf{c}$，线性规划是在满足 $A\mathbf{x}=\mathbf{b}$ 与 $\mathbf{x} \ge 0$ 的情况下，使得 $\mathbf{c \cdot x}$最小；上述问题的对偶问题是在满足 $A^T\mathbf{y} \le \mathbf{c}$情况下，使得 $\mathbf{b \cdot y}$最大，令代价 $\mathbf{c \cdot x^*}$ 最小等价于 $\mathbf{b \cdot y^*}$ 最大</li>
+<li>校正矩阵（Correct Matrix）、均值（Mean）、方差（Variance）、协方差矩阵（Covariance Matrix）、主成分分析（Principal Component Analysis）</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>理解矩阵 <a href="http://blog.csdn.net/myan/article/details/647511" target="_blank" rel="external">一</a> <a href="http://blog.csdn.net/myan/article/details/649018" target="_blank" rel="external">二</a> <a href="http://blog.csdn.net/myan/article/details/1865397" target="_blank" rel="external">三</a></li>
+<li><a href="https://hujiaweibujidao.github.io/files/linear_algebra_huangzhenghua.pdf" target="_blank" rel="external">线性代数·总结与复习</a></li>
+<li><a href="http://www.zhaokv.com/wiki/book/ila/review" target="_blank" rel="external">线性代数总结</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/基础/" rel="tag"># 基础</a>
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/线性代数/" rel="tag"># 线性代数</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/06/calculus/" rel="next" title="【不周山之数据科学】基础知识 微积分">
+                <i class="fa fa-chevron-left"></i> 【不周山之数据科学】基础知识 微积分
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/10/cloud/" rel="prev" title="第三十五周 - 云">
+                第三十五周 - 云 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">861</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">953</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量-Vector"><span class="nav-number">2.</span> <span class="nav-text">向量 Vector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行列式-Determinant"><span class="nav-number">3.</span> <span class="nav-text">行列式 Determinant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵-Matrix"><span class="nav-number">4.</span> <span class="nav-text">矩阵 Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量空间和子空间"><span class="nav-number">5.</span> <span class="nav-text">向量空间和子空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征值与特征向量"><span class="nav-number">6.</span> <span class="nav-text">特征值与特征向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行列式-Determinant-1"><span class="nav-number">7.</span> <span class="nav-text">行列式 Determinant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">8.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">9.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

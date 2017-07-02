@@ -1,0 +1,1348 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据,趋势," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="因为最近在做数据相关工作，顺带把 Tableau 公开的数据相关白皮书看了一遍，感觉还是学到不少东西的，这里分享给大家。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tableau 白皮书阅读笔记">
+<meta property="og:url" content="http://wdxtub.com/2017/05/03/tableau-white-paper-clip/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="因为最近在做数据相关工作，顺带把 Tableau 公开的数据相关白皮书看了一遍，感觉还是学到不少东西的，这里分享给大家。">
+<meta property="og:updated_time" content="2017-05-03T02:37:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tableau 白皮书阅读笔记">
+<meta name="twitter:description" content="因为最近在做数据相关工作，顺带把 Tableau 公开的数据相关白皮书看了一遍，感觉还是学到不少东西的，这里分享给大家。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/2017/05/03/tableau-white-paper-clip/"/>
+
+
+
+
+
+  <title> Tableau 白皮书阅读笔记 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/2017/05/03/tableau-white-paper-clip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Tableau 白皮书阅读笔记
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-03T10:32:49+08:00">
+                2017-05-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-05-03T10:37:41+08:00">
+                2017-05-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technique/" itemprop="url" rel="index">
+                    <span itemprop="name">Technique</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/05/03/tableau-white-paper-clip/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      4,898
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      17
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>因为最近在做数据相关工作，顺带把 Tableau 公开的数据相关白皮书看了一遍，感觉还是学到不少东西的，这里分享给大家。</p>
+<a id="more"></a>
+<hr>
+<p>更新历史</p>
+<ul>
+<li>2017.05.03: 完成初稿</li>
+</ul>
+<h2 id="商业智能"><a href="#商业智能" class="headerlink" title="商业智能"></a>商业智能</h2><p>只有了解数据，才能正确决策，在竞争中保持领先</p>
+<ol>
+<li>速度</li>
+<li>可视化数据探索</li>
+<li>连接到任何数据</li>
+<li>实时协作</li>
+<li>全面管控</li>
+<li>可扩展性</li>
+<li>移动 </li>
+</ol>
+<h3 id="2017-年"><a href="#2017-年" class="headerlink" title="2017 年"></a>2017 年</h3><ol>
+<li>现代商业智能成为新常态<ul>
+<li>借助可信和可拓展的平台，各组织可以让分析师以外的人员也能够探索受规管的数据，并利用自己的发现开展协作</li>
+</ul>
+</li>
+<li>协作式分析从边缘进入核心<ul>
+<li>信息单向流动的年代即将结束，人们将通过共享实时交互式工作簿和数据源来为业务决策提供支持</li>
+</ul>
+</li>
+<li>一切数据趋于平等<ul>
+<li>大数据和简单 Excel 电子表格之间的区别将不再重要</li>
+<li>重要的是人们能够快速轻松访问数据，并结合其他类型的数据对其进行探索，从而回答业务问题</li>
+</ul>
+</li>
+<li>自助分析扩展至数据准备<ul>
+<li>数据解析、JSON 和 HTML 导入以及数据整理之类的普通数据准备无需再分配给专家完成</li>
+</ul>
+</li>
+<li>得益于嵌入式商业智能，分析已经无处不在<ul>
+<li>效果最好的分析是自然存在于工作流中的分析</li>
+</ul>
+</li>
+<li>IT 部门成为数据英雄<ul>
+<li>IT 从制作者变为功能提供者</li>
+<li>掌控着以自助式服务为目标的大规模转变过程</li>
+</ul>
+</li>
+<li>人们开始以更加自然的方式处理数据</li>
+<li>向云端的过度加速进行</li>
+<li>高级分析变得更加易于访问</li>
+<li>数据素养成为未来的一项基础技能 </li>
+</ol>
+<h3 id="2015-年"><a href="#2015-年" class="headerlink" title="2015 年"></a>2015 年</h3><ol>
+<li>治理方式转变。封闭所有企业数据的简单做法不再奏效</li>
+<li>社交智能是竞争优势</li>
+<li>分析在组织的各个角落涌现</li>
+<li>社区与众不同</li>
+<li>一切皆集成</li>
+<li>云分析不再只适合云数据</li>
+<li>与数据对话取代静态仪表板</li>
+<li>数据与新闻珠联璧合</li>
+<li>移动成熟</li>
+<li>智能分析开始兴起</li>
+</ol>
+<h2 id="云技术趋势"><a href="#云技术趋势" class="headerlink" title="云技术趋势"></a>云技术趋势</h2><h3 id="2017-年-1"><a href="#2017-年-1" class="headerlink" title="2017 年"></a>2017 年</h3><ol>
+<li>IT 转变其技能组合<ul>
+<li>对云端专业知识的需求将会愈加迫切</li>
+<li>侧重于云端安全性、托管数据库以及『基础架构即服务』</li>
+<li>采用能够实现持续性项目开发和交付的灵活方法</li>
+</ul>
+</li>
+<li>组织积极迎接混合世界</li>
+<li>IT 积极与业务用户合作</li>
+<li>软件治理同时改善了 IT 和业务部门的境遇</li>
+<li>托管应用程序可以简化内部业务运营</li>
+<li>长期的客户成功和采用是重中之重</li>
+<li>云服务供应商可以降低地区性数据法规的复杂性</li>
+<li>灵活的分析可以解决物联网『最后一英里』问题<ul>
+<li>分析来自多个数据源、格式各不相同的数据</li>
+</ul>
+</li>
+<li>服务提供商从软件部署转向变更管理</li>
+<li>所有标准应用程序都带有协作功能</li>
+</ol>
+<h3 id="2016-年"><a href="#2016-年" class="headerlink" title="2016 年"></a>2016 年</h3><ol>
+<li>这是一场数据抢滩战</li>
+<li>合作伙伴陷入云价格战中</li>
+<li>大公司以大规模迈入云时代</li>
+<li>云分析助力 IT</li>
+<li>硬件巨擘创造性地保持云相关性</li>
+<li>将数据迁移到云更贴近复制/粘贴</li>
+<li>云数据隐私</li>
+<li>云技术市场使软件公司陷入两难窘境</li>
+<li>混合云策略变得简单</li>
+<li>移动和云分析日趋相同</li>
+</ol>
+<h3 id="2015-年-1"><a href="#2015-年-1" class="headerlink" title="2015 年"></a>2015 年</h3><ol>
+<li>IT 人员支持云计算发展</li>
+<li>云分析涵盖所有分析</li>
+<li>虚拟私有云成为了新型『内部』云</li>
+<li>平台价格不断坠落</li>
+<li>上千种云服务将不断浮现和消失</li>
+<li>身份信息进入云端。SAML 和 SSO 成为常用技术</li>
+<li>云数据环境将数据堡垒变为数据集市</li>
+</ol>
+<h2 id="大数据趋势"><a href="#大数据趋势" class="headerlink" title="大数据趋势"></a>大数据趋势</h2><h3 id="2017-年-2"><a href="#2017-年-2" class="headerlink" title="2017 年"></a>2017 年</h3><ol>
+<li>大数据速度提高、门槛降低：选项增多，加快 Hadoop 速度<ul>
+<li>数据库 Exasol, MemSQL</li>
+<li>基于 Hadoop 的存储 Kudu</li>
+<li>SQL-on-Hadoop 引擎 Impala, Hive, Prestro, Phoenix, Drill</li>
+<li>OLAP-on-Hadoop 技术 AtScale, JethroData, Kyvos Insights</li>
+</ul>
+</li>
+<li>大数据不再仅仅是 Hadoop：为特定用途构建的 Hadoop 工具变得过时。仅仅为 Hadoop 构建且无法跨用例部署的平台将受到冷落</li>
+<li>为了获取价值，组织从起步阶段就开始利用数据湖。促使业务和 IT 部门建立更牢固的合作关系。作为大数据资产的利用工具，自助式平台将会在更大程度上得到认可</li>
+<li>日趋成熟的基础架构拒绝一成不变的架构<ul>
+<li>Hadoop 不再仅仅是数据科学用例的批处理平台。它已经成为临时分析的多功能引擎</li>
+</ul>
+</li>
+<li>大数据投资的驱动因素是种类，而不是数量和速度<ul>
+<li>尝试集成更多数据源并专注于大数据的『长尾巴』。连接器正在变得更加关键</li>
+</ul>
+</li>
+<li>Spark 和机器学习为大数据增辉</li>
+<li>物联网、云和大数据的汇合为自助式分析创造新的机会。<ul>
+<li>物联网正在生成大量结构化和非结构化数据 </li>
+<li>越来越需要可以无缝连接和合并多种云端托管数据源的分析工具 </li>
+</ul>
+</li>
+<li>自助式数据准备成为主流，最终用户开始影响大数据</li>
+<li>大数据发展壮大：Hadoop 增强企业标准<ul>
+<li>Apache Sentry, Apache Atlas, Apache Ranger</li>
+</ul>
+</li>
+<li>元数据目录的兴起可以帮助人们找到值得分析的大数据<ul>
+<li>元数据目录可以帮助用户发现和理解值得使用自助式工具进行分析的相关数据</li>
+<li>使用机器学习来实现 Hadoop 数据的自动查找</li>
+</ul>
+</li>
+</ol>
+<h3 id="2016-年-1"><a href="#2016-年-1" class="headerlink" title="2016 年"></a>2016 年</h3><ol>
+<li>NoSQL 接管市场</li>
+<li>Apache Spark 为大数据点亮明灯</li>
+<li>Hadoop 项目成熟，企业继续其从 Hadoop 概念证明到生产的过渡</li>
+<li>大数据发展壮大，Hadoop 加入企业标准之中</li>
+<li>大数据飞速发展，选项增多，加快 Hadoop 速度</li>
+<li>最终用户拥有更多的选项，来为各种形式的数据做准备</li>
+<li>云端 MPP 数据仓库发展升温</li>
+<li>流行技术融合，物联网、云端和大数据实现融合</li>
+</ol>
+<h3 id="2015-年-2"><a href="#2015-年-2" class="headerlink" title="2015 年"></a>2015 年</h3><ol>
+<li>大数据云端化</li>
+<li>ETL 私人化</li>
+<li>在 SQL 和 NoSQL 中选择</li>
+<li>Hadoop：一种新的常规数据存储配置</li>
+<li>开始尝试在数据湖中搜索</li>
+<li>大数据生态系统将开始改变形态</li>
+<li>物联网将继续发展，促成新的数据解决方案</li>
+</ol>
+<h2 id="物联网"><a href="#物联网" class="headerlink" title="物联网"></a>物联网</h2><ol>
+<li>迭代和快速行动</li>
+<li>通过交互实现更深层次的探索</li>
+<li>通过数据融合拓宽分析范围</li>
+<li>促进共享和协作</li>
+</ol>
+<h2 id="移动商业智能"><a href="#移动商业智能" class="headerlink" title="移动商业智能"></a>移动商业智能</h2><ol>
+<li>了解使用环境</li>
+<li>了解用户意图<ul>
+<li>探索、查看、互动、协作</li>
+</ul>
+</li>
+<li>专为移动设备设计<ul>
+<li>一次制作，随处使用</li>
+</ul>
+</li>
+</ol>
+<h2 id="零售分析趋势"><a href="#零售分析趋势" class="headerlink" title="零售分析趋势"></a>零售分析趋势</h2><h3 id="2017-年-3"><a href="#2017-年-3" class="headerlink" title="2017 年"></a>2017 年</h3><ol>
+<li>高级分析不再是分析师的专利</li>
+<li>全面实现移动分析</li>
+<li>物联网开始提高数据准确性</li>
+<li>全渠道数据集成开始风生水起</li>
+<li>机器人技术为零售数据带来重大机遇</li>
+<li>增强显示和虚拟现实为零售商分析带来更多见解</li>
+</ol>
+<h3 id="2016-年-2"><a href="#2016-年-2" class="headerlink" title="2016 年"></a>2016 年</h3><ol>
+<li>高级分析不再是分析师的专利</li>
+<li>全面实现移动分析</li>
+<li>物联网数据改变购物方式</li>
+<li>全渠道数据集成精彩纷呈</li>
+<li>零售营销组合现代化</li>
+<li>实时库存不可或缺</li>
+</ol>
+<h3 id="重要图表"><a href="#重要图表" class="headerlink" title="重要图表"></a>重要图表</h3><ul>
+<li>类别小倍数图表，快速比较多种货品一目了然，包括产品类别绩效<ul>
+<li>列出许多不相关的货品，轻松进行纵向比较与横向比较</li>
+</ul>
+</li>
+<li>周边地区客户群体图<ul>
+<li>为您销售地点周边的客户群显示地形情况</li>
+<li>本地和即时市场明确的示意图</li>
+<li>了解与您所在低的物理距离如何构成或不构成您所在地的障碍</li>
+<li>确定潜在竞争对手市场</li>
+</ul>
+</li>
+<li>货架陈列图<ul>
+<li>了解产品摆放和库存的有效程度</li>
+<li>货品广受欢迎时更快地获知</li>
+<li>了解客户喜好</li>
+<li>查看哪些货品过去销量最佳与哪些货品长期占据货架</li>
+</ul>
+</li>
+<li>损耗热图<ul>
+<li>指出货品在何处消失并帮助找出潜在的安全盲点</li>
+<li>快速了解商场盗窃的多样化及频率</li>
+<li>从部门着手解决损耗问题</li>
+<li>了解某地总体失窃的历史趋势</li>
+</ul>
+</li>
+<li>移动设备上的商场指标<ul>
+<li>在楼层实地做出决策，而非在电脑前</li>
+<li>将数据反映的情况与货架上的实际情况相比较</li>
+</ul>
+</li>
+</ul>
+<h2 id="社交"><a href="#社交" class="headerlink" title="社交"></a>社交</h2><p>天才是展现出初衷的智力、创造力或原创力的人士，其程度通常达到能实现前所未有的洞察力</p>
+<ul>
+<li>提出更深入的问题<ul>
+<li>超越社交媒体平台的内置分析解决方案，导出大量数据，使用拖放式数据可视化工具</li>
+</ul>
+</li>
+<li>将社交媒体与其他数据源融合</li>
+<li>生成可供所有人探索和使用的交互式仪表盘</li>
+</ul>
+<h3 id="重要图表-1"><a href="#重要图表-1" class="headerlink" title="重要图表"></a>重要图表</h3><ul>
+<li>关注者/触及人数增长斜度图<ul>
+<li>横轴：时间；纵轴：人数</li>
+<li>数据：关注者增长、提及量、总参与度、触及人数</li>
+<li>元素：标签、元素</li>
+<li>斜度图显示起始点和结束点之间的变化，用来比较变化率以及起止排名</li>
+<li>斜度图消除了干扰，只关注两个日期之间的变化率</li>
+</ul>
+</li>
+<li>全球/地区链接点击数地图<ul>
+<li>数据：社交网络链接点击数、带地理位置标签的数据、关注者所在位置</li>
+<li>元素：位置、颜色、种类</li>
+<li>地图能看到用户所在地区，以及存在的地域差别</li>
+<li>快速明确活跃和不活跃地区</li>
+<li>查看行为差异</li>
+</ul>
+</li>
+<li>触及人数和参与度散点图<ul>
+<li>横轴：触及人数；纵轴：用户参与度</li>
+<li>数据：自然触及人数/付费触及人数、点赞数、关注者数、推文数</li>
+<li>元素：类别、元素</li>
+<li>使用散点图可以很容易地看到离群点和聚合</li>
+<li>找出离群点以及哪些帖子的效果不同于其他帖子</li>
+</ul>
+</li>
+<li>盒须图上的点击率<ul>
+<li>横轴：不同渠道；纵轴：点击率</li>
+<li>数据：点击率、类别区分的参与度、触及人数</li>
+<li>元素：中位数、四分位数、颜色</li>
+<li>比较数据在不同类别的分布</li>
+<li>离群点很容易看到</li>
+</ul>
+</li>
+</ul>
+<h2 id="从早期数据巨星学到的五条经验"><a href="#从早期数据巨星学到的五条经验" class="headerlink" title="从早期数据巨星学到的五条经验"></a>从早期数据巨星学到的五条经验</h2><ul>
+<li>可视化帮助人们了解数据、<ul>
+<li>图表在阐述重要统计数据的特定数量方面非常实用，它以直观方式表现主题中的各种想法，如果以数字表示时，理解起来就不会这么容易</li>
+</ul>
+</li>
+<li>与其他人谈论您的工作<ul>
+<li>加入用户组和聚会</li>
+<li>活跃于社交网络</li>
+</ul>
+</li>
+<li>使用铅笔<ul>
+<li>手绘图将注意力集中于<strong>演示和设计</strong></li>
+<li></li>
+</ul>
+</li>
+<li>附有创造力</li>
+<li>让大数据激发您的灵感<ul>
+<li>我们获得的数据时钟超过了我们对如何使用数据的了解</li>
+<li>适应新挑战，投资相应工具，用于处理当今的数据量</li>
+</ul>
+</li>
+</ul>
+<h2 id="构建自助服务分析环境"><a href="#构建自助服务分析环境" class="headerlink" title="构建自助服务分析环境"></a>构建自助服务分析环境</h2><p>针对营销，具体要求：</p>
+<ul>
+<li>选择重要指标<ul>
+<li>核心目标</li>
+<li>营销活动和营销工作对实现这些目标有何帮助</li>
+<li>目标的内部或外部数据</li>
+<li>设计有意义的指标来衡量这些助益</li>
+<li>解释营销对目标的促进做用时，这个指标是否必须</li>
+<li>制定一种系统和持续的衡量方法</li>
+</ul>
+</li>
+<li>从所有来源拉取数据以了解全局</li>
+<li>直观形象</li>
+<li>使其可交互以便于写作</li>
+<li>最新且实时</li>
+<li>访问简单、使用轻松</li>
+</ul>
+<p>好奇心的驱动力是对理解事物及其缘由、原理和目的的需求。知其所以然更有益于理解。答案与过程结合形成透彻理解，可帮助我们取其精华去其糟粕，并发现新机遇。</p>
+<p>在尝试理解事物和寻求答案的过程中，数据可助我们一臂之力。数据透露着事实和真理，让我们能够客观看待既往。数据就是知识，知识就是力量，只要能够利用数据的力量进行求索和决策，就能找到我们寻求的真知灼见和机遇。</p>
+<p>为创造完善的分析环境，组织必须结合其最重要的两项资产：员工和数据。让员工能够在受 IT 部门信任、保护和管理的环境中查看数据，不但能够熟悉业务，了解情形，并有可能充分实现其见解的潜在价值。相应员工可以调查数据，就数据进行协作，并根据其分析制定适当决策。这种查看和了解数据的能力并不与职务或地位挂钩。在分析环境下，人人都可访问适当数据，并受到鼓励去探索。</p>
+<p>这并非一日之功，而是一项需要快积跬步才得以至千里的工作。</p>
+<p>构建新环境时，确定能够推动这种变革的领导者非常重要。行政支持者还可以帮助建立适当的组织架构来支持分析环境。无需编写脚本或代码。无需与复杂的数据透视表做斗争，也没有会阻碍探索和发现的限制性模板。</p>
+<p>分析环境依赖于用户乐于使用的强大分析平台。这一平台应易于在组织内进行部署、管理和拓展。</p>
+<p>采用新的分析环境意味着利用数据制定决策，但并不意味着将直觉抛诸脑后。在这种环境中，用户同等重视经验数据和直觉，不偏不倚。达到适当的平衡至关重要。</p>
+<p>任何出色的分析活动都从直觉和假设开始，我们可以使用数据证实或反驳这种直觉和假设。</p>
+<p>分析环境让组织能够更善用其最重要的两项资产：员工和数据。它让员工能够按业务需要的速度使用数据制定决策，并让组织能够抓住商机，获得竞争优势。</p>
+<p>能够查看数据还可帮助人们实现自身所力不能及的目标。能够提供游戏的客户服务或推动世界积极改变，这些都是向目标看齐的工作示例。</p>
+<h2 id="数据策略在-LinkedIn-的实践"><a href="#数据策略在-LinkedIn-的实践" class="headerlink" title="数据策略在 LinkedIn 的实践"></a>数据策略在 LinkedIn 的实践</h2><p>重点放在三个核心价值、两个可测量维度和一个用户友好的前端上面</p>
+<h3 id="三个关键价值"><a href="#三个关键价值" class="headerlink" title="三个关键价值"></a>三个关键价值</h3><p>简单易懂非常重要，但简单常常是费劲心力谋划细节的结果。简单来说就是三个 A</p>
+<ol>
+<li>客户角度 Account lens：从整个客户的角度看待所有商机线索 - 而不是将每个潜在客户看作是单独的个人。但是，这并不表示去个性化或反社交的看法。</li>
+<li>分析 Analytics：汇集多种数据流上，只用一个门户即可访问所有信息。分析将变得更简单，更多时间可花在利用可用数据作出决策上面</li>
+<li>自动化 Automation：明确的信息和可搜索的工具不仅仅是给客户使用。</li>
+</ol>
+<p>我们不想让销售人员花上几个小时努力收集信息，我们希望查找信息就像上 LinkedIn, Facebook, Twitter 或 Google 那样容易。信息就在那里，触手可得，极其容易理解，也极其容易共享</p>
+<h3 id="两个简单维度"><a href="#两个简单维度" class="headerlink" title="两个简单维度"></a>两个简单维度</h3><p>数十亿个数据点，简单使我们得到广泛采用，并取得成功结果。</p>
+<p>从以客户为中心的角度分析数据，归根结底就是新平台的全部目的，而成功的关键将在于极其简单的设置。</p>
+<p>LinkedIn 先沿着两根轴绘制其潜在客户『温度』和『奖励规模』。温度是指完成销售的可能性，而规模就是潜在交易的大小。</p>
+<p>从客户角度中，个人被视为公司的延伸。于是 LinkedIn 考虑与每个客户相关的个人的活动来计算每个客户的『温度』。『奖励规模』基于公司整体。公司由此而得的网格中所处的位置决定了销售人员为追到这家客户而采取的步骤。</p>
+<p>潜在客户可能属于四个象限中的一个：</p>
+<ul>
+<li>低温度、小规模：培养、自动化营销、找到愿意接受新观念的客户</li>
+<li>低温度、大规模：自动化营销，投入更多资源，使用现场销售</li>
+<li>高温度、小规模：关注这些客户很重要，但不需要现场跟进，内部销售策略多样灵活</li>
+<li>高温度、大规模：以贵宾礼遇相待，从支持人员到销售高管的每个人都可能参与赢得这些客户的活动中</li>
+</ul>
+<h3 id="一个前端"><a href="#一个前端" class="headerlink" title="一个前端"></a>一个前端</h3><p>聚合来自多种来源的数据，以确定其线索在『规模』和『温度』维度上的分数。尽量隐藏所有底层数据结构和基础结构，得到的简单性可使销售代表关注于关键指标和可采取的步骤。</p>
+<h3 id="识别重要事件"><a href="#识别重要事件" class="headerlink" title="识别重要事件"></a>识别重要事件</h3><p>基于事件的客户管理（eBAM），将客户 - 而不是地区分配给销售人员</p>
+<h2 id="教育"><a href="#教育" class="headerlink" title="教育"></a>教育</h2><ol>
+<li>实现自主</li>
+<li>加速每个阶段</li>
+<li>灵活安全的配置</li>
+<li>可视化理解</li>
+</ol>
+<h3 id="院校利用数据产生影响"><a href="#院校利用数据产生影响" class="headerlink" title="院校利用数据产生影响"></a>院校利用数据产生影响</h3><ul>
+<li>跟踪入学趋势</li>
+<li>创建交互式大学简介</li>
+<li>吸引潜在捐款人</li>
+<li>通报调查结果</li>
+<li>分析空间使用率</li>
+<li>对比兄弟院校进行基准评测</li>
+<li>表明财务责任</li>
+<li>改进沟通和合作</li>
+</ul>
+<h2 id="提升政府的绩效管理"><a href="#提升政府的绩效管理" class="headerlink" title="提升政府的绩效管理"></a>提升政府的绩效管理</h2><ul>
+<li>让工作人员使用自助服务可视化分析</li>
+<li>选择重要的计分卡指标（政府人员需要能够证明自己代表公众做出的决策）<ul>
+<li>核心目标是什么？</li>
+<li>推行的计划对这些目标的达成有何直接助益？采用哪些价值标准来衡量这些助益</li>
+<li>不论来自内部或外部，目前的数据是有利于达成这些目标的合适数据，还是只是最容易获取的数据</li>
+<li>能否设计出一项有意义的指标来衡量这些助益</li>
+<li>是否真的必须在采用这项指标后，才能解释计划对达成这些目标所起到的帮助做用</li>
+<li>能否制定一种系统性、持续性的衡量方法</li>
+<li>市民最关心哪些信息的披露</li>
+<li>了解哪些信息后，市民和选民才会积极参与政府事务</li>
+</ul>
+</li>
+<li>利用当前数据</li>
+<li>建立协作文化</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据/" rel="tag"># 数据</a>
+          
+            <a href="/tags/趋势/" rel="tag"># 趋势</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/03/lda-guide/" rel="next" title="LDA 指南">
+                <i class="fa fa-chevron-left"></i> LDA 指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/05/doctrine/" rel="prev" title="第四十七周 - 道">
+                第四十七周 - 道 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">861</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">953</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#商业智能"><span class="nav-number">1.</span> <span class="nav-text">商业智能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-年"><span class="nav-number">1.1.</span> <span class="nav-text">2017 年</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2015-年"><span class="nav-number">1.2.</span> <span class="nav-text">2015 年</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#云技术趋势"><span class="nav-number">2.</span> <span class="nav-text">云技术趋势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-年-1"><span class="nav-number">2.1.</span> <span class="nav-text">2017 年</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-年"><span class="nav-number">2.2.</span> <span class="nav-text">2016 年</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2015-年-1"><span class="nav-number">2.3.</span> <span class="nav-text">2015 年</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据趋势"><span class="nav-number">3.</span> <span class="nav-text">大数据趋势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-年-2"><span class="nav-number">3.1.</span> <span class="nav-text">2017 年</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-年-1"><span class="nav-number">3.2.</span> <span class="nav-text">2016 年</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2015-年-2"><span class="nav-number">3.3.</span> <span class="nav-text">2015 年</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物联网"><span class="nav-number">4.</span> <span class="nav-text">物联网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动商业智能"><span class="nav-number">5.</span> <span class="nav-text">移动商业智能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零售分析趋势"><span class="nav-number">6.</span> <span class="nav-text">零售分析趋势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2017-年-3"><span class="nav-number">6.1.</span> <span class="nav-text">2017 年</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-年-2"><span class="nav-number">6.2.</span> <span class="nav-text">2016 年</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要图表"><span class="nav-number">6.3.</span> <span class="nav-text">重要图表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#社交"><span class="nav-number">7.</span> <span class="nav-text">社交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要图表-1"><span class="nav-number">7.1.</span> <span class="nav-text">重要图表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从早期数据巨星学到的五条经验"><span class="nav-number">8.</span> <span class="nav-text">从早期数据巨星学到的五条经验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建自助服务分析环境"><span class="nav-number">9.</span> <span class="nav-text">构建自助服务分析环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据策略在-LinkedIn-的实践"><span class="nav-number">10.</span> <span class="nav-text">数据策略在 LinkedIn 的实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三个关键价值"><span class="nav-number">10.1.</span> <span class="nav-text">三个关键价值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个简单维度"><span class="nav-number">10.2.</span> <span class="nav-text">两个简单维度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个前端"><span class="nav-number">10.3.</span> <span class="nav-text">一个前端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#识别重要事件"><span class="nav-number">10.4.</span> <span class="nav-text">识别重要事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#教育"><span class="nav-number">11.</span> <span class="nav-text">教育</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#院校利用数据产生影响"><span class="nav-number">11.1.</span> <span class="nav-text">院校利用数据产生影响</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提升政府的绩效管理"><span class="nav-number">12.</span> <span class="nav-text">提升政府的绩效管理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

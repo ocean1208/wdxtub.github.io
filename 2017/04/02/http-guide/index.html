@@ -1,0 +1,1354 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTTP,规范," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="HTTP 规范是我们在开发 Web 相关工程是应该要遵守的，这里记录下我觉得常用的基础知识和常见用法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP 指南">
+<meta property="og:url" content="http://wdxtub.com/2017/04/02/http-guide/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="HTTP 规范是我们在开发 Web 相关工程是应该要遵守的，这里记录下我觉得常用的基础知识和常见用法。">
+<meta property="og:updated_time" content="2017-04-02T03:10:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP 指南">
+<meta name="twitter:description" content="HTTP 规范是我们在开发 Web 相关工程是应该要遵守的，这里记录下我觉得常用的基础知识和常见用法。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/2017/04/02/http-guide/"/>
+
+
+
+
+
+  <title> HTTP 指南 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/2017/04/02/http-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTTP 指南
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-02T10:22:00+08:00">
+                2017-04-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-02T11:10:23+08:00">
+                2017-04-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technique/" itemprop="url" rel="index">
+                    <span itemprop="name">Technique</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/04/02/http-guide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      2,558
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      10
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>HTTP 规范是我们在开发 Web 相关工程是应该要遵守的，这里记录下我觉得常用的基础知识和常见用法。</p>
+<a id="more"></a>
+<hr>
+<p>更新历史</p>
+<ul>
+<li>2017.04.02: 完成初稿</li>
+</ul>
+<h2 id="HTTP-简介"><a href="#HTTP-简介" class="headerlink" title="HTTP 简介"></a>HTTP 简介</h2><p>HTTP协议（HyperText Transfer Protocol，超文本传输协议）是因特网上应用最为广泛的一种基于 TCP/IP 通信协议来传递数据的网络传输协议，所有的 WWW 文件都必须遵守这个标准。HTTP 默认端口号为 80。</p>
+<ul>
+<li>HTTP 是无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</li>
+<li>HTTP 是媒体独立的：这意味着，只要客户端和服务器知道如何处理的数据内容，任何类型的数据都可以通过 HTTP 发送。客户端以及服务器指定使用适合的 MIME-type 内容类型。</li>
+<li>HTTP 是无状态：HTTP 协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</li>
+</ul>
+<h2 id="HTTP-Status-Code"><a href="#HTTP-Status-Code" class="headerlink" title="HTTP Status Code"></a>HTTP Status Code</h2><p>无论是返回 HTML 还是 API 响应，我们都应该尽可能遵从 HTTP 状态码规范，没有必要自己再搞一套。简单来说，HTTP 状态码包含三个十进制数字，第一个数字是类别，后俩是编号，一共有五个大类。</p>
+<p>注：加粗的为常用的状态码</p>
+<h3 id="1XX-信息"><a href="#1XX-信息" class="headerlink" title="1XX 信息"></a>1XX 信息</h3><p>服务器收到请求，需要请求者继续执行操作</p>
+<ul>
+<li>100 Continue    <ul>
+<li>继续。客户端应继续其请求</li>
+</ul>
+</li>
+<li>101 Switching Protocols    <ul>
+<li>切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到 HTTP 的新版本协议</li>
+</ul>
+</li>
+</ul>
+<h3 id="2XX-成功"><a href="#2XX-成功" class="headerlink" title="2XX 成功"></a>2XX 成功</h3><p>操作被成功接收并处理</p>
+<ul>
+<li><strong>200 OK</strong><ul>
+<li><strong>请求成功。一般用于 GET 与 POST 请求</strong></li>
+</ul>
+</li>
+<li>201 Created<ul>
+<li>已创建。成功请求并创建了新的资源</li>
+</ul>
+</li>
+<li>202 Accepted<ul>
+<li>已接受。已经接受请求，但未处理完成</li>
+</ul>
+</li>
+<li>203 Non-Authoritative Information<ul>
+<li>非授权信息。请求成功。但返回的 meta 信息不在原始的服务器，而是一个副本</li>
+</ul>
+</li>
+<li>204 No Content<ul>
+<li>无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档</li>
+</ul>
+</li>
+<li>205 Reset Content<ul>
+<li>重置内容。服务器处理成功，用户终端（例如：浏览器）应重置文档视图。可通过此返回码清除浏览器的表单域</li>
+</ul>
+</li>
+<li>206 Partial Content<ul>
+<li>部分内容。服务器成功处理了部分GET请求</li>
+</ul>
+</li>
+</ul>
+<h3 id="3XX-重定向"><a href="#3XX-重定向" class="headerlink" title="3XX 重定向"></a>3XX 重定向</h3><p>需要进一步的操作以完成请求</p>
+<ul>
+<li>300 Multiple Choices<ul>
+<li>多种选择。请求的资源可包括多个位置，相应可返回一个资源特征与地址的列表用于用户终端（例如：浏览器）选择</li>
+</ul>
+</li>
+<li><strong>301 Moved Permanently</strong><ul>
+<li><strong>永久移动。请求的资源已被永久的移动到新 URI，返回信息会包括新的 URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替</strong></li>
+</ul>
+</li>
+<li>302 Found<ul>
+<li>临时移动。与 301 类似。但资源只是临时被移动。客户端应继续使用原有 URI</li>
+</ul>
+</li>
+<li>303 See Other<ul>
+<li>查看其它地址。与 301 类似。使用 GET 和 POST 请求查看</li>
+</ul>
+</li>
+<li>304 Not Modified<ul>
+<li>未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源</li>
+</ul>
+</li>
+<li>305 Use Proxy<ul>
+<li>使用代理。所请求的资源必须通过代理访问</li>
+</ul>
+</li>
+<li>306 Unused<ul>
+<li>已经被废弃的HTTP状态码</li>
+</ul>
+</li>
+<li>307 Temporary Redirect<ul>
+<li>临时重定向。与 302 类似。使用 GET 请求重定向</li>
+</ul>
+</li>
+</ul>
+<h3 id="4XX-客户端错误"><a href="#4XX-客户端错误" class="headerlink" title="4XX 客户端错误"></a>4XX 客户端错误</h3><p>请求包含语法错误或无法完成请求</p>
+<ul>
+<li><strong>400 Bad Request</strong><ul>
+<li><strong>客户端请求的语法错误，服务器无法理解</strong></li>
+</ul>
+</li>
+<li><strong>401 Unauthorized</strong><ul>
+<li><strong>请求要求用户的身份认证</strong></li>
+</ul>
+</li>
+<li>402 Payment Required<ul>
+<li>保留，将来使用</li>
+</ul>
+</li>
+<li><strong>403 Forbidden</strong><ul>
+<li><strong>服务器理解请求客户端的请求，但是拒绝执行此请求</strong></li>
+</ul>
+</li>
+<li><strong>404 Not Found</strong><ul>
+<li><strong>服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置”您所请求的资源无法找到”的个性页面</strong></li>
+</ul>
+</li>
+<li><strong>405 Method Not Allowed</strong><ul>
+<li><strong>客户端请求中的方法被禁止</strong></li>
+</ul>
+</li>
+<li>406 Not Acceptable<ul>
+<li>服务器无法根据客户端请求的内容特性完成请求</li>
+</ul>
+</li>
+<li>407 Proxy Authentication Required<ul>
+<li>请求要求代理的身份认证，与401类似，但请求者应当使用代理进行授权</li>
+</ul>
+</li>
+<li>408 Request Time-out<ul>
+<li>服务器等待客户端发送的请求时间过长，超时</li>
+</ul>
+</li>
+<li>409 Conflict<ul>
+<li>服务器完成客户端的PUT请求是可能返回此代码，服务器处理请求时发生了冲突</li>
+</ul>
+</li>
+<li>410 Gone<ul>
+<li>客户端请求的资源已经不存在。410 不同于 404，如果资源以前有现在被永久删除了可使用 410 代码，网站设计人员可通过 301 代码指定资源的新位置</li>
+</ul>
+</li>
+<li>411 Length Required<ul>
+<li>服务器无法处理客户端发送的不带 Content-Length 的请求信息</li>
+</ul>
+</li>
+<li>412 Precondition Failed<ul>
+<li>客户端请求信息的先决条件错误</li>
+</ul>
+</li>
+<li>413 Request Entity Too Large<ul>
+<li>由于请求的实体过大，服务器无法处理，因此拒绝请求。为防止客户端的连续请求，服务器可能会关闭连接。如果只是服务器暂时无法处理，则会包含一个 Retry-After 的响应信息</li>
+</ul>
+</li>
+<li>414 Request-URI Too Large<ul>
+<li>请求的URI过长（URI通常为网址），服务器无法处理</li>
+</ul>
+</li>
+<li>415 Unsupported Media Type<ul>
+<li>服务器无法处理请求附带的媒体格式</li>
+</ul>
+</li>
+<li>416 Requested range not satisfiable<ul>
+<li>客户端请求的范围无效</li>
+</ul>
+</li>
+<li>417 Expectation Failed</li>
+</ul>
+<h3 id="5XX-服务器端错误"><a href="#5XX-服务器端错误" class="headerlink" title="5XX 服务器端错误"></a>5XX 服务器端错误</h3><p>服务器在处理请求的过程中发生了错误</p>
+<ul>
+<li><strong>500 Internal Server Error</strong><ul>
+<li><strong>服务器内部错误，无法完成请求</strong></li>
+</ul>
+</li>
+<li>501 Not Implemented<ul>
+<li>服务器不支持请求的功能，无法完成请求</li>
+</ul>
+</li>
+<li>502 Bad Gateway<ul>
+<li>充当网关或代理的服务器，从远端服务器接收到了一个无效的请求</li>
+</ul>
+</li>
+<li>503 Service Unavailable<ul>
+<li>由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中</li>
+</ul>
+</li>
+<li>504 Gateway Time-out<ul>
+<li>充当网关或代理的服务器，未及时从远端服务器获取请求</li>
+</ul>
+</li>
+<li>505 HTTP Version not supported<ul>
+<li>服务器不支持请求的HTTP协议的版本，无法完成处理</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTTP-Request-Method"><a href="#HTTP-Request-Method" class="headerlink" title="HTTP Request Method"></a>HTTP Request Method</h2><p>HTTP 1.0 定义了三种请求方法：GET, POST 和 HEAD方法。HTTP 1.1 新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。</p>
+<ul>
+<li>GET <ul>
+<li>请求指定的页面信息，并返回实体主体。</li>
+</ul>
+</li>
+<li>HEAD <ul>
+<li>类似于 GET 请求，只不过返回的响应中没有具体的内容，用于获取报头</li>
+</ul>
+</li>
+<li>POST <ul>
+<li>向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST 请求可能会导致新的资源的建立和/或已有资源的修改。</li>
+</ul>
+</li>
+<li>PUT <ul>
+<li>从客户端向服务器传送的数据取代指定的文档的内容。</li>
+</ul>
+</li>
+<li>DELETE <ul>
+<li>请求服务器删除指定的页面。</li>
+</ul>
+</li>
+<li>CONNECT <ul>
+<li>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</li>
+</ul>
+</li>
+<li>OPTIONS <ul>
+<li>允许客户端查看服务器的性能。</li>
+</ul>
+</li>
+<li>TRACE <ul>
+<li>回显服务器收到的请求，主要用于测试或诊断。</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTTP-Request-Header"><a href="#HTTP-Request-Header" class="headerlink" title="HTTP Request Header"></a>HTTP Request Header</h2><ul>
+<li>Allow<ul>
+<li>服务器支持哪些请求方法（如GET、POST等）。</li>
+</ul>
+</li>
+<li>Content-Encoding<ul>
+<li>文档的编码(Encode)方法。只有在解码之后才可以得到 Content-Type 头指定的内容类型</li>
+<li>利用gzip压缩文档能够显著地减少HTML文档的下载时间</li>
+</ul>
+</li>
+<li>Content-Length<ul>
+<li>表示内容长度。只有当浏览器使用持久 HTTP 连接时才需要这个数据</li>
+</ul>
+</li>
+<li>Content-Type<ul>
+<li>表示后面的文档属于什么 MIME 类型</li>
+</ul>
+</li>
+<li>Date<ul>
+<li>当前的 GMT 时间</li>
+</ul>
+</li>
+<li>Expires<ul>
+<li>应该在什么时候认为文档已经过期，从而不再缓存它</li>
+</ul>
+</li>
+<li>Last-Modified    <ul>
+<li>文档的最后改动时间。客户可以通过 If-Modified-Since 请求头提供一个日期，该请求将被视为一个条件 GET，只有改动时间迟于指定时间的文档才会返回，否则返回一个 304(Not Modified) 状态</li>
+</ul>
+</li>
+<li>Location<ul>
+<li>表示客户应当到哪里去提取文档</li>
+</ul>
+</li>
+<li>Refresh<ul>
+<li>表示浏览器应该在多少时间之后刷新文档，以秒计</li>
+<li>注意：这种功能通常是通过设置 HTML 页面 HEAD 区的 ＜META HTTP-EQUIV=”Refresh” CONTENT=”5;URL=<a href="http://host/path&quot;＞实现" target="_blank" rel="external">http://host/path&quot;＞实现</a></li>
+<li>注意：Refresh 的意义是”N秒之后刷新本页面或访问指定页面”，而不是”每隔N秒刷新本页面或访问指定页面”。因此，连续刷新要求每次都发送一个Refresh头，而发送204状态代码则可以阻止浏览器继续刷新，不管是使用Refresh头还是＜META HTTP-EQUIV=”Refresh” …＞。</li>
+<li>注意 Refresh 头不属于 HTTP 1.1 正式规范的一部分，而是一个扩展</li>
+</ul>
+</li>
+<li>Server<ul>
+<li>服务器名字</li>
+</ul>
+</li>
+<li>Set-Cookie<ul>
+<li>设置和页面关联的 Cookie</li>
+</ul>
+</li>
+<li>WWW-Authenticate<ul>
+<li>客户应该在 Authorization 头中提供什么类型的授权信息？在包含401(Unauthorized) 状态行的应答中这个头是必需的 </li>
+</ul>
+</li>
+</ul>
+<h2 id="HTTP-Content-Type"><a href="#HTTP-Content-Type" class="headerlink" title="HTTP Content Type"></a>HTTP Content Type</h2><p>用来向浏览器和服务器提供信息，表示该 URL 对应的资源类型，应该匹配好，不要挂羊头卖狗肉</p>
+<p>注：这里只列出比较常见的</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">文件后缀</th>
+<th style="text-align:center">Content-Type(Mime-Type)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.css</td>
+<td style="text-align:center">text/css</td>
+</tr>
+<tr>
+<td style="text-align:center">.gif</td>
+<td style="text-align:center">image/gif</td>
+</tr>
+<tr>
+<td style="text-align:center">.htm</td>
+<td style="text-align:center">text/html</td>
+</tr>
+<tr>
+<td style="text-align:center">.html</td>
+<td style="text-align:center">text/html</td>
+</tr>
+<tr>
+<td style="text-align:center">.jpeg</td>
+<td style="text-align:center">image/jpeg</td>
+</tr>
+<tr>
+<td style="text-align:center">.jpg</td>
+<td style="text-align:center">image/jpeg</td>
+</tr>
+<tr>
+<td style="text-align:center">.js</td>
+<td style="text-align:center">application/x-javascript</td>
+</tr>
+<tr>
+<td style="text-align:center">.ico</td>
+<td style="text-align:center">image/x-icon</td>
+</tr>
+<tr>
+<td style="text-align:center">.mp3</td>
+<td style="text-align:center">audio/mp3</td>
+</tr>
+<tr>
+<td style="text-align:center">.mp4</td>
+<td style="text-align:center">video/mpeg4</td>
+</tr>
+<tr>
+<td style="text-align:center">.mpeg</td>
+<td style="text-align:center">video/mpg</td>
+</tr>
+<tr>
+<td style="text-align:center">.mpg</td>
+<td style="text-align:center">video/mpg</td>
+</tr>
+<tr>
+<td style="text-align:center">.pdf</td>
+<td style="text-align:center">application/pdf</td>
+</tr>
+<tr>
+<td style="text-align:center">.png</td>
+<td style="text-align:center">image/png</td>
+</tr>
+<tr>
+<td style="text-align:center">.tif</td>
+<td style="text-align:center">image/tiff</td>
+</tr>
+<tr>
+<td style="text-align:center">.tiff</td>
+<td style="text-align:center">image/tiff    </td>
+</tr>
+<tr>
+<td style="text-align:center">.torrent</td>
+<td style="text-align:center">application/x-bittorrent</td>
+</tr>
+<tr>
+<td style="text-align:center">.wav</td>
+<td style="text-align:center">audio/wav    </td>
+</tr>
+<tr>
+<td style="text-align:center">.xhtml</td>
+<td style="text-align:center">text/html    </td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="http://www.runoob.com/http/http-status-codes.html" target="_blank" rel="external">HTTP状态码</a></li>
+<li><a href="http://www.runoob.com/http/http-content-type.html" target="_blank" rel="external">HTTP content-type</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+            <a href="/tags/规范/" rel="tag"># 规范</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/31/mountains/" rel="next" title="第四十二周 - 群山谱">
+                <i class="fa fa-chevron-left"></i> 第四十二周 - 群山谱
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/05/taobao-food-map/" rel="prev" title="淘宝美食地图">
+                淘宝美食地图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">861</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">953</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-简介"><span class="nav-number">1.</span> <span class="nav-text">HTTP 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Status-Code"><span class="nav-number">2.</span> <span class="nav-text">HTTP Status Code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1XX-信息"><span class="nav-number">2.1.</span> <span class="nav-text">1XX 信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2XX-成功"><span class="nav-number">2.2.</span> <span class="nav-text">2XX 成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3XX-重定向"><span class="nav-number">2.3.</span> <span class="nav-text">3XX 重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4XX-客户端错误"><span class="nav-number">2.4.</span> <span class="nav-text">4XX 客户端错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5XX-服务器端错误"><span class="nav-number">2.5.</span> <span class="nav-text">5XX 服务器端错误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Request-Method"><span class="nav-number">3.</span> <span class="nav-text">HTTP Request Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Request-Header"><span class="nav-number">4.</span> <span class="nav-text">HTTP Request Header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Content-Type"><span class="nav-number">5.</span> <span class="nav-text">HTTP Content Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

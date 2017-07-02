@@ -1,0 +1,1185 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="程序员,思维,技能,链表," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="链表，作为在内存中非连续分配的数据结构，因为其灵活性往往容易出错，这里我们会通过深入理解来教大家一些解决链表问题的基本方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【不周山之算法与数据结构】伍 链表">
+<meta property="og:url" content="http://wdxtub.com/2016/01/22/programmer-startline-5/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="链表，作为在内存中非连续分配的数据结构，因为其灵活性往往容易出错，这里我们会通过深入理解来教大家一些解决链表问题的基本方法。">
+<meta property="og:updated_time" content="2016-11-27T13:50:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【不周山之算法与数据结构】伍 链表">
+<meta name="twitter:description" content="链表，作为在内存中非连续分配的数据结构，因为其灵活性往往容易出错，这里我们会通过深入理解来教大家一些解决链表问题的基本方法。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/2016/01/22/programmer-startline-5/"/>
+
+
+
+
+
+  <title> 【不周山之算法与数据结构】伍 链表 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/2016/01/22/programmer-startline-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                【不周山之算法与数据结构】伍 链表
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-22T15:51:05+08:00">
+                2016-01-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2016-11-27T21:50:21+08:00">
+                2016-11-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technique/" itemprop="url" rel="index">
+                    <span itemprop="name">Technique</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/01/22/programmer-startline-5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      1,795
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      7
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>链表，作为在内存中非连续分配的数据结构，因为其灵活性往往容易出错，这里我们会通过深入理解来教大家一些解决链表问题的基本方法。</p>
+<a id="more"></a>
+<hr>
+<h2 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h2><p>基本上编程中重要的内容，都在这里了。</p>
+<ul>
+<li><a href="http://wdxtub.com/2016/01/22/programmer-startline-1/">壹 总览</a></li>
+<li><a href="http://wdxtub.com/2016/01/22/programmer-startline-2/">贰 Big O 分析</a></li>
+<li><a href="http://wdxtub.com/2016/01/22/programmer-startline-3/">叁 数组和字符串</a></li>
+<li><a href="http://wdxtub.com/2016/01/22/programmer-startline-4/">肆 栈和队列</a></li>
+<li><a href="http://wdxtub.com/2016/01/22/programmer-startline-5/">伍 链表</a></li>
+<li><a href="http://wdxtub.com/2016/01/23/programmer-startline-6/">陆 递归与动态规划</a></li>
+<li><a href="http://wdxtub.com/2016/01/23/programmer-startline-7/">柒 树和图</a></li>
+<li><a href="http://wdxtub.com/2016/01/23/programmer-startline-8/">捌 排序和搜索</a></li>
+<li><a href="http://wdxtub.com/2016/01/23/programmer-startline-9/">玖 数学</a></li>
+<li><a href="http://wdxtub.com/2016/01/23/programmer-startline-10/">拾 位操作</a></li>
+<li><a href="http://wdxtub.com/2016/01/23/programmer-startline-11/">拾壹 面向对象</a></li>
+<li><a href="http://wdxtub.com/2016/01/23/programmer-startline-12/">拾贰 其他知识</a></li>
+<li><a href="http://wdxtub.com/2016/01/23/programmer-startline-13/">拾叁 总结</a></li>
+</ul>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>链表是非常基础和常用的一个数据结构，尤其是在解析器(parser)、游戏和搜索算法中。而且很多时候会用来实现下面的 ADT(Abstract Data Type)：</p>
+<ul>
+<li>堆栈 Stack</li>
+<li>集合 Set</li>
+<li>哈希表 Hash Table</li>
+</ul>
+<p>我们来重温一下实现某个数据结构要做的五个事情：</p>
+<ol>
+<li>抽象理解</li>
+<li>写出</li>
+<li>Write Applications</li>
+<li>Select, Design, Implement</li>
+<li>Analyze the Implementation</li>
+</ol>
+<p>需要掌握的链表操作：</p>
+<ul>
+<li>插入</li>
+<li>删除</li>
+<li>检查是否有环</li>
+<li>保证程序的健壮性（主要是头为空的时候）</li>
+</ul>
+<p>其他比较特别的操作：</p>
+<ul>
+<li>合并 N 个链表</li>
+<li>反转链表</li>
+<li>截取链表的一部分</li>
+<li>寻找链表的 1/N</li>
+</ul>
+<h2 id="解题策略"><a href="#解题策略" class="headerlink" title="解题策略"></a>解题策略</h2><p>链表(linked list)是一种常见的线性数据结构。对于单向链表(singly linked list)，每个节点有一个 next 指针指向后一个节点，还有一个成员变量用以存储数值；对于双向链表(doubly Linked List)，还有一个 prev 指针指向前一个节点。与数组类似，搜索链表需要O(n)的时间复杂度，但是链表不能通过常数时间 O(1) 读取第k个数据。链表的优势在于能够以较高的效率在任意位置插入或删除一个节点。</p>
+<ul>
+<li>当涉及对头节点的操作，我们不妨考虑创建哑节点</li>
+<li>由于题目涉及在链表中寻找特定位置，我们用两个指针变量以不同的速度遍历该链表</li>
+<li>实现链表的逆转时，循环遍历链表, 每次只处理当前指针的 next 变量</li>
+</ul>
+<p>基本解题策略</p>
+<ul>
+<li>当涉及对头节点的操作，我们不妨考虑创建哑节点</li>
+<li>题目涉及在链表中寻找特定位置，我们用两个指针变量以不同的速度遍历该链表</li>
+<li>循环遍历链表, 每次只处理当前指针的next 变量，由此实现链表的逆转</li>
+<li>凡是修改单向链表的操作，只需考虑：<ul>
+<li>哪个节点的next指针会受到影响，则需要修正该指针；</li>
+<li>如果待删除节点是动态开辟的内存空间，则需要释放这部分空间(C/C++)</li>
+</ul>
+</li>
+</ul>
+<p>基本操作</p>
+<ul>
+<li>检验有效性<ul>
+<li>访问某个节点 <code>curt.next</code> 时，要检验 <code>curt</code> 是否为 <code>null</code></li>
+</ul>
+</li>
+<li>反转链表<ul>
+<li>要把反转后的最后一个节点（即第一个节点）指向 <code>null</code></li>
+</ul>
+</li>
+<li>删除某个节点<ul>
+<li>由于需要知道前继节点的信息，而前继节点可能会导致表头产生变化，所以需要一些技巧 Dummy Node</li>
+<li>全部操作结束后，判断是否有环；若有，则置其中一端为 null</li>
+</ul>
+</li>
+</ul>
+<p>快慢指针</p>
+<ul>
+<li>快速找出未知长度单链表的中间节点<ul>
+<li>设置两个指针 <code>*fast</code> 和 <code>*slow</code> 都指向头节点</li>
+<li><code>*fast</code> 移动速度是 <code>*slow</code> 的两倍</li>
+<li><code>*fast</code> 指向末尾节点时，<code>*slow</code> 正好就在中间</li>
+</ul>
+</li>
+<li>判断单链表是否有环<ul>
+<li>设置两个指针 <code>*fast</code> 和 <code>*slow</code> 都指向头节点</li>
+<li><code>*fast</code> 移动速度是 <code>*slow</code> 的两倍</li>
+<li>如果 <code>*fast == null</code> 说明该单链表不是循环链表</li>
+<li>如果 <code>*fast == *slow</code> 说明该链表是循环链表</li>
+</ul>
+</li>
+<li>找倒数第 N 个节点<ul>
+<li>设置两个指针 <em>fast 和 </em>slow 都指向头节点</li>
+<li><code>*fast</code> 先移动 N 步，然后两个指针一起前进</li>
+<li><code>*fast</code> 到达末尾时，*slow 即为倒数第 N 个节点</li>
+</ul>
+</li>
+</ul>
+<h3 id="链表的基本操作"><a href="#链表的基本操作" class="headerlink" title="链表的基本操作"></a>链表的基本操作</h3><p>凡是修改单向链表的操作，只需考虑：</p>
+<ol>
+<li>哪个节点的next指针会受到影响，则需要修正该指针；</li>
+<li>如果待删除节点是动态开辟的内存空间，则需要释放这部分空间(C/C++)</li>
+</ol>
+<p>毕竟，一个链表节点，无非是包含value和next这两个成员变量的数据结构而已。对于双向链表，类似的，则只需额外考虑谁的prev指针会受到影响。</p>
+<p>举例如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">void delNode(ListNode *prev) &#123;</div><div class="line">  ListNode *curr = prev-&gt;next;</div><div class="line">  // 删除curr节点只会使prev节点的next受到影响</div><div class="line">  prev-&gt;next = curr-&gt;next;    </div><div class="line">  delete curr;    // 清理trash指针</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注：操作链表时务必注意边界条件：curr == head, curr == tail 或者 curr == NULL</p>
+<ul>
+<li><strong>两种存储方式</strong><ul>
+<li>顺序存储结构：随机读取，访问时是 O(1)</li>
+<li>链式存储结构：插入和删除 O(1)，访问时最坏是 O(n)</li>
+</ul>
+</li>
+<li>分类（根据指针域）<ul>
+<li>单向链表</li>
+<li>双向链表</li>
+<li>循环链表</li>
+</ul>
+</li>
+</ul>
+<h3 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h3><ul>
+<li>访问某个节点 <code>curt.next</code> 时，要检验 <code>curt</code> 是否为 <code>null</code></li>
+<li>要把反转后的最后一个节点（即第一个节点）指向 <code>null</code></li>
+</ul>
+<h3 id="删除某个节点"><a href="#删除某个节点" class="headerlink" title="删除某个节点"></a>删除某个节点</h3><ul>
+<li>由于需要知道前继节点的信息，而前继节点可能会导致表头产生变化，所以需要一些技巧 <code>Dummy Node</code></li>
+<li>链表指针的鲁棒性<ul>
+<li>访问某个节点 <code>curt.next</code> 时，要检验 <code>curt</code> 是否为 <code>null</code></li>
+<li>全部操作结束后，判断是否有环；若有，则置其中一端为 <code>null</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Dummy-Node"><a href="#Dummy-Node" class="headerlink" title="Dummy Node"></a>Dummy Node</h3><ul>
+<li>是一个虚拟节点 <code>dummy.next = head</code></li>
+<li>针对单向链表没有前向指针的问题，保证链表的 <code>head</code> 不会在删除操作中丢失</li>
+<li>也可以用来进行 <code>head</code> 节点（但比较少见）</li>
+<li>当链表的 <code>head</code> 可能有变化时，使用 dummy node 可以简化代码，最后返回 <code>dummy.next</code> 即可</li>
+</ul>
+<h3 id="快慢指针"><a href="#快慢指针" class="headerlink" title="快慢指针"></a>快慢指针</h3><ul>
+<li>快慢指的是指针向前移动的步长，一般来说，快指针每次移动 2，慢指针每次移动 1</li>
+<li>主要有两个应用<ul>
+<li><strong>快速找出未知长度单链表的中间节点</strong><ul>
+<li>设置两个指针 <code>*fast</code> 和 <code>*slow</code> 都指向头节点</li>
+<li><code>*fast</code> 移动速度是 <code>*slow</code> 的两倍</li>
+<li><code>*fast</code> 指向末尾节点时，<code>*slow</code> 正好就在中间</li>
+</ul>
+</li>
+<li><strong>判断单链表是否有环</strong><ul>
+<li>设置两个指针 <code>*fast</code> 和 <code>*slow</code> 都指向头节点</li>
+<li><code>*fast</code> 移动速度是 <code>*slow</code> 的两倍</li>
+<li>如果 <code>*fast == null</code> 说明该单链表不是循环链表</li>
+<li>如果 <code>*fast == *slow</code> 说明该链表是循环链表</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他应用<ul>
+<li><strong>找倒数第 N 个节点</strong><ul>
+<li>设置两个指针 <code>*fast</code> 和 <code>*slow</code> 都指向头节点</li>
+<li><code>*fast</code> 先移动 N 步，然后两个指针一起前进</li>
+<li><code>*fast</code> 到达末尾时，<code>*slow</code> 即为倒数第 N 个节点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
+<li><a href="http://wdxtub.com/interview/14520597852720.html">Swap Adjacent Node</a></li>
+<li><a href="http://wdxtub.com/interview/14520597852604.html">Start of Circle</a></li>
+<li><a href="http://wdxtub.com/interview/14520597852502.html">Sort List</a></li>
+<li><a href="http://wdxtub.com/interview/14520597852382.html">Rotate List</a></li>
+<li><a href="http://wdxtub.com/interview/14520597852276.html">Reversely List Traverse</a></li>
+<li><a href="http://wdxtub.com/interview/14520597852177.html">Reverse Nodes in k-Group</a></li>
+<li><a href="http://wdxtub.com/interview/14520597852065.html">Reverse List</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851968.html">Reverse List Range</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851880.html">Reorder List</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851782.html">Remove Linked List Elements</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851695.html">Remove Duplicates from Unsorted List</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851601.html">Remove Duplicates from Sorted List</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851549.html">Remove Duplicates from Sorted List II</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851500.html">Partition Linked List</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851449.html">Partitiom List Sorted</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851399.html">Middle of List</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851346.html">Merge Two Lists</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851075.html">Merge K Linked List</a></li>
+<li><a href="http://wdxtub.com/interview/14520597851031.html">Kth to Last</a></li>
+<li><a href="http://wdxtub.com/interview/14520597850990.html">Insertion Sort List</a></li>
+<li><a href="http://wdxtub.com/interview/14520597850946.html">Copy List with Random Pointer</a></li>
+<li><a href="http://wdxtub.com/interview/14520597850907.html">Palindrome Linked List</a></li>
+<li><a href="http://wdxtub.com/interview/14520597850871.html">Check Intersection</a></li>
+<li><a href="http://wdxtub.com/interview/14520597850832.html">Check Cycle</a></li>
+<li><a href="http://wdxtub.com/interview/14520597850789.html">Add Two Numbers</a></li>
+<li><a href="http://wdxtub.com/interview/14520607215217.html">Delete Node in a Linked List</a></li>
+<li><a href="http://wdxtub.com/interview/14520607215107.html">Delete Middle Node</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/程序员/" rel="tag"># 程序员</a>
+          
+            <a href="/tags/思维/" rel="tag"># 思维</a>
+          
+            <a href="/tags/技能/" rel="tag"># 技能</a>
+          
+            <a href="/tags/链表/" rel="tag"># 链表</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/22/programmer-startline-4/" rel="next" title="【不周山之算法与数据结构】肆 栈和队列">
+                <i class="fa fa-chevron-left"></i> 【不周山之算法与数据结构】肆 栈和队列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/23/programmer-startline-6/" rel="prev" title="【不周山之算法与数据结构】陆 递归与动态规划">
+                【不周山之算法与数据结构】陆 递归与动态规划 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">861</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">953</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#系列文章"><span class="nav-number">1.</span> <span class="nav-text">系列文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表"><span class="nav-number">2.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题策略"><span class="nav-number">3.</span> <span class="nav-text">解题策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链表的基本操作"><span class="nav-number">3.1.</span> <span class="nav-text">链表的基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反转链表"><span class="nav-number">3.2.</span> <span class="nav-text">反转链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除某个节点"><span class="nav-number">3.3.</span> <span class="nav-text">删除某个节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dummy-Node"><span class="nav-number">3.4.</span> <span class="nav-text">Dummy Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快慢指针"><span class="nav-number">3.5.</span> <span class="nav-text">快慢指针</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">4.</span> <span class="nav-text">附录</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

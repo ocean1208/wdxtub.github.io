@@ -1,0 +1,1069 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="计算机,初稿," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="好马配好鞍，有了强大的硬件，也需要配套的软件才能真正发挥作用，那么指令系统就是在硬件之上真正留给程序员发挥的地方。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【计算机系统导论】3.4 指令系统与指令集">
+<meta property="og:url" content="http://wdxtub.com/1984/09/11/ics-draft-3-4/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="好马配好鞍，有了强大的硬件，也需要配套的软件才能真正发挥作用，那么指令系统就是在硬件之上真正留给程序员发挥的地方。">
+<meta property="og:image" content="http://wdxtub.com/images/14869516316329.jpg">
+<meta property="og:image" content="http://wdxtub.com/images/14869516349504.jpg">
+<meta property="og:image" content="http://wdxtub.com/images/14869515950289.jpg">
+<meta property="og:image" content="http://wdxtub.com/images/14869515988144.jpg">
+<meta property="og:image" content="http://wdxtub.com/images/14869516027368.jpg">
+<meta property="og:image" content="http://wdxtub.com/images/14869516062471.jpg">
+<meta property="og:updated_time" content="2017-02-14T09:04:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【计算机系统导论】3.4 指令系统与指令集">
+<meta name="twitter:description" content="好马配好鞍，有了强大的硬件，也需要配套的软件才能真正发挥作用，那么指令系统就是在硬件之上真正留给程序员发挥的地方。">
+<meta name="twitter:image" content="http://wdxtub.com/images/14869516316329.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/1984/09/11/ics-draft-3-4/"/>
+
+
+
+
+
+  <title> 【计算机系统导论】3.4 指令系统与指令集 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/1984/09/11/ics-draft-3-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                【计算机系统导论】3.4 指令系统与指令集
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="1984-09-11T00:03:04+08:00">
+                1984-09-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T17:04:51+08:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technique/" itemprop="url" rel="index">
+                    <span itemprop="name">Technique</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/1984/09/11/ics-draft-3-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      3,108
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      11
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>好马配好鞍，有了强大的硬件，也需要配套的软件才能真正发挥作用，那么指令系统就是在硬件之上真正留给程序员发挥的地方。</p>
+<a id="more"></a>
+<hr>
+<ul>
+<li>指令执行</li>
+<li>指令级并行</li>
+<li>机器指令特征（要素、表示、类型、地址数目、指令集设计）</li>
+<li>操作数类型（数值、字符、逻辑数据）</li>
+<li>Intel x86 和 ARM 数据类型</li>
+<li>操作类型（数据传送、算术运算、逻辑运算、转换、输入输出、系统控制、控制转移）</li>
+<li>Intel x86 和 ARM 操作类型</li>
+<li>寻址方式（立即寻址、直接寻址、间接寻址、寄存器寻址、寄存器间接寻址、偏移寻址、栈寻址）</li>
+<li>指令格式（长度、位的分配、变长指令，VLIW）</li>
+<li>CISC 与 RISC（对比、争论）</li>
+<li>指令周期（间接周期、数据流）</li>
+<li>指令流水线技术（流水线策略、性能、冒险、处理分支指令、Intel 80486的流水线）</li>
+<li>ARM CORTEX-A8（指令取指单元、指令译码单元、整数执行单元、SIMD 和浮点流水线）</li>
+<li>ARM 指令集（寻址模式、比较和条件分支、ARM 的特色）</li>
+<li>x86 的指令集（寄存器和数据寻址模式、整数操作、指令编码）</li>
+<li>异常（MIPS 体系结构中的处理、流水线中的异常）</li>
+<li>控制流</li>
+<li>中断和指令周期（中断处理、多个中断）</li>
+</ul>
+<p>存储程序计算机的两个准则是指令的使用与数字没有区别，以及使用可修改的存储器。选择机器可以理解的指令集需要精妙地平衡程序执行需要的指令数目、指令指令所需的时钟周期数和时钟的速度。在做精妙平衡时有四条准则可以指导设计者：</p>
+<ol>
+<li>简单源于规整。</li>
+<li>越小越快</li>
+<li>加速常用操作</li>
+<li>优秀的设计需要好的折中</li>
+</ol>
+<p>计算机性能水平的提高是永无止境的，计算机设计者和程序员必须理解更广泛的问题。硬件和软件设计者都是用分层的方法构建计算机系统，每个下层都对其上层隐藏本层的细节。这个抽象原理是理解当今计算机系统的基础，但这并不意味着设计者只要懂得抽象原理就足够了。也许最重要的抽象层次是硬件和底层软件之间的接口，称为指令集体系结构。将指令集体系结构作为一个常量可以使其不同的实现方法（价格和性能可能不同）能够运行同一软件。产生的一个副效应：这些预先排除可能需要接口发生变化的那些革新结构。</p>
+<p>我们知道处理器必须执行一系列指令，每条指令执行某个简单操作，例如两个数相加。指令被编码为由一个或多个字节序列组成的二进制格式。一个处理器支持的指令和指令的字节级编码称为它的指令集体系结构(Instruction-Set Architecture, ISA)。不同的处理器家族，例如 Intel IA32、IBM/Freescale PowerPC 和 ARM 处理器家族，都有不同的 ISA。一个程序编译成在一种机器上运行，就不能在另一种机器上运行。另外，同一个家族里也有很多不同型号的处理器。虽然每个厂商制造的处理器性能和复杂性不断提高，但是不同的型号在 ISA 级别上都保持着兼容。一些常见的处理器家族（例如 IA32）中的处理器分别又多个厂商提供。因此，ISA 在编译器编写者和处理器设计人员之间提供了一个概念抽象层，编译器编写者只需要知道允许哪些指令，以及它们是如何编码的；而处理器设计者必须建造出执行这些指令的处理器。</p>
+<p>一个很重要的概念是，现代处理器的实际工作方式可能跟 ISA 隐含的计算模型大相径庭。ISA 模型看上去应该是顺序指令执行，也就是先取出一条指令，等到它执行完毕，再开始下一条。然而，与一个时刻只执行一条指令相比，通过同时处理多条指令的不同部分，处理器可以获得较高的性能，为了保证处理器能达到同顺序执行相同的结果，人们采用了一些特殊的机制。在计算机科学中，用巧妙的方法在提高性能的同时，又保持一个更简单、更抽象模型的功能，这种想法是众所周知的。在 Web 浏览器或平衡二叉树和哈希表这样的信息检索数据结构中使用缓存，就是这样的例子。</p>
+<h2 id="从汇编说起"><a href="#从汇编说起" class="headerlink" title="从汇编说起"></a>从汇编说起</h2><h2 id="指令格式与类型"><a href="#指令格式与类型" class="headerlink" title="指令格式与类型"></a>指令格式与类型</h2><h3 id="指令设计"><a href="#指令设计" class="headerlink" title="指令设计"></a>指令设计</h3><h3 id="指令类型"><a href="#指令类型" class="headerlink" title="指令类型"></a>指令类型</h3><p>数据移动、单双操作数、比较与条件转移、过程调用、循环控制</p>
+<h3 id="Core-i7-架构指令系统（包含指令格式）"><a href="#Core-i7-架构指令系统（包含指令格式）" class="headerlink" title="Core i7 架构指令系统（包含指令格式）"></a>Core i7 架构指令系统（包含指令格式）</h3><h3 id="龙芯架构指令系统（包含指令格式）"><a href="#龙芯架构指令系统（包含指令格式）" class="headerlink" title="龙芯架构指令系统（包含指令格式）"></a>龙芯架构指令系统（包含指令格式）</h3><h2 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h2><p>除了将变量与寄存器对应起来，编译器还在存储器中为诸如数组和结构这样的数据结构分配相应的位置。然而，编译器可以将它们在存储器中的起始地址放到数据传送指令中。</p>
+<p>很多程序都用到字节类型，且大多数体系结构按字节编地址。因此，一个字的地址必和它所包括的四个字节中某个的地址相匹配，且连续字的地址相差 4。在 MIPS 中，字的起始地址必须是 4 的倍数，这叫对齐限制，许多体系结构都有这样的限制。</p>
+<p>有两种类型的字节寻址的计算机：一种使用最左边或『大端』big end 字节的地址作为字地址；另一种使用最右边或『小端』little end 字节的地址作为字地址。</p>
+<h3 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h3><ul>
+<li>各类寻址，至少八种</li>
+<li>数组分配与寻址</li>
+<li>不同数据类型的寻址</li>
+</ul>
+<h3 id="Core-i7-的寻址"><a href="#Core-i7-的寻址" class="headerlink" title="Core i7 的寻址"></a>Core i7 的寻址</h3><h3 id="龙芯的寻址"><a href="#龙芯的寻址" class="headerlink" title="龙芯的寻址"></a>龙芯的寻址</h3><h3 id="寻址方式讨论"><a href="#寻址方式讨论" class="headerlink" title="寻址方式讨论"></a>寻址方式讨论</h3><h2 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h2><h3 id="顺序控制流和转移"><a href="#顺序控制流和转移" class="headerlink" title="顺序控制流和转移"></a>顺序控制流和转移</h3><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><h3 id="系统过程"><a href="#系统过程" class="headerlink" title="系统过程"></a>系统过程</h3><h3 id="漏洞"><a href="#漏洞" class="headerlink" title="漏洞"></a>漏洞</h3><p>漏洞从大的方面分为四种：DDOS 攻击；信息泄露；权限夺取；权限升格</p>
+<p>对软件漏洞的攻击有很多种。对软件开发者的程序错误的攻击，有代表性的有以下 5 种：缓冲区溢出、整数溢出、跨站点脚本攻击（XSS）、SQL 注入、跨站点伪造请求（CSRF）</p>
+<h2 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h2><p>最早体系结构的指令集受到当时硬件技术的限制。只要硬件技术允许，计算机架构师就会探索支持高级语言的方式。因为这一探索，在三个不同时期内，人们关于如何高效支持程序有着截然不同的考虑。20 世纪 60 年代，栈体系结构变得非常流行。人们认为它们与高级语言非常匹配，根据当时的编译器技术，可能也确实如此。20 世纪 70 年代，架构师主要关注如何降低软件成本。其解决方案主要是用硬件代替软件，或者提供能够简化软件设计人员任务的高级体系结构。其结果就是高级语言计算机体系结构和诸如 VAX 之类的强大体系结构，这种体系结构有大量的寻址方式、多种数据类型和高度正交的体系结构。20 世纪 80 年代，一些更高级的编译器技术和对处理器性能的再度重视见证了简单体系结构的回归，其主要基础就是载入-存储型计算机。</p>
+<p>20 世纪 90 年代，指令集体系结构发生了以下变化</p>
+<ul>
+<li>地址大小加倍（32 位到 64 位）</li>
+<li>通过条件执行优化条件分支</li>
+<li>通过预取优化缓存性能</li>
+<li>支持多媒体</li>
+<li>浮点运算速度更快</li>
+</ul>
+<h3 id="指令集：特征和功能"><a href="#指令集：特征和功能" class="headerlink" title="指令集：特征和功能"></a>指令集：特征和功能</h3><p>计算机指令最重要的元素是操作码（opcode），它指明将完成的操作、源和目的操作数的引用方式，并通常隐式指明下一条指令的来源。</p>
+<p>操作码指定的操作，一般可有如下类型：算术和逻辑运算，在两个寄存器、寄存器和存储器或存储器两个位置之间传送数据，输入/输出，控制。</p>
+<p>操作数引用方式指定如何寻找被操作数据的寄存器或存储器的位置。数据类型可以是地址、数值、字符或逻辑数据。</p>
+<p>各类处理器中的一个普遍的体系结构是栈 stack 的使用，栈对程序员是可见的或是不可见的。栈用于管理过程的调用和返回，也可用来提供另一种寻址存储器的方式。栈的基本操作是 PUSH 和 POP，以及在栈顶部一或两个位置上完成的操作。一般来说，栈都实现为从高地址向低地址增长。</p>
+<p>字节可以寻址的处理器可分为大端（big endian）、小端（little endian）、双端（bi-endian）这几类。如果多字节的数值是以最高有效字节存于最低地址值的字节来顺序存储，则称为大端；如果它们是以最低有效字节存于最低地址值的字节来顺序存储，则称为小端。既支持大端又支持小端的处理器是双端处理器。</p>
+<h3 id="指令集：寻址方式和指令格式"><a href="#指令集：寻址方式和指令格式" class="headerlink" title="指令集：寻址方式和指令格式"></a>指令集：寻址方式和指令格式</h3><p>指令的操作数引用有两种形式：一是指令中含有操作数的实际值（立即数），而是指令中含有对操作数地址的引用。各种指令集使用类型广泛的寻址方式。这包括直接寻址（操作数地址在指令的地址字段中）、间接寻址（地址字段指向一个存储位置，此位置含有操作数地址）、寄存器寻址、寄存器间接寻址，以及各种形式的偏移寻址（寄存器值加上地址值产生操作数地址）。</p>
+<p>指令格式定义了指令中字段的布局。指令格式设计是一件非常复杂的事情，要考虑到诸多因素，如指令长度是定长还是变长，指派给操作码和每个操作数引用的位数，以及如何确定寻址方式等。</p>
+<h3 id="CISC-vs-RISC"><a href="#CISC-vs-RISC" class="headerlink" title="CISC vs RISC"></a>CISC vs RISC</h3><p><img src="/images/14869516316329.jpg" alt=""></p>
+<p><img src="/images/14869516349504.jpg" alt=""></p>
+<p>对设计新型处理器体系结构来说，高级语言程序行为的研究具有指导意义，成果之一就是产生了精简指令集计算机（RISC）。程序中赋值语句占最大份额，这暗示着简单的数据传送应当优化。程序中还是许多 IF 和 LOOP 语句，意味着基本的顺序控制机制需要进行优化，以便有效地使用流水技术。操作数引用样式的研究表明，在寄存器中保持适当数量的操作数会有助于性能的提高</p>
+<p>这些研究已导出 RISC 机器的关键特征：其一，有限的指令集并具有固定格式；其二，大量的寄存器或利用编译器来优化寄存器的使用；其三，强调对指令流水线的优化。</p>
+<p>RISC 的简单指令集便于有效的流水化，因为每条指令只有少数几种操作，并且这些操作是比较容易确定的。RISC 指令集体系结构自身也有助于实施延迟分支（delayed branch） 技术，这种技术将分支指令和其他指令重排从而提高流水线效率。</p>
+<p><img src="/images/14869515950289.jpg" alt=""></p>
+<p><img src="/images/14869515988144.jpg" alt=""></p>
+<p><img src="/images/14869516027368.jpg" alt=""></p>
+<p><img src="/images/14869516062471.jpg" alt=""></p>
+<h3 id="多媒体指令"><a href="#多媒体指令" class="headerlink" title="多媒体指令"></a>多媒体指令</h3><p><a href="https://zh.wikipedia.org/wiki/MMX" target="_blank" rel="external">https://zh.wikipedia.org/wiki/MMX</a></p>
+<p>MMX SSE</p>
+<h3 id="ARM-指令集"><a href="#ARM-指令集" class="headerlink" title="ARM 指令集"></a>ARM 指令集</h3><p>寻址模式、比较和条件分支、ARM 的特色</p>
+<h3 id="x86-指令集"><a href="#x86-指令集" class="headerlink" title="x86 指令集"></a>x86 指令集</h3><h2 id="链接器"><a href="#链接器" class="headerlink" title="链接器"></a>链接器</h2><p>基本知识</p>
+<p>三种对象文件</p>
+<p>对象文件格式</p>
+<h3 id="链接过程"><a href="#链接过程" class="headerlink" title="链接过程"></a>链接过程</h3><p>符号解析</p>
+<p>重定位</p>
+<h3 id="打包常用程序"><a href="#打包常用程序" class="headerlink" title="打包常用程序"></a>打包常用程序</h3><p>静态库</p>
+<p>共享库</p>
+<p>动态库</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机/" rel="tag"># 计算机</a>
+          
+            <a href="/tags/初稿/" rel="tag"># 初稿</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/1984/09/11/ics-draft-3-3/" rel="next" title="【计算机系统导论】3.3 并行与并发">
+                <i class="fa fa-chevron-left"></i> 【计算机系统导论】3.3 并行与并发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/1984/09/11/ics-draft-3-5/" rel="prev" title="【计算机系统导论】3.5 编程珠玑">
+                【计算机系统导论】3.5 编程珠玑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">861</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">953</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从汇编说起"><span class="nav-number">1.</span> <span class="nav-text">从汇编说起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令格式与类型"><span class="nav-number">2.</span> <span class="nav-text">指令格式与类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指令设计"><span class="nav-number">2.1.</span> <span class="nav-text">指令设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令类型"><span class="nav-number">2.2.</span> <span class="nav-text">指令类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-i7-架构指令系统（包含指令格式）"><span class="nav-number">2.3.</span> <span class="nav-text">Core i7 架构指令系统（包含指令格式）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#龙芯架构指令系统（包含指令格式）"><span class="nav-number">2.4.</span> <span class="nav-text">龙芯架构指令系统（包含指令格式）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寻址"><span class="nav-number">3.</span> <span class="nav-text">寻址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#寻址方式"><span class="nav-number">3.1.</span> <span class="nav-text">寻址方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-i7-的寻址"><span class="nav-number">3.2.</span> <span class="nav-text">Core i7 的寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#龙芯的寻址"><span class="nav-number">3.3.</span> <span class="nav-text">龙芯的寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寻址方式讨论"><span class="nav-number">3.4.</span> <span class="nav-text">寻址方式讨论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制流"><span class="nav-number">4.</span> <span class="nav-text">控制流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序控制流和转移"><span class="nav-number">4.1.</span> <span class="nav-text">顺序控制流和转移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程"><span class="nav-number">4.2.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断"><span class="nav-number">4.3.</span> <span class="nav-text">中断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统过程"><span class="nav-number">4.4.</span> <span class="nav-text">系统过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞"><span class="nav-number">4.5.</span> <span class="nav-text">漏洞</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令集"><span class="nav-number">5.</span> <span class="nav-text">指令集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指令集：特征和功能"><span class="nav-number">5.1.</span> <span class="nav-text">指令集：特征和功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令集：寻址方式和指令格式"><span class="nav-number">5.2.</span> <span class="nav-text">指令集：寻址方式和指令格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CISC-vs-RISC"><span class="nav-number">5.3.</span> <span class="nav-text">CISC vs RISC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多媒体指令"><span class="nav-number">5.4.</span> <span class="nav-text">多媒体指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARM-指令集"><span class="nav-number">5.5.</span> <span class="nav-text">ARM 指令集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x86-指令集"><span class="nav-number">5.6.</span> <span class="nav-text">x86 指令集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接器"><span class="nav-number">6.</span> <span class="nav-text">链接器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链接过程"><span class="nav-number">6.1.</span> <span class="nav-text">链接过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包常用程序"><span class="nav-number">6.2.</span> <span class="nav-text">打包常用程序</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

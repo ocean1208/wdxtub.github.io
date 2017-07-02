@@ -1,0 +1,1306 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="不周山,数据挖掘," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="上一讲中我们简单复习的概率和统计相关知识，现在我们就可以正式开始接触数据挖掘了。本文是接下来内容的大纲，让大家对互联网搜索与挖掘有一个宏观的了解，即知道要做什么和怎么做。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【不周山之数据挖掘】壹 互联网数据挖掘导论">
+<meta property="og:url" content="http://wdxtub.com/2016/11/27/bzs-dm-internet/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="上一讲中我们简单复习的概率和统计相关知识，现在我们就可以正式开始接触数据挖掘了。本文是接下来内容的大纲，让大家对互联网搜索与挖掘有一个宏观的了解，即知道要做什么和怎么做。">
+<meta property="og:updated_time" content="2017-03-06T09:23:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【不周山之数据挖掘】壹 互联网数据挖掘导论">
+<meta name="twitter:description" content="上一讲中我们简单复习的概率和统计相关知识，现在我们就可以正式开始接触数据挖掘了。本文是接下来内容的大纲，让大家对互联网搜索与挖掘有一个宏观的了解，即知道要做什么和怎么做。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/2016/11/27/bzs-dm-internet/"/>
+
+
+
+
+
+  <title> 【不周山之数据挖掘】壹 互联网数据挖掘导论 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/2016/11/27/bzs-dm-internet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                【不周山之数据挖掘】壹 互联网数据挖掘导论
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-27T07:42:13+08:00">
+                2016-11-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-06T17:23:43+08:00">
+                2017-03-06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technique/" itemprop="url" rel="index">
+                    <span itemprop="name">Technique</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/11/27/bzs-dm-internet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      9,441
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      33
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上一讲中我们简单复习的概率和统计相关知识，现在我们就可以正式开始接触数据挖掘了。本文是接下来内容的大纲，让大家对互联网搜索与挖掘有一个宏观的了解，即知道要做什么和怎么做。</p>
+<a id="more"></a>
+<hr>
+<p>更新历史</p>
+<ul>
+<li>2017.03.06: 内容更新，Lecture 12-16 内容未增补，将分别成文</li>
+<li>2017.03.02: 增加搜索引擎优化、自然语言处理相关内容</li>
+<li>2016.11.27: 完成初稿</li>
+</ul>
+<p>注：本文的框架来源于北京大学<a href="http://www.icst.pku.edu.cn/lcwm/wanxj/" target="_blank" rel="external">万小军</a>开设的<a href="http://www.icst.pku.edu.cn/lcwm/course/WebDataMining2016/?page_id=560" target="_blank" rel="external">互联网数据挖掘 Web Data Mining</a> 课程，我对内容进行了筛选和编排，用来作为『不周山之数据挖掘』系列的导论部分。</p>
+<h2 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h2><ol>
+<li>了解搜索和自然语言处理的基本知识</li>
+<li>熟悉数据挖掘的流程与各个步骤所用的技术</li>
+<li>对数据挖掘的应用场景有基本的认识</li>
+</ol>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>随着互联网的日益蓬勃发展，如何从广袤的信息海洋中提取出有价值的信息、模式和关系，逐渐成为了一门新的领域 —— 数据挖掘。作为一门交叉学科，数据挖掘融合了信息检索、互联网、数据库、机器学习、自然语言处理等不同的学科，用多样技术完成具体的数据挖掘应用。常见的应用有：垂直搜索、推荐系统、智能问答、机器翻译、舆情监测、情报收集等等，可谓是深入到了我们日常生活的方方面面。</p>
+<p>据不完全统计，现在 Web 网站的数量已经突破 10 亿大关，有近 1000 亿个页面，数据总量约 10 万亿 PB，这样的数据量意味着一个日益庞大的数字世界已经降临，如何总这么多数据中找到我们需要的，就成了非常重要的能力。</p>
+<p>而所谓数据挖掘，究其根本，就是要从浩如烟海的数据中归纳提取总结出我们所需要的知识。接下来我们会从基础技术说起，从以下四个方面来了解数据挖掘：</p>
+<ul>
+<li>搜索技术（信息检索，互联网）<ul>
+<li>Web 搜索方向学术会议: SIGIR, WWW, CIKM, WSDM</li>
+<li>多媒体检索方向学术会议: ACM, MM</li>
+</ul>
+</li>
+<li>数据挖掘技术（机器学习、数据库）<ul>
+<li>数据挖掘方向学术会议: KDD, ICDM</li>
+</ul>
+</li>
+<li>自然语言处理<ul>
+<li>自然语言处理方向学术会议: ACL, EMNLP</li>
+</ul>
+</li>
+<li>具体应用</li>
+</ul>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><p>搜索其实是一个很大的主题，但是核心问题其实并不复杂，一是如何去表示文档，二是在这样的基础上如何去检索文档。具体的评价标准是『效果』和『效率』。效果指的是如何准确匹配查询与文档，一般来说会基于检索模型进行。效率指的是如何快速返回检索结果，一般来说是基于索引进行的。</p>
+<h3 id="文档表示"><a href="#文档表示" class="headerlink" title="文档表示"></a>文档表示</h3><p>文档表示一般有两种方法：手动或自动。</p>
+<p>手动方法主要依靠人工标注，结果比较可靠，而且标注的词汇是预先设定好的关键词，检索起来效率比较高。但是人工标注无论是时间成本还是人力成本都较高，一般来说难以大批量使用，并且由于人所能标注的数据维度有限，在检索时容易受到限制。这类人工标注的信息一般称为文档的元描述(Meta-descriptions)，除了包含域信息(author, title, date)外，还回包含关键词和分类。</p>
+<p>自动方法最有代表性的是词袋(Bag of Words)技术，即使用文档中出现的词的集合来表示一篇文档。但是这种方法也有很多不足之处，因为是词语的无序集合，句法信息首先已经丢失了，另外针对不同的语言会有不同的难点。</p>
+<p>对于中文来说，如何进行分词（即把句子分成词）就是一个很大的难点，尤其是层出不穷的网络热梗，如何保证准确和实时就是非常大的挑战。对于英文来说，虽然没有分词的问题，但是大小写、单复数、时态、词根等等同样让人头疼。这也导致了大部分搜索引擎都不会考虑词根问题，一是因为文档太多，进行二次处理得不偿失，二是因为对于搜索结果来说影响没有那么大，自然就没有太大的动力去做。</p>
+<p>但是无论是中文还是英文，有一个操作是一定会做的，就是去掉停用词(Stop Words)，也就是去掉那些不具有内容信息的词，比如对于中文来说『的地得』，对于英文来说的『a, an, the』。但需要注意的是这样一个简单的操作虽然可以大幅减少索引的大小，缩短检索时间，但实际上不能提高检索效果，具体挺用词表的确定也需要根据不同的文档集合和应用具体对待，没有一个一概而论的方案。</p>
+<h3 id="文档索引"><a href="#文档索引" class="headerlink" title="文档索引"></a>文档索引</h3><p>表示了文档之后，我们需要对其进行索引，不然每次检索如果需要用户等太久，体验就很糟糕了。而具体到用什么进行检索，最终人们选择了用词而不是短语来作为索引，这里一个比较有代表性的工具就是 Lucene，现在互联网上广为应用的 Elasticsearch 和 Solr 都是基于 Lucene 的。</p>
+<p>Lucene 最重要的技术就是倒排索引(inverted index)，可看做链表数组，每个链表的表头包含关键词，其后序单元则包括所有包括这个关键词的文档标号，以及一些其他信息，如该词的频率和位置等。这里关键词查询一般采用 B-Tree 或哈希表，文档列表组织一般采用二叉搜索树。</p>
+<p>文档索引其他需要注意的地方是通过索引压缩减小索引大小，通过动态索引完成索引库的动态维护、更新以及通过分布式索引来吧索引信息分布在不同机器上</p>
+<h3 id="文档检索"><a href="#文档检索" class="headerlink" title="文档检索"></a>文档检索</h3><p>文档检索的思路也很简单：如果一篇文档与一个查询相似，那么该文档与查询相关。相似性一般根据字符串匹配来判定，比方说相似的词汇或相同的语义。</p>
+<p>最初人们常用的是基于布尔代数的匹配，虽然比较简单，但是对查询的要求很高；并且匹配标准过于严格，容易导致过少或过多的检索结果。尽管布尔模型不再用作主流文档检索模型，但其思想常用于实现高级(综合)检索功能。</p>
+<p>现在最常用的是向量空间模型(Vector Space Model)，其思路是文档与查询都是高维空间中的一个向量。用户自由输入文本也是一个向量，利用向量空间的相似性进行查询。具体的相似性同样可以用两种方法来确定：内积或者夹角。因为是空间，所以度量距离的时候会采用不同的描述距离的方式，有 Minkowski metric, Euclidian distance, Jacquard measure 和 Dice’s coefficient 等等。</p>
+<p>给定查询向量 $\mathbf{q}$ 与文档向量 $\mathbf{d}$，向量长度均为 $n$，那么 $\mathbf{q}$ 和 $\mathbf{d}$ 的相似性可以使用 $\mathbf{q}$ 和 $\mathbf{d}$ 之间的内积(inner project)为 $\mathbf{q}\bullet \mathbf{d}=\sum_{i=1}^n(q_i \cdot d_i)$。当向量的值为 0/1 时，该公式等同于统计 $\mathbf{q}$ 和 $\mathbf{d}$ 中所匹配词语的数量。</p>
+<p>使用内积作为相似性度量的话，长文档更加占优势，因为包含更多的匹配词语。但是在现实生活中，如果两篇文档具有同样的相似值，用户更倾向于短文档，短文档更聚焦在用户的需求上。因此，相似性计算中应该考虑文档长度（一般可以通过文档长度规范化来实现）。</p>
+<p>回到我们的向量表示，之前对于每个词语来说，只有 0 和 1 两种可能，这个假设其实是非常强的（假设所有词语均同等重要），并且也没有反映出词语的频率，于是人们想到了一个新的模型：TF-IDF 模型。其中 $tf$ 表示词语出现的频率，即 $tf_{i,j}=frequency of term i in document j$。而 $idf$ 表示词语的重要性，我们认为有意义的词语出现在一部分文档中，而非所有文档中，对于词语 $i$ 来说 $idf_i=log(\frac{N}{n_i})$，这里 $N$ 是集合中文档数目，$n_i$ 是有出现词语 $i$ 的文档数目，合并起来我们可以得到词语 $i$ 在文档 $j$ 的权重为 $tf_{i,j}\cdot idf_i$</p>
+<p>TF-IDF 方法虽好，但仍有无法解决的问题，比如词语直接的位置关系没有考虑在内，词语之间的句法关系没有考虑在内，词语之间的语义关系没有考虑在内，这些都需要我们去逐渐探索。</p>
+<p>除此之外还有布尔模型(Boolean Model)和概率模型(Probabilistic Model)。</p>
+<p>布尔模型比较简单，并且可以严格控制查询的内容和范围。但缺点在于一般用户难以构造布尔查询，而且因为布尔结果只有匹配或不匹配两种情况，所以符合条件的文档是无法排序的。尽管布尔模型不再用作主流文档检索模型，但其思想常用于实现高级检索功能（比如增加特定的检索条件，缩小检索范围等等）</p>
+<p>下面是这三类模型及其代表模型的列表，供大家参考：</p>
+<ul>
+<li>Boolean model<ul>
+<li>Fuzzy boolean retrieval</li>
+<li>Extended boolean retrieval</li>
+</ul>
+</li>
+<li>Vector space model<ul>
+<li>Generalized vector space model</li>
+<li>Latent semantic indexing</li>
+<li>Neural network model</li>
+</ul>
+</li>
+<li>Probabilistic model<ul>
+<li>Baysian networks</li>
+<li>Inference networks</li>
+<li>Language Models</li>
+</ul>
+</li>
+</ul>
+<h3 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h3><p>有了前面说的常见方法，我们需要找到一个方法评价检索模型的效果以及搜索引擎的性能。这里需要强调的是一个检索中最重要的权衡：搜索质量与搜索效率的平衡。搜索效率可以直观反映在时间上，但是对于搜索质量的评价来说，我们首先需要明确的是<strong>评测数据集</strong>和<strong>评测指标</strong>。比较知名的评测有 <a href="http://trec.nist.gov/" target="_blank" rel="external">TREC</a>, <a href="http://research.nii.ac.jp/ntcir/index-en.html" target="_blank" rel="external">NTCIR</a> 和 <a href="http://www.clef-campaign.org/" target="_blank" rel="external">CLEF</a>。</p>
+<p>评测数据集一般是人工构建的，包含较大规模的文档集合 $D$、查询集 $Q$ 及每个查询 $q$ 对应的相关文档列表 $REL_q$，可以通过 Pooling 方式构建。评价指标则是衡量检索结果与标准答案的一致性，又分为对非排序检索的评价（对检索结果集合进行整体评价）以及对排序检索的评价（考虑相关文档在检索结果中的排序位置）。</p>
+<p>对非排序检索的评价一般集中于<strong>准确率</strong>(precision)与<strong>召回率</strong>(recall)，这两个指标通常是相互依赖的，因为差别主要在于分母，下面的公式中 $REL$ 表示与检索实际相关的文档，$RETR$ 表示实际返回的文档，所以它们的交集是实际返回的文档中真正与检索相关的文档。</p>
+<p>$$precision=\frac{|RETR \bigcap REL|}{|RETR|},\;\;recall=\frac{|RETR \bigcap REL|}{|REL|}$$</p>
+<p>而 F 值可以认为是准确率与召回率的一个综合值，公式为：</p>
+<p>$$F=\frac{1}{\alpha \times \frac{1}{Pr}+(1- \alpha)\times \frac{1}{Re}},\; when \; \alpha=0.5,\; F=\frac{2\times Pr \times Re}{Pr + Re}$$</p>
+<p>前面的评价标准值考虑文档是否相关，如果我们为文档标注更多的相关等级，比如 <code>{2-非常相关; 1-一般相关; 0-不相关}</code>，那么我们希望越相关的应该排在越前面，这样的方法叫做 NDCG(Normalized Discounted Cumulative Gain)</p>
+<h3 id="文档收集"><a href="#文档收集" class="headerlink" title="文档收集"></a>文档收集</h3><p>前面介绍了文档检索的各种概念，但是现在问题来了，文档从哪里来呢？这就要提到我们最常听见的爬虫(Web Crawler)了，它能够快速有效地收集尽可能多的有用 Web 页面，包括页面之间的链接结构。</p>
+<p>随着 Web 2.0 的兴起，脚本语言生成的动态内容和各类多媒体内容给爬虫增加了许多难度，但基本的页面爬取策略没有太大的改变，一般以以广度优先为主，深度优先为辅，需要具体的特性主要有：</p>
+<ul>
+<li>健壮 Robustness, 避免进入死循环</li>
+<li>友好 Politeness, 遵守服务器的采集协议</li>
+<li>分布式 Distributed, 多台机器分布式采集</li>
+<li>可扩展 Scalable, 爬虫架构方便扩展</li>
+<li>性能与效率，有效利用系统资源</li>
+<li>质量 Quality, 倾向于采集有用的页面</li>
+<li>新颖 Freshness, 获取网页的最新版本</li>
+<li>可扩充 Extensible, 能够处理新数据类型、新的采集协议等</li>
+</ul>
+<p>而在爬虫的世界里，大家要遵守的规矩是 <code>Robots</code> 协议，来告诉到访的爬虫能干什么不能干什么（但如果强行不遵守，也不能怎么样）。</p>
+<h3 id="链接分析"><a href="#链接分析" class="headerlink" title="链接分析"></a>链接分析</h3><p>除了页面的内容本身，超链接其实也能提供非常多有价值的信息。一条从页面 A 指向页面 B 的链接表明 A 与 B 相关且 A 推荐/引用/投票/赞成 B。Google 当年最重要的 PageRank 算法，其实就是这个问题的最初且最成功的解决方案。</p>
+<p>PageRank 采用随机游走(Random Walk)模型对网页按照流行度或权威性进行排序，简单来说就是为图中的每个节点 $v_i$ 计算一个 PageRank 值 $\pi(v_i)$，可以看作用户随机点击链接将会到达特定网页的可能性。页面节点的 PageRank 与其父节点的 Rank 值成正比，但与其父节点的出度(out-degree)成反比。</p>
+<p>这里有一个很有趣的现象叫做排序沉入(Rank Sink)。一种情况是一个独立的网页没有外链(outlink)，于是会得到不合理的 Rank 值，并且影响收敛速度。另一种情况是页面 A 引用了页面 B，页面 B 也引用了页面 A，就形成了一个闭环，不再向外传播分数了。这是我们在实际运用中需要避免的情况。而针对这种情况，可以使用 RWR(Random Walk with Restart) 的方法来进行处理，即在随机游走过程中重新开始浏览一个新网页。</p>
+<p>除了 PageRank 外，还有一些网页排序的算法，比如 Learning to Rank，就是基于学习的方法，比较常见的有 RankSVM, RankNet, ListNet 等等。</p>
+<h3 id="搜索引擎优化"><a href="#搜索引擎优化" class="headerlink" title="搜索引擎优化"></a>搜索引擎优化</h3><p>搜索引擎优化(SEO, Search engine optimization)是提高网站或网页在搜索引擎中排名的过程，目标是做到对于特定的查询关键词，让网站网页显示在搜索引擎的置顶位置，由此增加访问流量和营销收入，以及提高产品/服务的品牌和声誉。在这个过程中可以更好地针对目标人群，因此减少了市场活动的开销。</p>
+<p>SEO 的基本思想是基于各类搜索引擎的工作原理（采集、索引、排序等），对网站进行相关的优化和调整，以提高网站在搜索引擎中的排名。不过凡事都有正反两面，在不牺牲用户体验的前提下进行合理优化是比较合适的，但如果利用各种『邪道』方法（重复、隐藏文字、链接工厂、桥接、跳页）等等的话，就不太好了。</p>
+<p>影响排名的因素有很多，简单来分类的话分为内部因素和外部因素。对于站外 SEO，能够做主要是网站外部链接优化、网站的链接建设与网站的外部数据分析等（交换、购买链接，提交网址到分类目录）。而对于站内 SEO，则主要集中于网站结构的设计、网站代码优化和内部链接优化、网站内容优化、网站用户体验优化等（丰富网站关键词、主题集中、友好的网页结构、避免重复、有规律的更新）</p>
+<h2 id="数据挖掘"><a href="#数据挖掘" class="headerlink" title="数据挖掘"></a>数据挖掘</h2><p>数据挖掘根据应用的不同，分为不同的子领域，这些子领域又和机器学习、概率统计、模式识别等有着千丝万缕的关系。接下来先介绍基本概念，然后聊聊一些常见的应用。</p>
+<h3 id="主要任务"><a href="#主要任务" class="headerlink" title="主要任务"></a>主要任务</h3><p>数据挖掘是从多个学科领域发展而来的学科，包括但不限于：统计学、人工智能、机器学习、模式识别、数据库系统等等。</p>
+<p>数据挖掘的任务主要包括两类，一类是基于一些变量预测其他变量的未知值或未来值，称为<strong>预测型任务</strong>，常用的技术是分类(Classification)，回归(Regression)和偏差分析(Deviation Detection)。另一类是发现描述数据的人们可解释的模式，称为<strong>描述型任务</strong>，常用的技术是聚类(Clustering)，关联规则挖掘(Association Rule Discovery)和摘要(Summarization)。</p>
+<p>为了完成上述任务，整个数据挖掘的流程为：获取数据 -&gt; 选择数据 -&gt; 预处理数据 -&gt; 数据规整 -&gt; 数据挖掘 -&gt; 模式识别。不同阶段会使用不同的技术，但一定要把整个流程走通，数据挖掘才有意义。</p>
+<p>随着数据量的增大，如何让数据挖掘更加容易拓展效率更高，如何去挖掘有上下文关系的数据，如何从复杂、异构、网络化数据中挖掘复杂知识，如何挖掘低质量数据，如何保证安全性和隐私，都是未来数据挖掘需要努力的方向。</p>
+<h3 id="预测型任务"><a href="#预测型任务" class="headerlink" title="预测型任务"></a>预测型任务</h3><p><strong>分类</strong></p>
+<p>分类指的是给定一个样例集合（即训练集，每个样例包含一个属性集合，其中一个属性是类标记/类号），基于训练集构建一个模型，该模型将类标记/类号属性看作是其他属性值的一个函数映射，目标是对新的样例尽可能准确地赋予类标记，我们一般会用一个测试集来评估模型的准确性。</p>
+<p>简单来说可以这样描述，首先我们拿到了一百个人的数据，包括身高体重性别爱好收入职业婚姻状况等等各种信息，我们的目标是拿到一个新的数据后（比如说不包括婚姻状况），需要能够把这个人分类到单身、已婚和离婚这三类中的一个。我们会用这一百个人的数据算出一个模型，这个模型接收的参数是一个人不包括婚姻状况的各种信息，然后输出一个值，这个值代表这个人被划分到的类别，这就是分类啦。</p>
+<p>在分类的具体应用中，最主要的场景是<strong>二类分类</strong>和<strong>多类分类</strong>，二类分类是最基本形式，多类分类转化为二类分类问题。具体实现中主要有基于规则的分类和基于统计的分类。</p>
+<p>基于规则的分类优势在于『透明』，即易于理解和修改。但主要依赖人工/专家的智能，比较复杂且耗时，因为人的参与程度高，所以不易扩展。而且类别是已经设定好的，不存在置信度这个概念。</p>
+<p>基于统计的分类优势在于『灵活』，可以输出置信概率，可以通过阈值控制结果，也易于扩展。但需要有已经标注好的训练数据，且很多时候模型约复杂，需要的数据越多。比较常见的方法有朴素贝叶斯, Rocchio, KNN 和 SVM。</p>
+<p><strong>回归</strong></p>
+<p>回归指的是基于若干变量的值预测一个给定的具有连续值的变量的值（假设一个线性或非线性的依赖模型）。常用于基于广告开支预测新产品的销售额、预测股票指数、预测空气质量等等。</p>
+<p><strong>偏差/异常检测</strong></p>
+<p>偏差/异常检测指的是从正常行为中检测显著的偏差/异常，常用于信用卡欺诈检测与网络入侵检测</p>
+<h3 id="描述型任务"><a href="#描述型任务" class="headerlink" title="描述型任务"></a>描述型任务</h3><p><strong>聚类</strong></p>
+<p>聚类指的是给定一个数据点集合，每个数据点具有一组属性，数据点之间能进行相似度度量，聚类目标为找到若干类簇，满足同一类簇中的数据点相似且不同类簇中的数据点不相似。具体的相似度度量准则主要是使用欧式距离（有的也用余弦测度等度量）。常用于市场划分和文档聚类。</p>
+<p><strong>关联规则挖掘</strong></p>
+<p>关联规则反应了一个事物与其他事物之间的相互依存性和关联性。关联规则挖掘指的是给定一个记录集合，每个记录包含若干项，由此产生依赖规则，可以基于某些项的出现来预测一个项的出现。简单来说就是找相关性。常用于市场营销。代表算法：Apriori 算法（使用了一种称作 level-wise 搜索的迭代方法，其中 k-项集 被用作寻找 (k+1)-项集）、AprioriTid 算法、FP-growth 算法。</p>
+<p>具体实现主要有两个基本步骤（总体性能由第一步决定）：</p>
+<ol>
+<li>找出所有的频繁项集（满足最小支持度）</li>
+<li>找出所有的强关联规则（由频繁项集生成关联规则，保留满足最小置信度的规则）</li>
+</ol>
+<p><strong>摘要</strong></p>
+<p>摘要指的是为数据集进行总结，提供一个简洁/紧凑的表示，包括可视化与报表生成。</p>
+<h3 id="实例-文本统计分类流程"><a href="#实例-文本统计分类流程" class="headerlink" title="实例 - 文本统计分类流程"></a>实例 - 文本统计分类流程</h3><p>简单来说，分五个步骤：</p>
+<ol>
+<li>预处理: Tokenization, Filtering, Stemming</li>
+<li>特征计算: tf, Log(tf+l), tfidf</li>
+<li>特征选择: MI, Chi-Square, Information Gain</li>
+<li>分类学习: SVM, Recchio, Naive Bayes</li>
+<li>结果评估: Recall, Precision, F-Measure</li>
+</ol>
+<p>预处理的实质是去掉那些可能产生歧义与信息含量比较低的内容，在此基础上，我们把文本表示为特征向量，其中基本单元是词语(term)，权重则通常使用 $tf \times idf$（前面检索部分详细介绍过，这里不再赘述）。</p>
+<p>在的特征计算阶段，我们可以用一个例子来说明。假如一句话是 <code>This is a website made by wdxtub</code>，那么可以转化为 <code>{&lt;website, 1&gt;, &lt;make, 1&gt;, &lt;wdxtub, 1&gt;}</code>，其中我们可能会去掉一些停止词（如 this, is, a, by），并且把词性恢复(made -&gt; make)</p>
+<p>接下来就是特征选择，好处很多，可以减少特征维数，改善效果；同事防止过拟合，增强模型的泛化能力。而因为维数变少，学习效率和模型的可解释性也会对应提高。具体的方法有以下一些，主要目的就是从原有特征集合中找出一个更加有效的子集：</p>
+<ul>
+<li>文档频率 - Document Frequency<ul>
+<li>词语的 DF 小于或者大于某个阈值就去掉（太少则没有代表性，太多则没有区分度）</li>
+</ul>
+</li>
+<li>互信息 - Mutual Information<ul>
+<li>MI 越大则表示词语 t 和类别 c 共现程度越大</li>
+<li>$I(t,c)=log\frac{P(t \land c)}{P(t)P(c)}=log\frac{P(t\;|\;c)}{P(t)}$</li>
+</ul>
+</li>
+<li>信息增益 - Information Gain<ul>
+<li>即词语 t 为整个分类所能提供的信息里那个（<strong>不考虑任何特征的熵</strong>和<strong>考虑该特征后的熵</strong>的差值）</li>
+<li>$Gain(t)=Entropy(S)-Expected Entropy(S_t)$</li>
+</ul>
+</li>
+<li>信息比率 - Information Ratio</li>
+<li>卡法统计 - Chi Square</li>
+<li>OR 值 - Odd Ratio</li>
+</ul>
+<p>至于分类学习和结果评估，大多数时候可以直接采用已有的分类算法和工具，主要是调整多个参数，找到最合适的组合（不需要自己开发新的算法）。于是对于具体问题来说，最重要的是<strong>特征工程</strong>，即针对特定应用问题寻找合理、有效的特征集，当然，这个也是最困难的一步。至于哪种分类方法最好？这个答案不存在的，只能是具体问题具体分析。</p>
+<h3 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h3><p>开源的工具有：</p>
+<ul>
+<li>Weka</li>
+<li>GATE</li>
+<li>Carrot2</li>
+<li>NLTK</li>
+<li>Orange</li>
+<li>RapidMiner</li>
+<li>KNIME</li>
+</ul>
+<p>商用的应用主要有：</p>
+<ul>
+<li>IBM InfoSphere Warehouse</li>
+<li>Microsoft Analysis Services</li>
+<li>SAS Enterprise Miner</li>
+<li>STATISTICA Data Miner</li>
+<li>Oracle Data Mining</li>
+</ul>
+<h2 id="自然语言处理"><a href="#自然语言处理" class="headerlink" title="自然语言处理"></a>自然语言处理</h2><p>自然语言处理是人工智能和语言学领域的分支学科指的是利用计算机对人类特有的书面形式和口头形式的自然语言进行各种类型处理和加工的技术。其中最关键的任务有：自动分词、命名实体识别、词性标注、句法分析、语义分析和篇章分析。主要应用在：机器翻译、<strong>文本分类</strong>、情感分析、信息检索与过滤、自动问答、<strong>信息抽取</strong>、<strong>自动文摘</strong>和人机对话等领域。</p>
+<p>基本的研究方法主要有三类，分别是<strong>理想主义方法</strong>、<strong>经验主义方法</strong>和<strong>融合方法</strong>。理性主义方法主要研究人的语言知识结构，实际上是构建一个符号处理系统（人工编汇语言知识+推理系统）。而经验主义的方法是直接研究实际的语言数据，从大量的语言数据中获得语言的知识结构，主要是基于语言数据的计算方法。融合方法就是前面两者的结合，这里不赘述。</p>
+<p>推荐教材</p>
+<ul>
+<li>Foundations of Statistical Natrual Language Processing</li>
+<li>Speech and Language Processing</li>
+<li>统计自然语言处理</li>
+</ul>
+<h3 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h3><p>自然语言处理之所以如此困难，主要是因为与生俱来的歧义问题。拿中文来说，最基本的分词（一般认为词是最小的、能够独立运用的、有意义的语言单位），就已经包含许多挑战，比如：</p>
+<ul>
+<li>词和词组的边界模糊</li>
+<li>新词(未登陆词)</li>
+<li>切分歧义<ul>
+<li>汉字串 AJB 被称作<strong>交集型切分歧义</strong>，如果满足 AJ, JB 同时为词，此时汉字串 J 被称作交集串</li>
+<li>汉字串 AB 被称作<strong>组合型切分歧义</strong>，如果满足条件 A, B, AB 同时为词</li>
+<li>真歧义：存在两种或两种以上的真实存在的切分形式</li>
+</ul>
+</li>
+</ul>
+<p>具体的分词方法目前主要有以下几种，前两天也有一个利用深度学习的解决方案开源了，可以关注一下</p>
+<ul>
+<li>简单的模式匹配<ul>
+<li>正向最大匹配(FMM)、逆向最大匹配(BMM, 比正向更有效)、双向匹配(BM, 比较两种方法的结果，大颗粒词越多越好，非词典词和单子词越少越好，可以识别出交叉歧义)</li>
+</ul>
+</li>
+<li>基于规则的方法<ul>
+<li>最少分词算法</li>
+</ul>
+</li>
+<li>基于统计的方法<ul>
+<li>统计语言模型分词、串频统计和词形匹配相结合的汉语自动分词、无词典分词</li>
+<li>第一步是候选网格构造：利用词典匹配，列举输入句子所有可能的切分词语，并以词网格形式保存</li>
+<li>第二步计算词网格中的每一条路径的权值，权值通过计算图中的每一个节点(每一个词)的一元统计概率和节点之间的二元统计概率的相关信息</li>
+<li>最后根据图搜索算法在图中找到一条权值最大的路径，作为最后的分词结果</li>
+<li>优缺点：可利用不同的统计语言模型计算最优路径，具有比较高的分词正确率；但算法时间、空间复杂度较高</li>
+</ul>
+</li>
+</ul>
+<p>注：中文分词总体水平（F 值）可以达到 95% 左右。主要的分词错误由新词造成，而新词主要跟实体识别效果较差有关（尤其是各种千奇百怪的机构名称）。</p>
+<h3 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h3><p>词性标注(POS Tagging)指的是为句子中的每个词语标注词性(part-of-speech marker)，可以看做是词法分析的关键任务，同时也是句法分析和词义消岐等任务的基础。一般来说，我们为每个词选择该词最常用的词性标记，准确性达到 90%，即为 Baseline。</p>
+<p>具体词性标注的方法主要有以下两种，总体来看，基于学习的方法会更加有效：</p>
+<ul>
+<li>基于规则(Rule-Based): 人工基于词汇与其他语言知识构造标注规则</li>
+<li>基于学习(Learning-Based): 基于人工标注语料进行训练<ul>
+<li>统计模型(Statistical models): HMM(Hidden Markov Model), MEMM(Maximum Entropy Markov Model), CRF(Conditional Random Field)</li>
+<li>规则学习(Rule learning): TBL(Transformation Based Learning)</li>
+</ul>
+</li>
+</ul>
+<p>注：中文词性标注总体水平(Accuracy)超过 90%</p>
+<h2 id="常见应用"><a href="#常见应用" class="headerlink" title="常见应用"></a>常见应用</h2><p>接下来介绍数据挖掘的积累常见应用</p>
+<h3 id="智能问答技术"><a href="#智能问答技术" class="headerlink" title="智能问答技术"></a>智能问答技术</h3><p>智能问答技术起源于信息检索社区，简单来说就是根据用户的提问给出简短的答案或提供答案的证据。根据不同的划分标准，我们可以总结出如下的几类问题类型</p>
+<ul>
+<li>根据答案类型划分<ul>
+<li>事实型问题(Factual questions)</li>
+<li>观点型问题(Opinions)</li>
+<li>摘要型问题(Summaries)</li>
+</ul>
+</li>
+<li>根据问题言语行为(question speech act)划分<ul>
+<li>是否型问题(Yes/NO questions)</li>
+<li>WH 问题(WH questions)</li>
+<li>间接请求(Indirect Requests)</li>
+<li>命令(Commands)</li>
+</ul>
+</li>
+<li>复杂/困难问题<ul>
+<li>为什么/怎么样(Why, How questions)</li>
+<li>什么(What questions)</li>
+</ul>
+</li>
+</ul>
+<p>遗憾的是，目前大部分理解问题的技术都是基于正则表达式的，毕竟在自然语言理解这块，暂时还没有突破性进展。不过目前非常火热的深度学习技术，可能会给智能问答处理带来一些不一样的机会（比如说我就来了一家做这个方向的创业公司啦）</p>
+<p>传统自动问答技术主要是基于语料库的自动问答或基于知识库的自动问答，基本包括三个步骤：</p>
+<ol>
+<li>问题分析(分类、模板匹配、语义分析)</li>
+<li>段落检测(段落抽取、排序)</li>
+<li>答案抽取(实体识别、模板匹配、排序)</li>
+</ol>
+<p>社区问答主要是应用与诸如知乎和 Quora 这类网站，目前主要的方向是问题分类、问题推荐、信誉评估和知识抽取等等。</p>
+<h3 id="情感分析与观点挖掘"><a href="#情感分析与观点挖掘" class="headerlink" title="情感分析与观点挖掘"></a>情感分析与观点挖掘</h3><p>情感分析与观点挖掘主要应用于产品比较与推荐、个人与机构声誉分析、电视节目满意度分析、互联网舆情分析和反恐与维稳。目前很多互联网平台（如淘宝、大众点评）都已经利用这种技术帮助提取用户评价中的关键词以提供更好的用户体验。</p>
+<p>基本的框架如下所示</p>
+<ul>
+<li>应用层：情感检索，情感摘要，情感问答</li>
+<li>核心层：情感要素抽取，情感倾向性分析，主客观分析/观点文本识别</li>
+<li>基础层：NLP 基本模块，情感资源收集与标注</li>
+<li>来源：产品评论，电影评论，新闻评论，博客，微博</li>
+</ul>
+<p>而具体应用中，会将文本按照所表达的总体情感进行分类，可能的分类主要有如下三种，一般会从词、句子、文档三中粒度来进行分析：</p>
+<ul>
+<li>主客观分析/观点文本识别<ul>
+<li>客观：反映关于世界的事实信息</li>
+<li>主观：反映个人情感、信念等</li>
+</ul>
+</li>
+<li>倾向性分析(可看作主客观分析的细粒度处理)<ul>
+<li>对包含观点的文本进行倾向性判断</li>
+<li>一般分为三类：褒义、贬义、中性(在一些问题不考虑中性)</li>
+</ul>
+</li>
+<li>情绪分析<ul>
+<li>愤怒、高兴、喜好、悲哀、吃惊等等</li>
+</ul>
+</li>
+</ul>
+<p>而对于观点挖掘来说，一个观点表示为一个五元组：目标对象, 目标对象特征, 观点的情感值, 观点持有者, 观点表达时间。实际上，观点抽取任务是很困难的，我们<strong>重点关注两个子任务</strong></p>
+<ul>
+<li>特征抽取与聚类(aspect extraction and grouping)<ul>
+<li>抽取对象的所有特征表达，并将同义特征表达聚类。每个特征类表示了关于该对象的独一无二的某个特征</li>
+</ul>
+</li>
+<li>特征情感分类(aspect sentiment classification)<ul>
+<li>确定观点针对每个特征的情感倾向：正面、负面、中性</li>
+</ul>
+</li>
+</ul>
+<h3 id="信息摘要"><a href="#信息摘要" class="headerlink" title="信息摘要"></a>信息摘要</h3><p>在这个信息爆炸的年代（哇这句话看得我眼睛都起茧了），人们非常需要一个过滤和筛选信息的工具，搜索引擎原来承担了这个角色，但随着信息的增多，越来越多的冗余、片面和杂质出现了，很多时候我们搜出来了结果，还是不知道要选啥。而且现在大家花在手机上的时间越来越多，传统的长文章已经不适合这样的新浏览模式，也需要一些新东西出来。</p>
+<p>信息摘要指的是对海量数据内容进行<strong>提炼与总结</strong>，以<strong>简洁直观</strong>的摘要来概括用户所关注的主要内容，方便用户快速了解与浏览海量内容。遗憾的是，研究 50 多年，有一定进展，但仍不能令人满意。因为摘要写作是一项高度智能的任务，更麻烦的是，这玩意儿还没办法精确评价。相关的评测有</p>
+<ul>
+<li>DUC(2000-2007)，比较传统，做得是单文档、多文档、查询相关摘要</li>
+<li>TAC Summarization Track(2008-2011, 2014)，主要做的是 Update Summarization, Opinion Summarization, Guided Summarization, AESOP(摘要自动评价), Biomedical Summarization</li>
+<li>NTCIR-9~10: 1click(新型)</li>
+<li>TREC2013: Temporal Summarization Track(新型)</li>
+</ul>
+<p>一般来说实现思路有两种</p>
+<ol>
+<li><strong>抽取式</strong>：从文档中抽取已有句子形成摘要。这种方法实现简单，能保证句子的可读性</li>
+<li><strong>生成式/混合式</strong>：生成新的句子，或者对已有句子进行压缩、重构与融合。这种方法难度更大，但更接近摘要的本质</li>
+</ol>
+<p>抽取式文档摘要的典型工作流程是：文档集 -&gt; 文档理解 -&gt; <strong>句子重要性计算与排名(利用词语句子的各类特征，基于机器学习)</strong> -&gt; 句子选择 -&gt; 摘要句子排序 -&gt; 摘要</p>
+<p>目前摘要总体性能不高，需要方法上的突破。</p>
+<h3 id="社交网络分析"><a href="#社交网络分析" class="headerlink" title="社交网络分析"></a>社交网络分析</h3><p>社交网络作为 Web 2.0 的典型代表，用户生成的内容相当多，可以看作是某种程度上的群体智慧和在强交互性基础上构造的异构网络。</p>
+<p>社交网络分析主要是基于社交关系、结构进行挖掘，比如社区检测、连接预测、影响力分析。而社交内容挖掘则是基于文本等内容数据进行挖掘，比如摘要、关键词、情感分析。因为每个人在社交网络上可以抽象为一个元素，于是他们之间的关系可以用矩阵表示。另一种表示的方式是使用图，其中节点 = 成员，边 = 关系。</p>
+<p>比较常见的任务有：</p>
+<ul>
+<li>社交网络抽取(Social Network Extraction)：从数据源中抽取、构建社交网络</li>
+<li><strong>网络中心性分析(Network Centrality Analysis)</strong>：识别社交网络上最重要的节点(重要性的定义由目的、环境所定)<ul>
+<li>输入为一个社交网络，输出为最重要的节点列表，一般方法是为节点计算分数或排序，反映节点的重要性/专业性/影响力</li>
+<li>对于点重要性的评估可以采用<strong>网络中心性测度(Centrality measures)</strong>方法，具体中心性的定义可能是度数中心性（朋友最多）、中介中心性（处在信息流动关键节点）或亲近中心性（离所有节点平均距离最短）</li>
+</ul>
+</li>
+<li>用户画像：根据用户特点给用户群体分类</li>
+<li>链接预测(Link Prediction)：给定一个社交网络，预测哪些节点相互连接。例如: facebook 中的好友推荐</li>
+<li>病毒式营销(Viral Marketing)：找出若干用户，为其提供优惠或折扣，从而影响网络上的其他用户，使得收益最大化</li>
+</ul>
+<h2 id="试一试"><a href="#试一试" class="headerlink" title="试一试"></a>试一试</h2><ol>
+<li>尝试在网络寻找应用了数据挖掘的产品，并思考不同公司是如何使用的</li>
+<li>对于大数据时代的个人隐私问题，你怎么看？</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这一讲我们简单了解了数据挖掘及应用的方方面面，接下来我们就会具体深入介绍其中一些非常有意思的部分。当然，如果有很多不明白的概念，建议简单看看维基百科了解一下，不过实在不明白也没关系，随着之后的实践，应该会有恍然大悟的一天。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/不周山/" rel="tag"># 不周山</a>
+          
+            <a href="/tags/数据挖掘/" rel="tag"># 数据挖掘</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/27/bzs-dm-basis/" rel="next" title="【不周山之数据挖掘】零 概率与统计基础知识">
+                <i class="fa fa-chevron-left"></i> 【不周山之数据挖掘】零 概率与统计基础知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/30/wdxtub-beta-release-notes/" rel="prev" title="wdxtub.com Beta 发布说明">
+                wdxtub.com Beta 发布说明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">861</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">953</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#任务目标"><span class="nav-number">1.</span> <span class="nav-text">任务目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">2.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索"><span class="nav-number">3.</span> <span class="nav-text">搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文档表示"><span class="nav-number">3.1.</span> <span class="nav-text">文档表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档索引"><span class="nav-number">3.2.</span> <span class="nav-text">文档索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档检索"><span class="nav-number">3.3.</span> <span class="nav-text">文档检索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评价指标"><span class="nav-number">3.4.</span> <span class="nav-text">评价指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档收集"><span class="nav-number">3.5.</span> <span class="nav-text">文档收集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接分析"><span class="nav-number">3.6.</span> <span class="nav-text">链接分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索引擎优化"><span class="nav-number">3.7.</span> <span class="nav-text">搜索引擎优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据挖掘"><span class="nav-number">4.</span> <span class="nav-text">数据挖掘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要任务"><span class="nav-number">4.1.</span> <span class="nav-text">主要任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测型任务"><span class="nav-number">4.2.</span> <span class="nav-text">预测型任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#描述型任务"><span class="nav-number">4.3.</span> <span class="nav-text">描述型任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-文本统计分类流程"><span class="nav-number">4.4.</span> <span class="nav-text">实例 - 文本统计分类流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用工具"><span class="nav-number">4.5.</span> <span class="nav-text">常用工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自然语言处理"><span class="nav-number">5.</span> <span class="nav-text">自然语言处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分词"><span class="nav-number">5.1.</span> <span class="nav-text">分词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#词性标注"><span class="nav-number">5.2.</span> <span class="nav-text">词性标注</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见应用"><span class="nav-number">6.</span> <span class="nav-text">常见应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#智能问答技术"><span class="nav-number">6.1.</span> <span class="nav-text">智能问答技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情感分析与观点挖掘"><span class="nav-number">6.2.</span> <span class="nav-text">情感分析与观点挖掘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息摘要"><span class="nav-number">6.3.</span> <span class="nav-text">信息摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#社交网络分析"><span class="nav-number">6.4.</span> <span class="nav-text">社交网络分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#试一试"><span class="nav-number">7.</span> <span class="nav-text">试一试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

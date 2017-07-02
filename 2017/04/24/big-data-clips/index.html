@@ -1,0 +1,1149 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据,思路," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="最后提到的『闭环论』，正是我一直在追求的，不过高人这么一点拨，感觉豁然开朗。我多么希望两年前能看到这本书，这样我就可以在大把空闲时间的校园里，把 Patriots 提前做出来了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【决战大数据】读书笔记">
+<meta property="og:url" content="http://wdxtub.com/2017/04/24/big-data-clips/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="最后提到的『闭环论』，正是我一直在追求的，不过高人这么一点拨，感觉豁然开朗。我多么希望两年前能看到这本书，这样我就可以在大把空闲时间的校园里，把 Patriots 提前做出来了。">
+<meta property="og:updated_time" content="2017-04-25T03:51:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【决战大数据】读书笔记">
+<meta name="twitter:description" content="最后提到的『闭环论』，正是我一直在追求的，不过高人这么一点拨，感觉豁然开朗。我多么希望两年前能看到这本书，这样我就可以在大把空闲时间的校园里，把 Patriots 提前做出来了。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/2017/04/24/big-data-clips/"/>
+
+
+
+
+
+  <title> 【决战大数据】读书笔记 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/2017/04/24/big-data-clips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                【决战大数据】读书笔记
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-24T20:31:36+08:00">
+                2017-04-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-25T11:51:24+08:00">
+                2017-04-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reading/" itemprop="url" rel="index">
+                    <span itemprop="name">Reading</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/04/24/big-data-clips/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      6,004
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      20
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最后提到的『闭环论』，正是我一直在追求的，不过高人这么一点拨，感觉豁然开朗。我多么希望两年前能看到这本书，这样我就可以在大把空闲时间的校园里，把 Patriots 提前做出来了。</p>
+<a id="more"></a>
+<hr>
+<p>更新历史</p>
+<ul>
+<li>2017.04.25: 完成初稿</li>
+</ul>
+<p>大数据时代，用数据找机会，用数据还原真实。从『看』到『用』，从『用』到『养』数据，只有实效的数据才是正道。</p>
+<p>数据十诫</p>
+<ol>
+<li>好的问题，答案就在里面</li>
+<li>在实践中提炼数据</li>
+<li>让数据变成科技，惠及更多人</li>
+<li>让数据跟着『人』走</li>
+<li>木有数据质量，神马数据都是浮云</li>
+<li>以『假定数据是可获取的』去思考问题</li>
+<li>大数据安全，不是监管</li>
+<li>利用数据拿到更有用的数据</li>
+<li>建立数据的数据，才有进步</li>
+<li>让人做人擅长做的事，让机器做机器擅长做的事</li>
+</ol>
+<p>大数据从来不是免费的午餐。大数据的来源是多种渠道的，偏倚、随机的误差总是存在。</p>
+<p>断层才是大数据所面临的最严重的问题。现在，收集数据的人并不清楚未来使用数据的人要做什么，这是目前大数据的一大关键命门。</p>
+<p>不只是收集数据的人不知道将来的人怎么使用数据，就连创建模型的人也不知道自己所采用的数据在未来是否稳定，而使用模型的人也不知道整个数据的来路或加工过程。</p>
+<p>答案不重要，思考的角度才重要。一套巧妙的数据化思考方式，三分靠想法，七分靠实践，切勿空谈。</p>
+<h2 id="大数据的本质就是还原用户的真实需求"><a href="#大数据的本质就是还原用户的真实需求" class="headerlink" title="大数据的本质就是还原用户的真实需求"></a>大数据的本质就是还原用户的真实需求</h2><p>识别，让似是而非的行为数据串联起来。企业有多大的能力去识别一个『碎片化了的个人』，将是一个巨大的考验和机会。</p>
+<p>从企业价值来看，数据收集实现的是企业资源的合理分配；从客户价值来看，数据收集实现的是顾客体验的提升。</p>
+<p>场景与还原并行 —— 前端还原消费者场景，后端还原业务需求。</p>
+<p>数据的本质就是还原，这是收集元数据的关键方法。</p>
+<p>作为一名数据分析师如果你不把自己的分析与当下结合，是没办法进步的。</p>
+<p>『答案不是结果，方法才是』</p>
+<h2 id="『活』的数据才是大数据"><a href="#『活』的数据才是大数据" class="headerlink" title="『活』的数据才是大数据"></a>『活』的数据才是大数据</h2><p>大数据的真正价值是将数据用于形成主动收集数据的良性循环中，以带动更多的数据进入这个自循环中，并应用于各个行业。</p>
+<p>多样的自循环方式打开了大数据之门，而进入这个循环的关键就是，从解决问题出发。</p>
+<p>『活』做数据收集，就是要跳出既定思维的框架，从相关联的行业和也物种去收集能够为现在所用的数据，找到能够更好地佐证企业现有业务决策和发展的数据。</p>
+<p>去观察行业内对这个数据最敏感的那些人。</p>
+<p>把数据激活，从静态数据变成动态数据，必须要用场景来验证，仅仅是把我们收集的数据简单堆砌在一起，是没有意义的。</p>
+<p>好的分析师相当于市场解码器</p>
+<h2 id="无线数据"><a href="#无线数据" class="headerlink" title="无线数据"></a>无线数据</h2><p>无线时代到来之后，一切都发生了变化。原本可以收集用户完整行为数据的网站变得不再可靠，而数据还原用户行为的方式也发生了改变。</p>
+<p>保证 PC 和无线两份数据的完整，通过用户体系将两份数据关联起来，就可以在分析的时候用彼此的融合来还原用户的行为。</p>
+<p>无线应当是作为一种横向的基础模型穿插于各个垂直的主题模型之中的，如果将无线作为一个独立的模型，在进行用户行为还原和用户分析的时候则会变得很困难。</p>
+<p>大数据相信全量数据，而非样本；是分析得出，而不是抽样获得。</p>
+<h2 id="数据分类与数据价值，什么才是你的核心数据"><a href="#数据分类与数据价值，什么才是你的核心数据" class="headerlink" title="数据分类与数据价值，什么才是你的核心数据"></a>数据分类与数据价值，什么才是你的核心数据</h2><p>从数据角度来说，估值就是通过不同的维度去思考数据的价值。只有基于对数据的分类和对数据价值的不同认识，才能去对数据做筛选。</p>
+<p>数据作为一种资产，不同的数据含金量必然不同，自然就会产生不同的价值。而且，就同一组数据而言，在不同的环境下甚至会呈现出不同的价值。</p>
+<p>一个好的数据从业者则必须要对各个数据的价值和稳定性洞若观火。</p>
+<ol>
+<li>按照是否可以再生的标准来看，可以分为不可再生数据和可再生数据。对不可再生的数据而言，已有的数据要严格保护，想要但是还没有的数据就要及早收集。对于可再生数据而言，要及早做好业务的预判和数据处理的规划，这样数据在需要的时候就能够快速地获得应用，我们把这一数据叫做数据中间层</li>
+<li>按照数据所处的存储层次来看，可以分为基础层、中间层和应用层。基础层必须统一，因为这是最基本的数据，而且基本数据是原始数据。除了备份的需求外没有必要在各个场合保留多份数据。只要保证这个数据有良好的元数据管理方式，就能极大地降低成本。</li>
+<li>按照数据业务归属来看，可以分为各个数据主体。</li>
+<li>按照是否为隐私来区分，可以分为隐私数据和非隐私数据。拥有大数据的企业高管必须要关注数据安全。</li>
+</ol>
+<p>能够辨别关系、身份的数据是最重要的。这些数据应该是有多少存多少，永远不要放弃。在大数据时代，越能够还原用户真实身份和真实行为的数据，就越能够让企业在大数据竞争中保持战略优势。</p>
+<ul>
+<li>数据价值 1：识别与串联价值</li>
+<li>数据价值 2：描述价值<ul>
+<li>对于企业来说，描述价值与业务目标的实现并不呈正比关系，应该收集和业务紧密相关的数据</li>
+<li>用来描述数据最好的一种方式就是分析数据的框架，即基于对数据的理解，对数据进行分类和有逻辑的展示</li>
+</ul>
+</li>
+<li>数据价值 3：时间价值</li>
+<li>数据价值 4：预测价值</li>
+<li>数据价值 5：产出数据的价值<ul>
+<li>很多数据本身并没有特别的含义，但是在几个数据组合在一起的或者对部分数据进行整合之后就产生了新的价值</li>
+</ul>
+</li>
+</ul>
+<p>精细的数据分类，严格的数据生产加工过程，将让我们在使用数据时受益匪浅。</p>
+<h2 id="从用数据到养数据"><a href="#从用数据到养数据" class="headerlink" title="从用数据到养数据"></a>从用数据到养数据</h2><p>在收集数据时，我们必须知道这些数据未来可以用来做什么，如果今天都想象不出来的话，日后就更不可能了。</p>
+<p>数据应用因小而美。『小』不是指数据量，而是指应用的目标很具体。</p>
+<h3 id="如何用框架来做决策"><a href="#如何用框架来做决策" class="headerlink" title="如何用框架来做决策"></a>如何用框架来做决策</h3><p>想要解决的问题越复杂，框架也就越复杂。但是，决策最重要的前提是要从小角度切入，从『小』做起。这里有一个四步走的方法：</p>
+<ol>
+<li>首先确定有什么问题，从解决问题的角度出发去收集数据</li>
+<li>把收集到的数据整理好，放入一个『数据框架』内。让决策者用框架更清楚地看到数据与决策之间的关系</li>
+<li>看框架与做决策的关系</li>
+<li>根据决策行动，然后检查行动是否达到目的（如果没有，则需要优化整个流程）</li>
+</ol>
+<h3 id="养数据，重要的数据战略"><a href="#养数据，重要的数据战略" class="headerlink" title="养数据，重要的数据战略"></a>养数据，重要的数据战略</h3><p>『养』数据，就是主动收集数据，是基于深入业务理解的更高层次的商业决策。</p>
+<p>如果你要做一名数据分析师，脑海里就要长期装着这样一个想法『这个数据是怎么来的？』你要打破局限，不要把自己封闭在狭隘的思想中。在未来商业中，谁被逼到『或』式选择境地，往往谁吃亏（比如促销的最后一天 = 『买或不买』）</p>
+<p>在面对『或』式选择的时候，我们更容易被惯性牵绊。很多时候，你需要远离『或』的概念，才不会被困住而浑然不觉。</p>
+<h2 id="数据的盲点，负面数据的力量"><a href="#数据的盲点，负面数据的力量" class="headerlink" title="数据的盲点，负面数据的力量"></a>数据的盲点，负面数据的力量</h2><p>在数据中，盲点可以分为两类：一类是物理盲点，另一类是逻辑盲点。</p>
+<p>面对数据的盲点，正能量思考告诉你怎么做可以到达成功的终点，负能量思考则告诉你怎么做才不会失败。</p>
+<p>是否看到数据盲点价值的核心就是，有没有看到应该看到的数据，有没有错失不应该错失的数据。</p>
+<p>我们观察数据的时候容易只将焦点放在正面数据上，而忽略掉负面数据。</p>
+<p>错误的经验会让你不断地犯错误。</p>
+<h2 id="阿里巴巴的大数据实践"><a href="#阿里巴巴的大数据实践" class="headerlink" title="阿里巴巴的大数据实践"></a>阿里巴巴的大数据实践</h2><p>从数据化运营到运营数据是不断运行的循环。在这样的循环中，会容纳许多新的、不同维度的数据，这些数据经过在整个循环中的适应过程，然后再运用到数据化运营中，并且改变原有的运营方式，这个过程就是我认为的大数据落地的方法。</p>
+<p>数据化运营的的前提是假定数据是稳定的，并且以此来改变企业的运营。而运营数据，则是假定数据都是可以获取的，而且是不稳定的。</p>
+<p>数据化运营需要和商业咬合得非常紧密，所以数据也是混合在商业里，以假定稳定的方法去做业务上的对比和细分及趋势预估的。假定数据是稳定的，也意味着我们习惯于不去寻找一些新数据。</p>
+<p>『用数据拿数据』的方法可以将数据化运营和运营数据打通。将数据化运营和运营数据打通，有可能会创造出一些意想不到的创新。我们在大数据环境里运营数据时，有可能走不通的原因是，现在的数据已经庞大到需要管理才能到创新的数据化运营。这个循环能否成型，往往需要很长时间的努力。</p>
+<p>目的和目标区别在于：『目的』是要到达的终点；而『目标』则是衡量到达终点的价值标准。</p>
+<p>他很重视客服，最擅长的做法是通过客服来观测数据，通过最前端来决定后端，这就是探索。我很赞赏他说的『发现交易量急速上涨的时候，就要停掉广告』。这句话体现了他作为一名科学家的思维逻辑 —— 当交易量急速上涨时，对订单的处理能力就会下降，所以减少广告可以很好地控制局势。</p>
+<p>对于创业公司来说，管理者不需要把眼光放得过于长远。如果从短期目标出发，在不断的观察之中发现问题，并且解决问题，很可能会更容易获得成功，而事实上很多人的成功就是这样造就的。</p>
+<h2 id="混、通、晒，阿里巴巴数据化运营的内三板斧"><a href="#混、通、晒，阿里巴巴数据化运营的内三板斧" class="headerlink" title="混、通、晒，阿里巴巴数据化运营的内三板斧"></a>混、通、晒，阿里巴巴数据化运营的内三板斧</h2><p>只有具备商业敏感的数据分析师，才会懂得使用什么数据来驱动公司实现经营目标。数据部的人要和业务部的人经常『混』在一起。</p>
+<p>如果数据分析师缺乏商业意识，那么公司就成了『盲人』——分析师不知道该使用怎样的逻辑去分析数据，而公司的决策层也得不到任何有价值的参考意见。作为数据分析师，如果不和业务部混在一起，又怎么会知道业务部在做什么。商业敏感是要靠『混』出来的，它并不会凭空出现在你面前。</p>
+<p>『通』是『混、通、晒』里最关键的连接点。知道带着业务问题来看数据或者带着数据问题来看业务，这就是做到了『通』。</p>
+<p>值得注意的是，『通』有两个场景。比如说，现在有一个商业场景和一堆数据，这两者产生关系时，就是商业模式和数据彼此的『通』，我们可以称它为『数据中间层』，简单来说，它就是能够敏感地反映出商业变化的数据群（Smart Data Set）</p>
+<p>另外一种更深入的『通』，就是存在于公司组织中的数据。把数据打通，一是商业理解和数据之间的『通』，另一种就是部门数据和部门数据的交叉。</p>
+<p>想做到数据的积累和沉淀，想要打通数据，建立合理的系统是不二之选。首先，做好数据安全工作，以保证公司内部不同职位的员工可以查看不同的数据；然后，统一不同部门的数据标准，使公司内部数据有统一的接口，避免混乱；最后，关联不同部门的数据，创造机会让数据的运营可以扩散至数据部门之外。</p>
+<p>数据能不能做到在获取、使用、分享、协同、连接、组合之上让自己变得超级简单和便捷，这是数据化运营里面非常重要的一点，这也正是『晒』的内容。</p>
+<p>『晒』是在『混』和『通』的基础上产生出来的最终的数据表现，是基于人、商业和数据结合后的一种看数据和用数据的方法论。通常是通过数据来回答这几个问题：</p>
+<ul>
+<li>业务好还是不好</li>
+<li>数据如何改变可以让业务更好</li>
+<li>如何利用数据帮助业务发现机会，甚至产生出新的商业价值</li>
+</ul>
+<p>具体应用用数据解决什么问题，要根据业务的场景来决定。</p>
+<p>所谓的框架就是，对一个业务进行指标化的分解，并通过有限多个指标来客观描述业务的状况。</p>
+<p>在电子商务领域，评价业务水平通常有两套指标，一套是常用的计算成交额的方法，即<strong>流量 x 转化率 x 客单价 = 成交额</strong>，它能够评价一个类目、一个商品的健康度。另外一套指标在商品大促的时候使用居多，即<strong>预热期加入购物车的商品数 x 商品单价 x 经验转化率 x 经验成交额占比 = 大促成交额</strong>（因为经验转化率和经验成交额占比通常是两个固定的数据）</p>
+<p>业务需要进行比较才能判断好坏，而比较的前提就是要不断地去寻找比较对象。</p>
+<p>我们到底要解决的是什么问题，我应该用什么逻辑来解决，在抛开一切杂念获得验证的思路之后，再来看细节问题决策就会显得非常简单了。其实，用逻辑来思考的问题或者发现的问题，就是一个本质问题。</p>
+<h2 id="存、管、用，阿里巴巴运营数据的外三板斧"><a href="#存、管、用，阿里巴巴运营数据的外三板斧" class="headerlink" title="存、管、用，阿里巴巴运营数据的外三板斧"></a>存、管、用，阿里巴巴运营数据的外三板斧</h2><p>存，数据收集的开始。收集数据不是目的，让收集起来的数据如何产生价值才是最终的目的。</p>
+<p>管，保护好存储数据。学会用数据产品来解决获取及使用数据的问题。数据管理，是大数据行业的脏活苦活累活，是最悲催和最难解决的事情。</p>
+<p>用，从收集数据到管理数据。数据的分裂和重组，都能做到颠覆性创新。</p>
+<h3 id="第一步-建立用户的标签"><a href="#第一步-建立用户的标签" class="headerlink" title="第一步 建立用户的标签"></a>第一步 建立用户的标签</h3><ol>
+<li>通过业务规则结合数据分析来建立标签</li>
+<li>通过模型来建立标签</li>
+<li>通过模型的组合来生成新的标签</li>
+</ol>
+<h3 id="第二步-标签的应用"><a href="#第二步-标签的应用" class="headerlink" title="第二步 标签的应用"></a>第二步 标签的应用</h3><p>最核心的就是数据中间层和前台业务层的对接，并且能够让运营人员非常方便地进行商品的设置。</p>
+<ol>
+<li>中间层和业务层的对接</li>
+<li>中间层的易用性</li>
+</ol>
+<h3 id="解决本质问题"><a href="#解决本质问题" class="headerlink" title="解决本质问题"></a>解决本质问题</h3><p>不断地用逻辑方法将问题进行分解，直到不能分解为止，然后从根本处去解决这个问题。</p>
+<p>总的来说，当我们遇到一个问题之后，一定要问自己这到底是现象还是本质，如果是现象就一定要找到本质。被表面迷惑是很多人都会犯的错误，而所谓的成功，就是少犯错误，就是早一点从本质出发去思考问题。</p>
+<h2 id="大数据，未来商业的利器"><a href="#大数据，未来商业的利器" class="headerlink" title="大数据，未来商业的利器"></a>大数据，未来商业的利器</h2><p>假定数据是脏的。到底是因为数据源脏了，还是因为数据提炼过程做得不好。</p>
+<p>学会慢慢淡化数据。数据是有优先级的，在数据中有些是特别核心的，有些即使缺失了也没有多大问题。所以，我们要学会真正坐下来盘点那些对公司最有价值、对用户最有价值的数据。</p>
+<p>数据的标签化管理。数据的属性标签是人类经验判断的数据，是数据后的数据。</p>
+<p>标签的属性管理，在运营数据中非常重要。属性管理的层级化十分有必要，但是在使用数据前，必须要了解数据的场景、数据是如何放进去的和数据的场景是什么。在这一切未知之前，就说数据如何好用的话，是不可能的。所以，现在企业运营数据的趋势是，我们应该找出一些属性进行归类，然后再慢慢地考虑如何提炼，这对于未来非常重要。</p>
+<p>重要的是数据和数据之间的关系，而不是数据本身。</p>
+<p>我们千万不要把所有的能力都用来处理实时化的问题，因为我们依然会有大量的数据需要在恰当的时机（Right Time）处理，有的数据是重要的，但不紧急。</p>
+<p>数据处理不一定要实时，在其他数据没有到位的情况下，数据实时化的价值也不大。</p>
+<p>人和机器的结合，或者人和数据的结合将是未来的一种进步模式，人类将通过数据变得更加智能。</p>
+<p>经验使人变笨的原因在于你之前的经验本身就存在误差，即数据源本身就存在问题，而这种误差一般人看不出来。</p>
+<p>永远不要假定这个世界是真空的，所以需要多多观察频繁出现的新数据。当有新数据出现时，以往的经验就需要重新做评估了。</p>
+<h2 id="开启属于你个人的大数据管理"><a href="#开启属于你个人的大数据管理" class="headerlink" title="开启属于你个人的大数据管理"></a>开启属于你个人的大数据管理</h2><p>成功路上，有 4 种东西是可以积累的，分别是财富、人际关系、知识以及思维方式。思维方式与你所做的选择和决策密切相关，冥冥之中决定了『运』的走向。</p>
+<p>要对数据做一个积累，要对我所在行业中呈现出的信息进行积累。这是一个有限时间和无限大数据进行博弈的时代。如果没有积累数据的意识，没有培养自己数据化思考的意识，改变命运真的就成为一种投机行为。</p>
+<h3 id="做好个人大数据管理"><a href="#做好个人大数据管理" class="headerlink" title="做好个人大数据管理"></a>做好个人大数据管理</h3><p>早上可以用来做数据收集。要完成这个大数据积累的闭环，要求放进去的数据，一定要能够非常快速、实时地调用出来，这就需要一个非常好的分类/标签管理体系。（用两三个关键词在 10 秒内调出我积累的有效数据）</p>
+<p>在我的微博关注里，按照两个维度来分类我关注的人：一是他们懂什么东西，即有什么特长；二是根据重要性，进行 5-20 分钟，或者 45 分钟关注度的划分。（如果时间不够，就只看最重要的人）</p>
+<p>从收集数据的角度来看：首先，我在选择有效的数据源；其次，我有重要性的选择，所以我能很好地控制我的时间。每天我做完这些数据收集的时间大约是一个小时，时间久了，我现在对每个数据源甚至提供数据的记者的能力都了若指掌。</p>
+<p>标签的生命周期。</p>
+<ul>
+<li>越有效的标签就越能让我快速地调取数据<ul>
+<li>标签的用途多样，比如做知识分类的、识别来源的、情境和人物描述的以及表明时序的，等等</li>
+</ul>
+</li>
+<li>要注意知识范畴的培养<ul>
+<li>行业标签、技术标签、分类方法</li>
+</ul>
+</li>
+<li>场景的标签我把它分为公司与人物，再加上时间（时间是很重要的过滤条件）</li>
+</ul>
+<p>时间线和来源是锁定想要数据的重要线索。</p>
+<p>在大数据的世界中，没有人要求你懂得细节，没有人要求你成为一名数据分析方面的专家，但是要求在你需要拿到一个专家的数据时，能哦古快读地调用出来。做到这样的话，我们就已经突破了人类短时记忆的短板。</p>
+<p>眼睛与大脑是相互影响的，而你看到的将影响你的思考，反过来你的思考方式又影响着你看到的东西。</p>
+<ul>
+<li>首先，你所选定的题目，一定要是你感兴趣的，或者跟你的职业相关的。</li>
+<li>其次，个人大数据管理和做大数据一样，一定要从小处着眼</li>
+<li>再者，就是尽量让数据的收集变得简单</li>
+<li>最后，你一定要把这个『运营数据-数据化运营-运营数据』的循环打通成闭环，也要利用今天社会化的优势，学会借助别人的力量。</li>
+</ul>
+<p>收集、决策、行动、管理，开启你个人的大数据管理，改变自身的知识积累和思维方式，成为一个能够掌握自己未来的人。</p>
+<h2 id="像李小龙的格斗一样去思考"><a href="#像李小龙的格斗一样去思考" class="headerlink" title="像李小龙的格斗一样去思考"></a>像李小龙的格斗一样去思考</h2><p>忘掉必杀技。当人人都有绝招的时候，绝招就不是绝招了。</p>
+<p>在迂回中寻找落地点。</p>
+<p>衡量每一个变化。在目标确定的基础上，能够对一些变化做出有效的判断。</p>
+<p>衡量变动时有两个大的前提，一个前提是要保证数据是能够被有效记录下来的，另一个前提是数据是能够被有效解读的。</p>
+<p>持续的反馈。思考中的稳定就来自于变化环境下的不断反馈。</p>
+<p>寻找爆发点。主干，就是一件事物最原始、最核心的规律。</p>
+<p>做公益，第一重要的其实不是钱。是专业、爱和用心</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据/" rel="tag"># 数据</a>
+          
+            <a href="/tags/思路/" rel="tag"># 思路</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/24/naked-statistics-clips/" rel="next" title="【赤裸裸的统计学】读书笔记">
+                <i class="fa fa-chevron-left"></i> 【赤裸裸的统计学】读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/26/one-million-visit/" rel="prev" title="写在一百万次访问">
+                写在一百万次访问 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">861</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">953</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据的本质就是还原用户的真实需求"><span class="nav-number">1.</span> <span class="nav-text">大数据的本质就是还原用户的真实需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#『活』的数据才是大数据"><span class="nav-number">2.</span> <span class="nav-text">『活』的数据才是大数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无线数据"><span class="nav-number">3.</span> <span class="nav-text">无线数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据分类与数据价值，什么才是你的核心数据"><span class="nav-number">4.</span> <span class="nav-text">数据分类与数据价值，什么才是你的核心数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从用数据到养数据"><span class="nav-number">5.</span> <span class="nav-text">从用数据到养数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何用框架来做决策"><span class="nav-number">5.1.</span> <span class="nav-text">如何用框架来做决策</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#养数据，重要的数据战略"><span class="nav-number">5.2.</span> <span class="nav-text">养数据，重要的数据战略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据的盲点，负面数据的力量"><span class="nav-number">6.</span> <span class="nav-text">数据的盲点，负面数据的力量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阿里巴巴的大数据实践"><span class="nav-number">7.</span> <span class="nav-text">阿里巴巴的大数据实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#混、通、晒，阿里巴巴数据化运营的内三板斧"><span class="nav-number">8.</span> <span class="nav-text">混、通、晒，阿里巴巴数据化运营的内三板斧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存、管、用，阿里巴巴运营数据的外三板斧"><span class="nav-number">9.</span> <span class="nav-text">存、管、用，阿里巴巴运营数据的外三板斧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步-建立用户的标签"><span class="nav-number">9.1.</span> <span class="nav-text">第一步 建立用户的标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步-标签的应用"><span class="nav-number">9.2.</span> <span class="nav-text">第二步 标签的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决本质问题"><span class="nav-number">9.3.</span> <span class="nav-text">解决本质问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据，未来商业的利器"><span class="nav-number">10.</span> <span class="nav-text">大数据，未来商业的利器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启属于你个人的大数据管理"><span class="nav-number">11.</span> <span class="nav-text">开启属于你个人的大数据管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#做好个人大数据管理"><span class="nav-number">11.1.</span> <span class="nav-text">做好个人大数据管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#像李小龙的格斗一样去思考"><span class="nav-number">12.</span> <span class="nav-text">像李小龙的格斗一样去思考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

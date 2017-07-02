@@ -1,0 +1,1050 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="集群,容器,Kubernetes," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="主要来源于官网的教程，从基础入手，循序渐进，还有在线实验，非常友好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubernetes 学习笔记">
+<meta property="og:url" content="http://wdxtub.com/2017/06/05/k8s-note/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="主要来源于官网的教程，从基础入手，循序渐进，还有在线实验，非常友好">
+<meta property="og:updated_time" content="2017-06-06T00:28:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kubernetes 学习笔记">
+<meta name="twitter:description" content="主要来源于官网的教程，从基础入手，循序渐进，还有在线实验，非常友好">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/2017/06/05/k8s-note/"/>
+
+
+
+
+
+  <title> Kubernetes 学习笔记 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/2017/06/05/k8s-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Kubernetes 学习笔记
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-05T09:06:25+08:00">
+                2017-06-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-06T08:28:14+08:00">
+                2017-06-06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technique/" itemprop="url" rel="index">
+                    <span itemprop="name">Technique</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/05/k8s-note/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      2,283
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      10
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>主要来源于官网的教程，从基础入手，循序渐进，还有在线实验，非常友好</p>
+<a id="more"></a>
+<hr>
+<p>更新历史</p>
+<ul>
+<li>2017.06.05: 开始学习</li>
+</ul>
+<h2 id="Kubernetes-基础"><a href="#Kubernetes-基础" class="headerlink" title="Kubernetes 基础"></a>Kubernetes 基础</h2><p>先来看一段来自<a href="http://www.paddlepaddle.org/doc_cn/howto/usage/k8s/k8s_basis_cn.html" target="_blank" rel="external">这里</a>的简介（我更新了一下链接）：</p>
+<p>Kubernetes 是 Google 开源的容器集群管理系统，其提供应用部署、维护、扩展机制等功能，利用Kubernetes 能方便地管理跨机器运行容器化的应用。Kubernetes 可以在物理机或虚拟机上运行，且支持部署到 AWS，Azure，GCE 等多种公有云环境。介绍分布式训练之前，需要对 Kubernetes 有一个基本的认识，下面先简要介绍一下本文用到的几个 Kubernetes 概念。</p>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/architecture/nodes/" target="_blank" rel="external">Node</a> 表示一个 Kubernetes 集群中的一个工作节点，这个节点可以是物理机或者虚拟机，Kubernetes 集群就是由 node 节点与 master 节点组成的。</li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod/" target="_blank" rel="external">Pod</a> 是一组(一个或多个)容器，pod 是 Kubernetes 的最小调度单元，一个 pod 中的所有容器会被调度到同一个 node 上。Pod 中的容器共享 NET，PID，IPC，UTS 等 Linux namespace。由于容器之间共享 NET namespace，所以它们使用同一个 IP 地址，可以通过 localhost 互相通信。不同 pod 之间可以通过IP地址访问。</li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/" target="_blank" rel="external">Job</a> 描述 Kubernetes 上运行的作业，一次作业称为一个 job，通常每个 job 包括一个或者多个pods，job 启动后会创建这些 pod 并开始执行一个程序，等待这个程序执行成功并返回 0 则成功退出，如果执行失败，也可以配置不同的重试机制。</li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/volumes/" target="_blank" rel="external">Volume</a> 存储卷，是 pod 内的容器都可以访问的共享目录，也是容器与 node 之间共享文件的方式，因为容器内的文件都是暂时存在的，当容器因为各种原因被销毁时，其内部的文件也会随之消失。通过 volume，就可以将这些文件持久化存储。Kubernetes 支持多种 volume，例如 hostPath(宿主机目录)，gcePersistentDisk，awsElasticBlockStore等。</li>
+<li><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/" target="_blank" rel="external">Namespaces</a> 命名空间，在 kubernetes 中创建的所有资源对象(例如上文的 pod，job)等都属于一个命名空间，在同一个命名空间中，资源对象的名字是唯一的，不同空间的资源名可以重复，命名空间主要为了对象进行逻辑上的分组便于管理。本文只使用了默认命名空间。</li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/" target="_blank" rel="external">PersistentVolume</a>: 和 <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/" target="_blank" rel="external">PersistentVolumeClaim</a> 结合，将外部的存储服务在 Kubernetes 中描述成为统一的资源形式，便于存储资源管理和 Pod 引用。</li>
+</ul>
+<p>如果看不懂，也没有关系，接下来会更详细介绍。PS. 官方文档很有灵性，建议有英文阅读能力的同学去通读一遍，这里只是我的一些学习笔记，不如原版这么有逻辑性。</p>
+<p>Kubernetes 集群让多台机器像一个单一组件一样运行，但是有一个前提条件，就是应用需要被打包到容器里。打包好之后 Kubernetes 会自动化地以一种高效的形式去调度容器们。一个 Kubernetes 集群有两种类型的资源：</p>
+<ul>
+<li><strong>Master</strong> 负责调度集群，维护应用状态，扩展应用和滚动更新</li>
+<li><strong>Nodes</strong> 负责运行各个应用。每个节点有一个 <code>Kubelet</code>，是在每个节点上的客户端，负责与 master 交流。一个 Kubernetes 集群至少需要 3 个 node。<ul>
+<li>如果想要体验一下，可以使用 Minikube，会在单机上创建虚拟机来搭建集群（本文的教程也是用这个来展示的）</li>
+</ul>
+</li>
+</ul>
+<h3 id="创建集群"><a href="#创建集群" class="headerlink" title="创建集群"></a>创建集群</h3><p>命令如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 查看版本</span></div><div class="line">$&gt; minikube version</div><div class="line">minikube version: v0.15.0-katacoda</div><div class="line"></div><div class="line"><span class="comment"># 启动集群</span></div><div class="line">$&gt; minikube start</div><div class="line">Starting <span class="built_in">local</span> Kubernetes cluster...</div><div class="line"></div><div class="line"><span class="comment"># 查看版本</span></div><div class="line">$&gt; kubectl version</div><div class="line">Client Version: version.Info&#123;Major:<span class="string">"1"</span>, Minor:<span class="string">"5"</span>, GitVersion:<span class="string">"v1.5.2"</span>, GitCommit:<span class="string">"08e09955</span></div><div class="line">4f3c31f6e6f07b448ab3ed78d0520507", GitTreeState:<span class="string">"clean"</span>, BuildDate:<span class="string">"2017-01-12T04:57:25Z"</span>,</div><div class="line">GoVersion:<span class="string">"go1.7.4"</span>, Compiler:<span class="string">"gc"</span>, Platform:<span class="string">"linux/amd64"</span>&#125;</div><div class="line">Server Version: version.Info&#123;Major:<span class="string">"1"</span>, Minor:<span class="string">"5"</span>, GitVersion:<span class="string">"v1.5.2"</span>, GitCommit:<span class="string">"08e09955</span></div><div class="line">4f3c31f6e6f07b448ab3ed78d0520507", GitTreeState:<span class="string">"clean"</span>, BuildDate:<span class="string">"1970-01-01T00:00:00Z"</span>,</div><div class="line">GoVersion:<span class="string">"go1.7.1"</span>, Compiler:<span class="string">"gc"</span>, Platform:<span class="string">"linux/amd64"</span>&#125;</div><div class="line"></div><div class="line"><span class="comment"># 查看集群状态</span></div><div class="line">$&gt; kubectl cluster-info</div><div class="line">Kubernetes master is running at http://host01:8080</div><div class="line">heapster is running at http://host01:8080/api/v1/proxy/namespaces/kube-system/services/heap</div><div class="line">ster</div><div class="line">kubernetes-dashboard is running at http://host01:8080/api/v1/proxy/namespaces/kube-system/s</div><div class="line">ervices/kubernetes-dashboard</div><div class="line">monitoring-grafana is running at http://host01:8080/api/v1/proxy/namespaces/kube-system/ser</div><div class="line">vices/monitoring-grafana</div><div class="line">monitoring-influxdb is running at http://host01:8080/api/v1/proxy/namespaces/kube-system/se</div><div class="line">rvices/monitoring-influxdb</div><div class="line"></div><div class="line"><span class="comment"># 获取可用的 node</span></div><div class="line">$&gt; kubectl get nodes</div><div class="line">NAME      STATUS    AGE</div><div class="line">host01    Ready     15m</div></pre></td></tr></table></figure>
+<h3 id="部署应用"><a href="#部署应用" class="headerlink" title="部署应用"></a>部署应用</h3><p>Kubernetes 集群启动之后，就可以在这之上部署应用了。部署应用的时候 master 会进行调度并选择合适的 node，启动之后仍旧会继续监控，一旦出问题，就会自动重新启用。</p>
+<p>我们可以使用 Kubernetes 命令行工具 <code>Kubectl</code> 通过 Kubernetes API 来管理部署。创建部署的时候需要指定镜像和要运行的副本个数（当然也可以后面更新），然后们就实际来部署一波，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 部署应用</span></div><div class="line">$&gt; kubectl run kubernetes-bootcamp --image=docker.io/jocatalin/kubernetes-bootcamp:v1 --port=8080</div><div class="line">mp:v1 --port=8080ubernetes-bootcamp --image=docker.io/jocatalin/kubernetes-bootca</div><div class="line">deployment <span class="string">"kubernetes-bootcamp"</span> created</div><div class="line"></div><div class="line"><span class="comment"># 列出部署</span></div><div class="line">$&gt; kubectl get deployments</div><div class="line">NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE</div><div class="line">kubernetes-bootcamp   1         1         1            1           1m</div><div class="line"></div><div class="line"><span class="comment"># 查看部署</span></div><div class="line"><span class="comment"># 先通过 proxy 连接到正在运行的容器</span></div><div class="line">$&gt; kubectl proxy</div><div class="line">Starting to serve on 127.0.0.1:8001</div><div class="line"></div><div class="line"><span class="comment"># 然后打开一个新 tab，输出 Pod 名字</span></div><div class="line">$&gt; <span class="built_in">export</span> POD_NAME=$(kubectl get pods -o go-template --template <span class="string">'&#123;&#123;range .items&#125;&#125;&#123;&#123;.metadata.name&#125;&#125;&#123;&#123;"\n"&#125;&#125;&#123;&#123;end&#125;&#125;'</span>)</div><div class="line">$&gt; <span class="built_in">echo</span> Name of the Pod: <span class="variable">$POD_NAME</span></div><div class="line">Name of the Pod: kubernetes-bootcamp-390780338-n7q3n</div><div class="line"></div><div class="line"><span class="comment"># 获取这个 pod 的输出</span></div><div class="line">$&gt; curl http://localhost:8001/api/v1/proxy/namespaces/default/pods/<span class="variable">$POD_NAME</span>/</div><div class="line">Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-390780338-n7q3n | v=1</div></pre></td></tr></table></figure>
+<h3 id="查看应用"><a href="#查看应用" class="headerlink" title="查看应用"></a>查看应用</h3><p>每个应用会在一个 Pod 中运行，一个 Pod 里可以有一个或多个应用（相当于给这些应用创建了一个共有的 localhost 环境，每个 pod 里的网络等环境是共享的）。</p>
+<p>每个 Pod 都会运行在一个 Node 上，每个 Node 都由 Master 来管理。其中，每个 Node 都必须要有：</p>
+<ul>
+<li><code>Kubelet</code>，负责与 Master 通讯，管理 node 上运行的 pods 和 containers</li>
+<li>一个容器的 runtime，比如 docker，用来从 registry 拉取镜像，解压与运行应用</li>
+</ul>
+<p>常用的 <code>kubectl</code> 命令有</p>
+<ul>
+<li><code>kubectl get</code> 列出所有的资源</li>
+<li><code>kubectl describe</code> 显示资源的详细信息</li>
+<li><code>kubectl logs</code> 输出一个 pod 中一个 container 的日志</li>
+<li><code>kubectl exec</code> 在一个 pod 中的一个 container 中执行命令</li>
+</ul>
+<p>例子如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 获取 pod 信息</span></div><div class="line">$&gt; kubectl get pods</div><div class="line">NAME                                  READY     STATUS    RESTARTS   AGE</div><div class="line">kubernetes-bootcamp-390780338-6b9n3   1/1       Running   0          41m</div><div class="line"></div><div class="line"><span class="comment"># 查看 pods 详细信息</span></div><div class="line"><span class="comment"># 包括 镜像、IP 等各类信息，describe 不仅可以用于 pods，node 和 deployment 都可以</span></div><div class="line">$&gt; kubectl describe pods</div><div class="line">Name:           kubernetes-bootcamp-390780338-6b9n3</div><div class="line">Namespace:      default</div><div class="line">Node:           host01/172.17.0.41</div><div class="line">Start Time:     Mon, 05 Jun 2017 03:05:07 +0000</div><div class="line">Labels:         pod-template-hash=390780338</div><div class="line">                run=kubernetes-bootcamp</div><div class="line">Status:         Running</div><div class="line">IP:             172.18.0.2</div><div class="line">Controllers:    ReplicaSet/kubernetes-bootcamp-390780338</div><div class="line">Containers:</div><div class="line">  kubernetes-bootcamp:</div><div class="line">    Container ID:       docker://9308ecb7bb592255b5fb517ec7caa13703f7b5bb41a24145ba1eeb670693a60d</div><div class="line">    Image:              docker.io/jocatalin/kubernetes-bootcamp:v1</div><div class="line">    Image ID:           docker-pullable://jocatalin/kubernetes-bootcamp@sha256:0d6b8ee63bb5</div><div class="line">7c5f5b6156f446b3bc3b3c143d233037f3a2f00e279c8fcc64af</div><div class="line">    Port:               8080/TCP</div><div class="line">    State:              Running</div><div class="line">      Started:          Mon, 05 Jun 2017 03:05:08 +0000</div><div class="line">    Ready:              True</div><div class="line">    Restart Count:      0</div><div class="line">    Volume Mounts:</div><div class="line">      /var/run/secrets/kubernetes.io/serviceaccount from default-token-74qlr (ro)</div><div class="line">    Environment Variables:      &lt;none&gt;</div><div class="line">Conditions:</div><div class="line">  Type          Status</div><div class="line">  Initialized   True</div><div class="line">  Ready         True</div><div class="line">  PodScheduled  True</div><div class="line">Volumes:</div><div class="line">  default-token-74qlr:</div><div class="line">    Type:       Secret (a volume populated by a Secret)</div><div class="line">    SecretName: default-token-74qlr</div><div class="line">QoS Class:      BestEffort</div><div class="line">Tolerations:    &lt;none&gt;</div><div class="line">Events:</div><div class="line">  FirstSeen     LastSeen        Count   From                    SubObjectPath             Type             Reason          Message</div><div class="line">  ---------     --------        -----   ----                    -------------             -------- ------          -------</div><div class="line">  41m           41m             1       &#123;default-scheduler &#125;                              Normal           Scheduled       Successfully assigned kubernetes-bootcamp-390780338-6b9n3 to host01</div><div class="line">  41m           41m             1       &#123;kubelet host01&#125;        spec.containers&#123;kubernetes-bootcamp&#125;       Normal          Pulled          Container image <span class="string">"docker.io/jocatalin/kubernetes-bootcamp:v1"</span> already present on machine</div><div class="line">  41m           41m             1       &#123;kubelet host01&#125;        spec.containers&#123;kubernetes-bootcamp&#125;       Normal          Created         Created container with docker id 9308ecb7bb59; Security:[seccomp=unconfined]</div><div class="line">  41m           41m             1       &#123;kubelet host01&#125;        spec.containers&#123;kubernetes-bootcamp&#125;       Normal          Started         Started container with docker id 9308ecb7bb</div><div class="line">59</div><div class="line"></div><div class="line"><span class="comment"># 获取 pod 信息</span></div><div class="line">$&gt; <span class="built_in">export</span> POD_NAME=$(kubectl get pods -o go-template --template <span class="string">'&#123;&#123;range .items&#125;&#125;&#123;&#123;.metadata.name&#125;&#125;&#123;&#123;"\n"&#125;&#125;&#123;&#123;end&#125;&#125;'</span>)</div><div class="line">$&gt; <span class="built_in">echo</span> Name of the Pod: <span class="variable">$POD_NAME</span></div><div class="line">Name of the Pod: kubernetes-bootcamp-390780338-6b9n3</div><div class="line"></div><div class="line"><span class="comment"># 查看 pod 日志</span></div><div class="line">$&gt; kubectl logs <span class="variable">$POD_NAME</span></div><div class="line">Kubernetes Bootcamp App Started At: 2017-06-05T03:05:08.494Z | Running On:  kubernetes-bootcamp-390780338-6b9n3</div></pre></td></tr></table></figure>
+<h3 id="使用服务暴露应用"><a href="#使用服务暴露应用" class="headerlink" title="使用服务暴露应用"></a>使用服务暴露应用</h3><p>Pods 是有生命周期的，也有独立的 IP 地址，随着 Pods 的创建与销毁，一个必不可少的工作就是保证各个应用能够感知这种变化。这就要提到 Service 了，Service 是 YAML 或 JSON 定义的由 Pods 通过某种策略的逻辑组合。更重要的是，Pods 的独立 IP 需要通过 Service 暴露到网络中，有以下几种方式：</p>
+<ul>
+<li><code>ClusterIP</code>(默认)：只在集群内部可见的地址</li>
+<li><code>NodePort</code>：可在集群外访问，需要指定端口</li>
+<li><code>LoadBalancer</code>：创建一个负载均衡器，IP 是固定的</li>
+<li><code>ExternalName</code>：使用任意的名字暴露服务</li>
+</ul>
+<p>依然是通过实例来感受一下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 查看 pods 信息</span></div><div class="line">$&gt; kubectl get pods</div><div class="line">NAME                                  READY     STATUS    RESTARTS   AGE</div><div class="line">kubernetes-bootcamp-390780338-76skz   1/1       Running   0          6s</div><div class="line"></div><div class="line"><span class="comment"># 查看服务信息</span></div><div class="line">$&gt; kubectl get services</div><div class="line">NAME         CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE</div><div class="line">kubernetes   10.0.0.1     &lt;none&gt;        443/TCP   47s</div><div class="line"></div><div class="line"><span class="comment"># 暴露服务</span></div><div class="line">$&gt; kubectl expose deployment/kubernetes-bootcamp --type=<span class="string">"NodePort"</span> --port 8080</div><div class="line">service <span class="string">"kubernetes-bootcamp"</span> exposed</div></pre></td></tr></table></figure>
+<h3 id="扩展应用"><a href="#扩展应用" class="headerlink" title="扩展应用"></a>扩展应用</h3><p>当业务流量暴涨，就需要根据需要扩展应用（多几个 pods），具体的原理比较简单，我们直接来看例子：</p>
+<p>TODO</p>
+<h3 id="更新应用"><a href="#更新应用" class="headerlink" title="更新应用"></a>更新应用</h3><p>滚动更新可以保证 0 停机时间，其实逻辑和前面的扩展差不多，可以认为是用新版本的扩展，也直接来看例子：</p>
+<p>TODO</p>
+<h2 id="Hello-Minikube"><a href="#Hello-Minikube" class="headerlink" title="Hello Minikube"></a>Hello Minikube</h2><p>一个简单的教程，学习如何把本机的代码转换成 Kubernetes 可以使用的镜像</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>hosted solution</p>
+<p>turnkey cloud solutions</p>
+<p>CentOS Version</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="https://kubernetes.io/docs/tutorials/" target="_blank" rel="external">Official Kubernetes Tutorial</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/集群/" rel="tag"># 集群</a>
+          
+            <a href="/tags/容器/" rel="tag"># 容器</a>
+          
+            <a href="/tags/Kubernetes/" rel="tag"># Kubernetes</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/02/let-it-be/" rel="next" title="第五十一周 - 随缘">
+                <i class="fa fa-chevron-left"></i> 第五十一周 - 随缘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/05/deep-learning-platform-design/" rel="prev" title="深度学习平台设计指南">
+                深度学习平台设计指南 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">861</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">953</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kubernetes-基础"><span class="nav-number">1.</span> <span class="nav-text">Kubernetes 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建集群"><span class="nav-number">1.1.</span> <span class="nav-text">创建集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署应用"><span class="nav-number">1.2.</span> <span class="nav-text">部署应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看应用"><span class="nav-number">1.3.</span> <span class="nav-text">查看应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用服务暴露应用"><span class="nav-number">1.4.</span> <span class="nav-text">使用服务暴露应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展应用"><span class="nav-number">1.5.</span> <span class="nav-text">扩展应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新应用"><span class="nav-number">1.6.</span> <span class="nav-text">更新应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-Minikube"><span class="nav-number">2.</span> <span class="nav-text">Hello Minikube</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">3.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

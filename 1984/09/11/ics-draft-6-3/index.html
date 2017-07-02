@@ -1,0 +1,1008 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="计算机,初稿," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="虚拟内存的机制和动态内存分配的算法，虚拟内存（抽象3）也是一种抽象。以五种抽象作为展开的脉络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【计算机系统导论】6.3 内存与虚拟内存">
+<meta property="og:url" content="http://wdxtub.com/1984/09/11/ics-draft-6-3/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="虚拟内存的机制和动态内存分配的算法，虚拟内存（抽象3）也是一种抽象。以五种抽象作为展开的脉络">
+<meta property="og:image" content="http://wdxtub.com/images/14869921908317.jpg">
+<meta property="og:updated_time" content="2017-02-14T09:12:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【计算机系统导论】6.3 内存与虚拟内存">
+<meta name="twitter:description" content="虚拟内存的机制和动态内存分配的算法，虚拟内存（抽象3）也是一种抽象。以五种抽象作为展开的脉络">
+<meta name="twitter:image" content="http://wdxtub.com/images/14869921908317.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/1984/09/11/ics-draft-6-3/"/>
+
+
+
+
+
+  <title> 【计算机系统导论】6.3 内存与虚拟内存 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/1984/09/11/ics-draft-6-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                【计算机系统导论】6.3 内存与虚拟内存
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="1984-09-11T00:06:03+08:00">
+                1984-09-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T17:12:52+08:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technique/" itemprop="url" rel="index">
+                    <span itemprop="name">Technique</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/1984/09/11/ics-draft-6-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      1,956
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      7
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>虚拟内存的机制和动态内存分配的算法，虚拟内存（抽象3）也是一种抽象。<br><strong>以五种抽象作为展开的脉络</strong></p>
+<a id="more"></a>
+<hr>
+<ul>
+<li>虚拟内存（分页、调页、工作集模型、页大小和碎片、分段）</li>
+<li>存储器管理（交换、分区、分页、虚拟存储器、快表、分段）</li>
+<li>虚拟存储器详细介绍（页的存放和查找、缺页、写、TLB，处理 TLB 缺失与缺页）</li>
+<li>Pentium 存储器管理（地址空间、分段、分页）</li>
+<li>ARM 存储器管理（存储器系统组织、虚拟存储器地址转换、存储器管理格式、存取控制）</li>
+</ul>
+<h2 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h2><p>虚拟内存是一个内存抽象，假装有一大片的连续内存（通常远大于实际的物理内存）</p>
+<p><img src="/images/14869921908317.jpg" alt=""></p>
+<p>尽管虚拟存储器能使一个小容量的存储器看起来像大容量的存储器，但磁盘和主存之间的性能差异意味着，如果一个程序经常访问比它拥有的物理存储器多的虚拟存储器，程序运行速度就会很慢。这样的程序会不断地在主存和磁盘之间交换页面，称为抖动 thrashing。抖动的发生将会是灾难，但很少见。如果你的程序产生抖动，那么最简单的解决方式就是在一个有着更大主存的计算机上运行，或者为你的计算机增加主存。一个复杂的办法是重新检查所使用的算法和数据结构，看看能否改变它的局部性，从而减少程序程序同时使用的页数。这一组页通常被称为工作集 working set</p>
+<p>为了使操作系统能保护虚拟存储系统，硬件至少提供下面三种基本能力：1）支持至少两种模式，并指出当前运行的进程是用户进程还是操作系统进程，操作系统进程也称为超级用户管理进程、核心进程或主管进程。2）提供一部分处理器的状态，这部分内容是用户进程可读而不可写的。这包括指示处理器是处于用户态还是管理态的用户/管理模式位、页表指针以及 TLB。操作系统用只能在管理态下可用的特殊指令对它们操作。3）提供能让处理器在用户态和管理态下相互切换的机制。从用户态到管理态的转换通常是由系统调用异常处理完成的，它用特殊指令将控制权传到管理代码空间的指定位置。和其他异常处理一样，系统调用处的程序计数器中的值被保存在异常程序计数器中(EPC)，处理器被置于管理态。从异常中返回至用户模式，使用异常返回 return from exception 指令，将重置用户模式，并且跳转到 EPC 中的地址处。</p>
+<h3 id="角色-1：缓存"><a href="#角色-1：缓存" class="headerlink" title="角色 1：缓存"></a>角色 1：缓存</h3><h3 id="角色-2：内存管理"><a href="#角色-2：内存管理" class="headerlink" title="角色 2：内存管理"></a>角色 2：内存管理</h3><h3 id="角色-3：内存保护"><a href="#角色-3：内存保护" class="headerlink" title="角色 3：内存保护"></a>角色 3：内存保护</h3><h2 id="内存分页"><a href="#内存分页" class="headerlink" title="内存分页"></a>内存分页</h2><h3 id="内存分页的实现"><a href="#内存分页的实现" class="headerlink" title="内存分页的实现"></a>内存分页的实现</h3><p>在虚拟存储系统中，写回机制有另一个主要的优点。因为相对磁盘访问时间，其传输时间要少得多，因此，把整页复制会磁盘比把单个字写回要高效得多。尽管写回操作比传输单个字更高效，但是开销很大。因此，当某一页被替换时，我们希望知道该页是否需要被复制写回。为了追踪读入主存中的页是否被写过，可以在页表中增加一个重写位 dirty bit。当页中任何字被写时就将这一位置位。如果操作系统选择替换某一页，重写位指明了在把该页所占用的主存让给另一页之前，是否需要将该页写回磁盘。因此，一个修改过的页也通常被称为脏页 dirty page</p>
+<h3 id="页置换策略"><a href="#页置换策略" class="headerlink" title="页置换策略"></a>页置换策略</h3><p>调度</p>
+<p>要完全准确地执行 LRU 算法的代价太高了，因为每次存储器访问时都需要更新数据结构。作为替代，大多数操作系统通过追踪哪些页最近被使用，哪些页最近没有用到来近似地实现 LRU 算法。为了帮助操作系统估算最近最少使用的页，一些计算机提供了一个引用位或者称为使用位，当一页被访问时该位被置位。操作系统定期将引用位清零，然后再重新记录，这样就可以判定在这段时间内哪些页被访问过。有了这些使用信息，操作系统就可以从那些最近最少访问的页中选择一页（通过检查其引用位是否关闭）。如果硬件没有提供这一位，操作系统就要通过其他的方法来估计哪些页被访问过。</p>
+<h3 id="页大小和碎片"><a href="#页大小和碎片" class="headerlink" title="页大小和碎片"></a>页大小和碎片</h3><h2 id="地址翻译"><a href="#地址翻译" class="headerlink" title="地址翻译"></a>地址翻译</h2><p>采用虚拟内存的系统中，DMA 是应该采用虚拟地址还是物理地址？采用虚拟地址最明显的问题是 DMA 部件需要将虚拟地址转换成物理地址。使用物理地址在 DMA 传输中的主要问题是传输不容易跨越一个存储页的边界。一个 I/O 请求如果跨越了存储页的边界，它传输的内存位置在虚拟内存中就不一定连续。因此，如果使用物理地址，DMA 传输必须被限制在一个页面之内。使 DMA 工作在虚拟地址上的一种方法是允许系统能启动跨越边界的 DMA 传输。在这样一个系统中，DMA 部件有少量的映射项用于保存传输中的虚拟地址到物理地址的映射。当 I/O 启动时，由操作系统来提供这些映射。使用这种映射，DMA 部件不需要关注被传输的虚拟页面的位置。另外一种方法是将 DMA 传输切断为由操作系统执行的一系列的传输，它们中的每一个操作都限制在单一的物理页面中，最后将这些传输链接起来，交给 I/O 处理器活着只能 DMA 部件处理，由它们执行整个序列的传输；或者由操作系统逐一请求这些传输。无论采用以上提及的哪一种方法，当包含某个页面的 DMA 传输正在进行时，操作系统都不能对该页进行重映射。</p>
+<h3 id="页表"><a href="#页表" class="headerlink" title="页表"></a>页表</h3><h3 id="TLB"><a href="#TLB" class="headerlink" title="TLB"></a>TLB</h3><p>TLB 具体实例</p>
+<h2 id="动态内存分配"><a href="#动态内存分配" class="headerlink" title="动态内存分配"></a>动态内存分配</h2><h3 id="malloc-的实现"><a href="#malloc-的实现" class="headerlink" title="malloc 的实现"></a>malloc 的实现</h3><h3 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h3><h3 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h3><p>垃圾收集是一种管理程序使用的内存区域的方法。使用具有垃圾收集功能的编程语言或处理程序的话，程序中不需要编写内存管理的代码，也就是说不用编写代码来释放使用过的内存区域。</p>
+<p>垃圾回收的性能可以由以下两个指标来测定：吞吐量和暂停时间</p>
+<p>吞吐量（throughput）是垃圾回收在程序全部执行时间中所占的比例，该比例越小越好。</p>
+<p>暂停时间（pause time）是一次垃圾回收所中断的时间。暂停时间过长的话，程序反应就会变慢。</p>
+<p>常见垃圾回收方法：引用计数、标记和扫除、标记和紧缩、复制方式、分代垃圾收集、保守垃圾收集、增量垃圾收集、并行垃圾收集、位图标志，这些技术的组合也是有可能的</p>
+<h3 id="内存陷阱"><a href="#内存陷阱" class="headerlink" title="内存陷阱"></a>内存陷阱</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机/" rel="tag"># 计算机</a>
+          
+            <a href="/tags/初稿/" rel="tag"># 初稿</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/1984/09/11/ics-draft-6-2/" rel="next" title="【计算机系统导论】6.2 进程与线程">
+                <i class="fa fa-chevron-left"></i> 【计算机系统导论】6.2 进程与线程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/1984/09/11/ics-draft-6-4/" rel="prev" title="【计算机系统导论】6.4 文件系统与输入输出">
+                【计算机系统导论】6.4 文件系统与输入输出 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">861</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">953</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟内存"><span class="nav-number">1.</span> <span class="nav-text">虚拟内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#角色-1：缓存"><span class="nav-number">1.1.</span> <span class="nav-text">角色 1：缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#角色-2：内存管理"><span class="nav-number">1.2.</span> <span class="nav-text">角色 2：内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#角色-3：内存保护"><span class="nav-number">1.3.</span> <span class="nav-text">角色 3：内存保护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存分页"><span class="nav-number">2.</span> <span class="nav-text">内存分页</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存分页的实现"><span class="nav-number">2.1.</span> <span class="nav-text">内存分页的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页置换策略"><span class="nav-number">2.2.</span> <span class="nav-text">页置换策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页大小和碎片"><span class="nav-number">2.3.</span> <span class="nav-text">页大小和碎片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#地址翻译"><span class="nav-number">3.</span> <span class="nav-text">地址翻译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#页表"><span class="nav-number">3.1.</span> <span class="nav-text">页表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLB"><span class="nav-number">3.2.</span> <span class="nav-text">TLB</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态内存分配"><span class="nav-number">4.</span> <span class="nav-text">动态内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#malloc-的实现"><span class="nav-number">4.1.</span> <span class="nav-text">malloc 的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能指标"><span class="nav-number">4.2.</span> <span class="nav-text">性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收"><span class="nav-number">4.3.</span> <span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存陷阱"><span class="nav-number">4.4.</span> <span class="nav-text">内存陷阱</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

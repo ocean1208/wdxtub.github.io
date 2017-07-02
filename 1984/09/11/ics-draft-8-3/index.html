@@ -1,0 +1,992 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="计算机,初稿," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="hadoop, spark 的模型及背后的思想，参考项目和之前的博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【计算机系统导论】8.3 分布式计算">
+<meta property="og:url" content="http://wdxtub.com/1984/09/11/ics-draft-8-3/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="hadoop, spark 的模型及背后的思想，参考项目和之前的博客">
+<meta property="og:updated_time" content="2017-02-14T03:29:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【计算机系统导论】8.3 分布式计算">
+<meta name="twitter:description" content="hadoop, spark 的模型及背后的思想，参考项目和之前的博客">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/1984/09/11/ics-draft-8-3/"/>
+
+
+
+
+
+  <title> 【计算机系统导论】8.3 分布式计算 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/1984/09/11/ics-draft-8-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                【计算机系统导论】8.3 分布式计算
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="1984-09-11T00:08:03+08:00">
+                1984-09-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T11:29:37+08:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technique/" itemprop="url" rel="index">
+                    <span itemprop="name">Technique</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/1984/09/11/ics-draft-8-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      1,380
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      8
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>hadoop, spark 的模型及背后的思想，参考项目和之前的博客</p>
+<a id="more"></a>
+<hr>
+<p>在计算机科学中，分布式计算（英语：Distributed computing），又译为分散式運算。这个研究领域，主要研究分布式系统（Distributed system）如何进行计算。分布式系统是一组电脑（computer），通过网络相互链接传递消息与通信后并协调它们的行为而形成的系统。[1]组件之间彼此进行交互以实现一个共同的目标。把需要进行大量计算的工程数据分区成小块，由多台计算机分别计算，再上传运算结果后，将结果统一合并得出数据结论的科学。分布式系统的例子来自有所不同的面向服务的架构，大型多人在线游戏，对等网络应用。<br>目前常见的分布式计算项目通常使用世界各地上千万志愿者计算机的闲置计算能力，通过互联网进行数据传输（志愿计算）。如分析计算蛋白质的内部结构和相关药物的Folding@home项目，该项目结构庞大，需要惊人的计算量，由一台电脑计算是不可能完成的。虽然现在有了计算能力超强的超级计算机，但这些设备造价高昂，而一些科研机构的经费却又十分有限，借助分布式计算可以花费较小的成本来达到目标。</p>
+<p>参考课件吧。</p>
+<hr>
+<p>A Distributed Systems Reading List <a href="https://dancres.github.io/Pages/" target="_blank" rel="external">https://dancres.github.io/Pages/</a></p>
+<p>Introduction</p>
+<p>I often argue that the toughest thing about distributed systems is changing the way you think. The below is a collection of material I’ve found useful for motivating these changes.</p>
+<p>Thought Provokers</p>
+<p>Ramblings that make you think about the way you design. Not everything can be solved with big servers, databases and transactions.</p>
+<p>Harvest, Yield and Scalable Tolerant Systems - Real world applications of CAP from Brewer et al<br>On Designing and Deploying Internet Scale Services - James Hamilton<br>Latency Exists, Cope! - Commentary on coping with latency and it’s architectural impacts<br>Latency - the new web performance bottleneck - not at all new (see Patterson), but noteworthy<br>The Perils of Good Abstractions - Building the perfect API/interface is difficult<br>Chaotic Perspectives - Large scale systems are everything developers dislike - unpredictable, unordered and parallel<br>Website Architecture - A collection of scalable architecture papers from various of the large websites<br>Data on the Outside versus Data on the Inside - Pat Helland<br>Memories, Guesses and Apologies - Pat Helland<br>SOA and Newton’s Universe - Pat Helland<br>Building on Quicksand - Pat Helland<br>Why Distributed Computing? - Jim Waldo<br>A Note on Distributed Computing - Waldo, Wollrath et al<br>Stevey’s Google Platforms Rant - Yegge’s SOA platform experience<br>Amazon</p>
+<p>Somewhat about the technology but more interesting is the culture and organization they’ve created to work with it.</p>
+<p>A Conversation with Werner Vogels - Coverage of Amazon’s transition to a service-based architecture<br>Discipline and Focus - Additional coverage of Amazon’s transition to a service-based architecture<br>Vogels on Scalability<br>SOA creates order out of chaos @ Amazon<br>Google</p>
+<p>Current “rocket science” in distributed systems.</p>
+<p>MapReduce<br>Chubby Lock Manager<br>Google File System<br>BigTable<br>Data Management for Internet-Scale Single-Sign-On<br>Dremel: Interactive Analysis of Web-Scale Datasets<br>Large-scale Incremental Processing Using Distributed Transactions and Notifications<br>Megastore: Providing Scalable, Highly Available Storage for Interactive Services - Smart design for low latency Paxos implementation across datacentres.<br>Spanner - Google’s scalable, multi-version, globally-distributed, and synchronously-replicated database.<br>Photon - Fault-tolerant and Scalable Joining of Continuous Data Streams. Joins are tough especially with time-skew, high availability and distribution.<br>Mesa: Geo-Replicated, Near Real-Time, Scalable Data Warehousing - Data warehousing system that stores critical measurement data related to Google’s Internet advertising business.<br>eBay</p>
+<p>Interesting they dumped most of J2EE and use a lot of db partitioning. Check out their site upgrade tool as well.</p>
+<p>SD Forum 2006<br>Consistency Models</p>
+<p>Key to building systems that suit their environments is finding the right tradeoff between consistency and availability.</p>
+<p>CAP Conjecture - Consistency, Availability, Parition Tolerance cannot all be satisfied at once<br>Consistency, Availability, and Convergence - Proves the upper bound for consistency possible in a typical system<br>CAP Twelve Years Later: How the “Rules” Have Changed - Eric Brewer expands on the original tradeoff description<br>Consistency and Availability - Vogels<br>Eventual Consistency - Vogels<br>Avoiding Two-Phase Commit - Two phase commit avoidance approaches<br>2PC or not 2PC, Wherefore Art Thou XA? - Two phase commit isn’t a silver bullet<br>Life Beyond Distributed Transactions - Helland<br>If you have too much data, then ‘good enough’ is good enough - NoSQL, Future of data theory - Pat Helland<br>Starbucks doesn’t do two phase commit - Asynchronous mechanisms at work<br>You Can’t Sacrifice Partition Tolerance - Additional CAP commentary<br>Optimistic Replication - Relaxed consistency approaches for data replication<br>Theory</p>
+<p>Papers that describe various important elements of distributed systems design.</p>
+<p>Distributed Computing Economics - Jim Gray<br>Rules of Thumb in Data Engineering - Jim Gray and Prashant Shenoy<br>Fallacies of Distributed Computing - Peter Deutsch<br>Impossibility of distributed consensus with one faulty process - also known as FLP [access requires account and/or payment, a free version can be found here]<br>Unreliable Failure Detectors for Reliable Distributed Systems. A method for handling the challenges of FLP<br>Lamport Clocks - How do you establish a global view of time when each computer’s clock is independent<br>The Byzantine Generals Problem<br>Lazy Replication: Exploiting the Semantics of Distributed Services<br>Scalable Agreement - Towards Ordering as a Service<br>Scalable Eventually Consistent Counters over Unreliable Networks - Scalable counting is tough in an unreliable world<br>Languages and Tools</p>
+<p>Issues of distributed systems construction with specific technologies.</p>
+<p>Programming Distributed Erlang Applications: Pitfalls and Recipes - Building reliable distributed applications isn’t as simple as merely choosing Erlang and OTP.<br>Infrastructure</p>
+<p>Principles of Robust Timing over the Internet - Managing clocks is essential for even basics such as debugging<br>Storage</p>
+<p>Consistent Hashing and Random Trees<br>Amazon’s Dynamo Storage Service<br>Paxos Consensus</p>
+<p>Understanding this algorithm is the challenge. I would suggest reading “Paxos Made Simple” before the other papers and again afterward.</p>
+<p>The Part-Time Parliament - Leslie Lamport<br>Paxos Made Simple - Leslie Lamport<br>Paxos Made Live - An Engineering Perspective - Chandra et al<br>Revisiting the Paxos Algorithm - Lynch et al<br>How to build a highly available system with consensus - Butler Lampson<br>Reconfiguring a State Machine - Lamport et al - changing cluster membership<br>Implementing Fault-Tolerant Services Using the State Machine Approach: a Tutorial - Fred Schneider<br>Other Consensus Papers</p>
+<p>Mencius: Building Efficient Replicated State Machines for WANs - consensus algorithm for wide-area network<br>Gossip Protocols (Epidemic Behaviours)</p>
+<p>Epidemic Routing Bibliography<br>How robust are gossip-based communication protocols?<br>Astrolabe: A Robust and Scalable Technology For Distributed Systems Monitoring, Management, and Data Mining<br>Epidemic Computing at Cornell<br>Fighting Fire With Fire: Using Randomized Gossip To Combat Stochastic Scalability Limits<br>Bi-Modal Multicast<br>ACM SIGOPS Operating Systems Review - Gossip-based computer networking<br>SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol<br>P2P</p>
+<p>Chord: A Scalable Peer-to-peer Lookup Protocol for Internet Applications<br>Kademlia: A Peer-to-peer Information System Based on the XOR Metric<br>Pastry: Scalable, decentralized object location and routing for large-scale peer-to-peer systems<br>PAST: A large-scale, persistent peer-to-peer storage utility - storage system atop Pastry<br>SCRIBE: A large-scale and decentralised application-level multicast infrastructure - wide area messaging atop Pastry</p>
+<hr>
+<p>distributedcomputing.info </p>
+<p><a href="http://wla.berkeley.edu/~cs61a/fa11/lectures/communication.html" target="_blank" rel="external">http://wla.berkeley.edu/~cs61a/fa11/lectures/communication.html</a></p>
+<p><a href="http://c2.com/cgi/wiki?DistributedComputing" target="_blank" rel="external">http://c2.com/cgi/wiki?DistributedComputing</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机/" rel="tag"># 计算机</a>
+          
+            <a href="/tags/初稿/" rel="tag"># 初稿</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/1984/09/11/ics-draft-8-2/" rel="next" title="【计算机系统导论】8.2 云计算">
+                <i class="fa fa-chevron-left"></i> 【计算机系统导论】8.2 云计算
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/1984/09/11/ics-draft-8-4/" rel="prev" title="【计算机系统导论】8.4 通用计算">
+                【计算机系统导论】8.4 通用计算 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">861</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">953</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
