@@ -91,10 +91,12 @@
 <meta property="og:url" content="http://wdxtub.com/1984/09/11/ics-draft-7-5/index.html">
 <meta property="og:site_name" content="小土刀">
 <meta property="og:description" content="服务器设计与实现，可以自己动手与验证">
-<meta property="og:updated_time" content="2017-02-14T09:41:12.000Z">
+<meta property="og:image" content="http://wdxtub.com/misc/100offer.jpg">
+<meta property="og:updated_time" content="2017-07-04T07:48:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【计算机系统导论】7.5 服务器设计">
 <meta name="twitter:description" content="服务器设计与实现，可以自己动手与验证">
+<meta name="twitter:image" content="http://wdxtub.com/misc/100offer.jpg">
 
 
 
@@ -361,8 +363,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T17:41:12+08:00">
-                2017-02-14
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-04T15:48:47+08:00">
+                2017-07-04
               </time>
             
           </span>
@@ -423,7 +425,7 @@
                 </span>
                   
                     <span title="Words count in article" }}">
-                      5,602
+                      5,713
                     </span>
               
 
@@ -437,7 +439,7 @@
                 </span>
                   
                     <span title="Reading time" }}">
-                      20
+                      21
                     </span>
               
             </div>
@@ -525,7 +527,9 @@
 <li>+———+————————-+<br>|             |                DTLS               |<br>+————-+———————————–+<br>|                ICE, STUN, TURN                  |<br>+————————————————-+<br>|                       UDP                       |<br>+————————————————-+<br>|                       IP                        |<br>+————————————————-+<br>这个图比较复杂，我们从下往上介绍：<br>ICE（Interactive Connectivity Establishment）框架，作用是在端与端之间建立一条有效的通道，优先直连，其次用 STUN 协商，再不行只能用 TURN 转发：<br>STUN（Session Traversal Utilities for NAT）协议，解决了三个问题：1）获得外网 IP 和端口；2）在 NAT 中建立路由条目，绑定外网端口，使得到达外网 IP 和端口的入站分组能找到应用程序，不被丢弃；3）定义了一个简单的 keep-alive 机制，保证 NAT 路由条目不会因为超时而被删除。STUN 服务器必须架设在公网上，可以自己搭建，也可以使用第三方提供的公开服务，例如 Google 的「stun:stun.l.google.com:19302」。<br>TURN（Traversal Using Relays around NAT）协议，依赖外网中继设备在两端之间传递数据。简单说就是通过两端都可以访问的 TURN 服务转发消息，间接把两端连起来。<br>DTLS（Datagram Transport Layer Security，数据报传输层安全），本质上就是 TLS，只是为了兼容 UDP 的数据报传输而做了一些微小的修改，可以简单把它理解为 UDP 版的 TLS。<br>再往上就兵分两路，一路的目标是 RTCPeerConnection，负责音频和视频数据通信，对传输速度和实时性有很高的要求，这里又有两个新的协议出现：<br>SRTP（Secure Real-time Transport Protocol，安全实时传输协议）。WebRTC 中的音频和视频等实时数据都是通过这个协议传输。它是 RTP 协议的安全版。<br>SRTCP（Secure Real-Time Control Transport Protocol，安全实时控制传输协议）。它会跟踪 SRTP 的运行情况，以便调整每个流的发送速率、编码品质和其他参数。它是 RTCP 协议的安全版。<br>另一路的目标是 RTCDataChannel，用来在端到端之间传输任意应用数据，SRTP 是专门为传输媒体数据为设计的，不适合传输应用数据，所以这里又需要一个新的协议：<br>SCTP（Stream Control Transmission Protocol，流控制传输协议）。本身 SCTP 是一个传输层协议，直接运行在 IP 协议之上，与 TCP 和 UDP 类似。但在 WebRTC 这里，SCTP 却运行于 DTLS 之上。SCTP 很好的一点是提供了交付属性选项，使用者可以指定消息是有序还是乱序，是可靠还是部分可靠，部分可靠时还可以指定使用超时重传还是计数重传策略。<br>QUIC<br>Google 正在试验一种新的传输层协议：QUIC（Quick UDP Internet Connections），它的本质是基于 UDP 实现 HTTP，相当于之前的 TCP + TLS。从目前的资料来看，QUIC 可以大幅减少建立连接的时间，这是通过简化握手步骤从而减少 RTT（Round-Trip Time）来实现的，类似于 TFO（TCP Fast Open）。有兴趣的同学可以点这个连接围观，据说 Google 自家服务来自 Chrome 的请求中，已经有 50% 使用了 QUIC 协议。<br>最后表达下对 Google 的佩服。Google 为了优化 WEB 性能，在浏览器（Chrome）、排版引擎（Blink）、JS 引擎（V8）、图片格式（WebP）、传输层协议（TCP 的 TFO，QUIC）、应用层协议（SPDY）以及 HTML5（从 Google Gears 开始）等等方面都做了大量努力，实在是技术型公司典范，叹为观止！</li>
 </ul>
 <p><a href="https://imququ.com/post/network-protocol-in-browser.html" target="_blank" rel="external">https://imququ.com/post/network-protocol-in-browser.html</a></p>
-
+<h2 id="广告时间"><a href="#广告时间" class="headerlink" title="广告时间"></a>广告时间</h2><p>优秀人才不缺工作机会，只缺适合自己的好机会。但是他们往往没有精力从海量机会中找到最适合的那个。100offer 会对平台上的人才和企业进行严格筛选，让「最好的人才」和「最好的公司」相遇。</p>
+<p><a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&amp;utm_medium=display&amp;utm_campaign=wdxtub_20170703&amp;utm_content=find_new_job&amp;campaign_code=wdxtub" target="_blank" rel="external">点击注册 100offer</a>，谈谈你对下一份工作的期待，收获 5-10 个满足你要求的好机会。</p>
+ <a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&utm_medium=display&utm_campaign=wdxtub_20170703&utm_content=find_new_job&campaign_code=wdxtub" target="_blank" rel="external"> <img src="/misc/100offer.jpg" alt=""> </a>
       
     </div>
 
@@ -819,7 +823,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一次网络浏览背后"><span class="nav-number">1.</span> <span class="nav-text">一次网络浏览背后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自己动手做"><span class="nav-number">2.</span> <span class="nav-text">自己动手做</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#epoll-的原理"><span class="nav-number">3.</span> <span class="nav-text">epoll 的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket-套接字"><span class="nav-number">4.</span> <span class="nav-text">Socket 套接字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器架构"><span class="nav-number">5.</span> <span class="nav-text">服务器架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简短总结"><span class="nav-number">6.</span> <span class="nav-text">简短总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一次网络浏览背后"><span class="nav-number">1.</span> <span class="nav-text">一次网络浏览背后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自己动手做"><span class="nav-number">2.</span> <span class="nav-text">自己动手做</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#epoll-的原理"><span class="nav-number">3.</span> <span class="nav-text">epoll 的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket-套接字"><span class="nav-number">4.</span> <span class="nav-text">Socket 套接字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器架构"><span class="nav-number">5.</span> <span class="nav-text">服务器架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简短总结"><span class="nav-number">6.</span> <span class="nav-text">简短总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告时间"><span class="nav-number">7.</span> <span class="nav-text">广告时间</span></a></li></ol></div>
             
 
           </div>

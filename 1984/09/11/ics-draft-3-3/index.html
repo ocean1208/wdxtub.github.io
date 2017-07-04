@@ -96,7 +96,8 @@
 <meta property="og:image" content="http://wdxtub.com/images/14869538104785.jpg">
 <meta property="og:image" content="http://wdxtub.com/images/14869544005098.jpg">
 <meta property="og:image" content="http://wdxtub.com/images/14869538365517.jpg">
-<meta property="og:updated_time" content="2017-02-14T08:20:48.000Z">
+<meta property="og:image" content="http://wdxtub.com/misc/100offer.jpg">
+<meta property="og:updated_time" content="2017-07-04T07:48:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【计算机系统导论】3.3 并行与并发">
 <meta name="twitter:description" content="人们对性能的追求永无止境，从最初的流水线、到超标量处理器和多核处理器，都是为了让我们的计算更快更强。这背后的思路其实很简单，就是对于并发和并行的充分利用，本节我们就来一探究竟。">
@@ -367,8 +368,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T16:20:48+08:00">
-                2017-02-14
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-04T15:48:47+08:00">
+                2017-07-04
               </time>
             
           </span>
@@ -429,7 +430,7 @@
                 </span>
                   
                     <span title="Words count in article" }}">
-                      7,760
+                      7,871
                     </span>
               
 
@@ -551,7 +552,9 @@
 <p>超线程（HT, Hyper-Threading）[1]是英特尔研发的一种技术，于2002年发布。超线程技术原先只应用于Xeon处理器中，当时称为“Super-Threading”。之后陆续应用在Pentium 4中，将技术主流化。早期代号为Jackson。<br>通过此技术，英特尔实现在一个实体CPU中，提供两个逻辑线程。之后的Pentium D纵使不支持超线程技术，但就集成了两个实体核心，所以仍会见到两个线程。超线程的未来发展，是提升处理器的逻辑线程。英特尔于2014年发布的Core i7-5960X便是将8核心的处理器，加上超线程技术，使之成为16个逻辑线程的产品。<br>英特尔表示，超线程技术让（P4）处理器增加5%的裸晶面积，就可以换来15%~30%的性能提升。但实际上，在某些程序或未对多线程编译的程序而言，超线程反而会降低性能。除此之外，超线程技术亦要操作系统的配合，普通支持多处理器技术的系统亦未必能充分发挥该技术。例如Windows 2000，英特尔并不鼓励用户在此系统中利用超线程。原先不支持多核心的Windows XP Home Edition却支持超线程技术。<br>目录  [隐藏]<br>1    运作方式<br>2    使用HT技术的CPU<br>3    顾虑<br>4    另见<br>5    脚注<br>6    外部链接<br>运作方式[编辑]<br>每个单位时间内，一个单运行管线的CPU只能处理一个线程（操作系统：thread），以这样的单位进行，如果想要在一单位时间内处理超过一个线程是不可能的，除非是有两个CPU的实体单元。双核心技术是将两个一样的CPU放置于一个封装内（或直接将两个CPU做成一个芯片），而英特尔的HT技术是在CPU内部仅复制必要的资源、让两个线程可同时运行；在一单位时间内处理两个线程的工作，模拟实体双核心、双线程运作。<br>Intel自Pentium开始引入超标量、乱序运行、大量的寄存器及寄存器重命名、多指令解码器、预测运行等特性；这些特性的原理是让CPU拥有大量资源，并可以预先运行及平行运行指令，以增加指令运行效率，可是在现实中这些资源经常闲置；为了有效利用这些资源，就干脆再增加一些资源来运行第二个线程，让这些闲置资源可运行另一个线程，而且CPU只要增加少数资源就可以模拟成两个线程运作。<br>使用HT技术的CPU[编辑]</p>
 <p>编号SL6WK支持HT的P4 3.0G</p>
 <p>虚拟的2个CPU在任务管理器中显示出都在运转<br>Pentium 4 CPU中，Northwood及其之后推出的版本自带超线程技术；但在早期的Northwood核心中，一些型号的HT技术被关闭，纵使有软件侦测到超线程技术的存在，用户并不可以激活；而双核心的Pentium D中也只有EE版提供HT技术。英特尔的Core 2 Duo处理器则没有HT技术。但处理器已集成了两个实体CPU核心，所以仍然支持两个线程。[2]<br>而在2008年推出的Intel Core i7及Intel Atom处理器又支持类似HT的技术，在 Nehalem 中，Hyper-Threading 大举卷土重来。在 Intel NetBurst 架构的 Northwood 版本中开始导入的 Hyper-Threading－在 Intel 世界之外称为 Simultaneous Multi-Threading (SMT)－是善用线程平行性的方法，让单一核心在应用软件层能运行两个逻辑线程。<br>顾虑[编辑]<br>把运行管线的状态，想像成流水线，资源A→资源B→资源C，来了两条数据要计算， 一条需要消耗A的100%→B的50%→C的50%，另一条一样需要消耗A的100%→B的50%→C的50%， 一条单纯的(无HT)的运行管线的资源A需要先运用100%性能把第一条运算完才能再运算下一条，但后面的资源B跟C却都有50%性能的浪费； 如果把运行管线的资源A，变成两个，资源B跟C依然只有一个， 那这条管线就可以变成“两个资源A同时消耗100%性能运算两条数据，到了资源B跟C阶段时，两条数据再各自消耗50%的性能”， 即达成“不必增加一条完整的运行管线，却能在一样时间运算两条线程”<br>但实际应用时，运行管线不会都是收到这么完美的需运算数据， 可能会是需消耗“A的10%→B的70%→C的70%”+“A的30%→B的50%→C的70”+……等多种不同性能需求的需运算数据， 依照文件的统计数字，整体能够提升的性能约为5~15%左右，且万一发生资源互抢的情形时，整体性能反而会下降。 (以上是非常简略地描述大略情形，实际的超线程架构从P4时代至i系列6代，每一代都有所进化)<br>要令电脑支持超线程技术，通常需操作系统和硬件的配合。芯片组需要支持具有HT技术之处理器。为此，当时的Intel推出了新的芯片组，i865PE和i875P。要充分发挥超线程的性能，用户要使用Windows 2000之后的操作系统，而Windows XP家用版亦支持超线程技术。除了微软的Windows外，Linux kernel 2.4.x亦开始支持该技术。软件方面，通常优化多线程的程序都可以支持到。早期，游戏软件的支持是比较少。但随着多核心技术的普及，愈来愈多游戏软件支持多线程的处理器。[3]</p>
-
+<h2 id="广告时间"><a href="#广告时间" class="headerlink" title="广告时间"></a>广告时间</h2><p>优秀人才不缺工作机会，只缺适合自己的好机会。但是他们往往没有精力从海量机会中找到最适合的那个。100offer 会对平台上的人才和企业进行严格筛选，让「最好的人才」和「最好的公司」相遇。</p>
+<p><a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&amp;utm_medium=display&amp;utm_campaign=wdxtub_20170703&amp;utm_content=find_new_job&amp;campaign_code=wdxtub" target="_blank" rel="external">点击注册 100offer</a>，谈谈你对下一份工作的期待，收获 5-10 个满足你要求的好机会。</p>
+ <a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&utm_medium=display&utm_campaign=wdxtub_20170703&utm_content=find_new_job&campaign_code=wdxtub" target="_blank" rel="external"> <img src="/misc/100offer.jpg" alt=""> </a>
       
     </div>
 
@@ -845,7 +848,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#并行与并发的区别"><span class="nav-number">1.</span> <span class="nav-text">并行与并发的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#话题"><span class="nav-number">2.</span> <span class="nav-text">话题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分支预测"><span class="nav-number">2.1.</span> <span class="nav-text">分支预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流水线冒险"><span class="nav-number">2.2.</span> <span class="nav-text">流水线冒险</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据冒险"><span class="nav-number">2.3.</span> <span class="nav-text">数据冒险</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并行层次"><span class="nav-number">3.</span> <span class="nav-text">并行层次</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#超标量"><span class="nav-number">3.1.</span> <span class="nav-text">超标量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">4.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">5.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#超线程"><span class="nav-number">6.</span> <span class="nav-text">超线程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#并行与并发的区别"><span class="nav-number">1.</span> <span class="nav-text">并行与并发的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#话题"><span class="nav-number">2.</span> <span class="nav-text">话题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分支预测"><span class="nav-number">2.1.</span> <span class="nav-text">分支预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流水线冒险"><span class="nav-number">2.2.</span> <span class="nav-text">流水线冒险</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据冒险"><span class="nav-number">2.3.</span> <span class="nav-text">数据冒险</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并行层次"><span class="nav-number">3.</span> <span class="nav-text">并行层次</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#超标量"><span class="nav-number">3.1.</span> <span class="nav-text">超标量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">4.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">5.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#超线程"><span class="nav-number">6.</span> <span class="nav-text">超线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告时间"><span class="nav-number">7.</span> <span class="nav-text">广告时间</span></a></li></ol></div>
             
 
           </div>

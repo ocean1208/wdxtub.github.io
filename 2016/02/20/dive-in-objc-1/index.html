@@ -92,7 +92,8 @@
 <meta property="og:site_name" content="小土刀">
 <meta property="og:description" content="Selector 作为 Objective-C 中一个非常重要的概念，虽然在 Swift 中几乎已经不见踪影，但是在某些混编的项目中仍旧起到举足轻重的作用，所以仍然有必要深入理解一下。">
 <meta property="og:image" content="http://wdxtub.com/images/14560963965355.jpg">
-<meta property="og:updated_time" content="2016-02-22T00:56:48.000Z">
+<meta property="og:image" content="http://wdxtub.com/misc/100offer.jpg">
+<meta property="og:updated_time" content="2017-07-04T07:48:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 格致余论 1 - Selector">
 <meta name="twitter:description" content="Selector 作为 Objective-C 中一个非常重要的概念，虽然在 Swift 中几乎已经不见踪影，但是在某些混编的项目中仍旧起到举足轻重的作用，所以仍然有必要深入理解一下。">
@@ -363,8 +364,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2016-02-22T08:56:48+08:00">
-                2016-02-22
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-04T15:48:47+08:00">
+                2017-07-04
               </time>
             
           </span>
@@ -425,7 +426,7 @@
                 </span>
                   
                     <span title="Words count in article" }}">
-                      2,741
+                      2,852
                     </span>
               
 
@@ -545,7 +546,9 @@
 <li><a href="https://developer.apple.com/library/mac/documentation/General/Conceptual/DevPedia-CocoaCore/Selector.html" target="_blank" rel="external">Cocoa Core Competencies - Selector</a></li>
 <li><a href="http://cocoasamurai.blogspot.tw/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">Understanding the Objective-C Runtime</a></li>
 </ol>
-
+<h2 id="广告时间"><a href="#广告时间" class="headerlink" title="广告时间"></a>广告时间</h2><p>优秀人才不缺工作机会，只缺适合自己的好机会。但是他们往往没有精力从海量机会中找到最适合的那个。100offer 会对平台上的人才和企业进行严格筛选，让「最好的人才」和「最好的公司」相遇。</p>
+<p><a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&amp;utm_medium=display&amp;utm_campaign=wdxtub_20170703&amp;utm_content=find_new_job&amp;campaign_code=wdxtub" target="_blank" rel="external">点击注册 100offer</a>，谈谈你对下一份工作的期待，收获 5-10 个满足你要求的好机会。</p>
+ <a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&utm_medium=display&utm_campaign=wdxtub_20170703&utm_content=find_new_job&campaign_code=wdxtub" target="_blank" rel="external"> <img src="/misc/100offer.jpg" alt=""> </a>
       
     </div>
 
@@ -845,7 +848,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Selector-是什么"><span class="nav-number">1.</span> <span class="nav-text">Selector 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selector-用在哪"><span class="nav-number">2.</span> <span class="nav-text">Selector 用在哪</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Target-Action-模式"><span class="nav-number">2.1.</span> <span class="nav-text">Target/Action 模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查-method-是否存在"><span class="nav-number">2.2.</span> <span class="nav-text">检查 method 是否存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timer"><span class="nav-number">2.3.</span> <span class="nav-text">Timer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSNotification"><span class="nav-number">2.4.</span> <span class="nav-text">NSNotification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在线程中执行方法"><span class="nav-number">2.5.</span> <span class="nav-text">在线程中执行方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组排序"><span class="nav-number">2.6.</span> <span class="nav-text">数组排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代替-if-else-switch"><span class="nav-number">2.7.</span> <span class="nav-text">代替 if else / switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用私有-API"><span class="nav-number">2.8.</span> <span class="nav-text">调用私有 API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">3.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优势与限制"><span class="nav-number">4.</span> <span class="nav-text">优势与限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Selector-是什么"><span class="nav-number">1.</span> <span class="nav-text">Selector 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selector-用在哪"><span class="nav-number">2.</span> <span class="nav-text">Selector 用在哪</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Target-Action-模式"><span class="nav-number">2.1.</span> <span class="nav-text">Target/Action 模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查-method-是否存在"><span class="nav-number">2.2.</span> <span class="nav-text">检查 method 是否存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timer"><span class="nav-number">2.3.</span> <span class="nav-text">Timer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSNotification"><span class="nav-number">2.4.</span> <span class="nav-text">NSNotification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在线程中执行方法"><span class="nav-number">2.5.</span> <span class="nav-text">在线程中执行方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组排序"><span class="nav-number">2.6.</span> <span class="nav-text">数组排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代替-if-else-switch"><span class="nav-number">2.7.</span> <span class="nav-text">代替 if else / switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用私有-API"><span class="nav-number">2.8.</span> <span class="nav-text">调用私有 API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">3.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优势与限制"><span class="nav-number">4.</span> <span class="nav-text">优势与限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告时间"><span class="nav-number">6.</span> <span class="nav-text">广告时间</span></a></li></ol></div>
             
 
           </div>
