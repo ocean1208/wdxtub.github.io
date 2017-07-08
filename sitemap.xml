@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wdxtub.com/2017/05/31/tensorflow-learning-note/</loc>
+    
+    <lastmod>2017-07-08T23:38:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wdxtub.com/2017/07/03/oversea-student-return-guide/</loc>
     
     <lastmod>2017-07-08T15:27:36.000Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://wdxtub.com/2017/07/07/drunk-song/</loc>
     
     <lastmod>2017-07-07T13:36:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/04/16/thin-csapp-6/</loc>
-    
-    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
   </url>
   
@@ -170,7 +170,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2017/05/31/tensorflow-learning-note/</loc>
+    <loc>http://wdxtub.com/2016/03/30/tmux-guide/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
@@ -730,7 +730,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/03/30/tmux-guide/</loc>
+    <loc>http://wdxtub.com/2016/04/16/thin-csapp-6/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
