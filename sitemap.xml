@@ -4,7 +4,21 @@
   <url>
     <loc>http://wdxtub.com/1990/09/11/life-page/</loc>
     
-    <lastmod>2017-07-07T14:02:45.000Z</lastmod>
+    <lastmod>2017-07-08T15:06:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/07/03/oversea-student-return-guide/</loc>
+    
+    <lastmod>2017-07-08T15:05:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/thanks/index.html</loc>
+    
+    <lastmod>2017-07-08T14:54:18.000Z</lastmod>
     
   </url>
   
@@ -12,13 +26,6 @@
     <loc>http://wdxtub.com/2017/07/07/drunk-song/</loc>
     
     <lastmod>2017-07-07T13:36:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/03/30/tmux-guide/</loc>
-    
-    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
   </url>
   
@@ -93,6 +100,13 @@
   </url>
   
   <url>
+    <loc>http://wdxtub.com/2016/03/20/ubuntu-work-env/</loc>
+    
+    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wdxtub.com/2016/04/16/thick-csapp-lab-7/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
@@ -143,13 +157,6 @@
   
   <url>
     <loc>http://wdxtub.com/2016/04/16/thick-csapp-lab-1/</loc>
-    
-    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/03/20/ubuntu-work-env/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
@@ -296,6 +303,13 @@
   </url>
   
   <url>
+    <loc>http://wdxtub.com/2016/03/24/vim-basic-op/</loc>
+    
+    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wdxtub.com/2016/06/28/sso-guide/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
@@ -338,13 +352,6 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/03/24/vim-basic-op/</loc>
-    
-    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wdxtub.com/2016/03/30/ruby-first-step/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
@@ -380,6 +387,13 @@
   </url>
   
   <url>
+    <loc>http://wdxtub.com/2016/03/04/walkway/</loc>
+    
+    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wdxtub.com/2016/07/05/redis-guide/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
@@ -394,13 +408,6 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/03/04/walkway/</loc>
-    
-    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wdxtub.com/2014/09/11/programming-pearls/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
@@ -408,14 +415,14 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/06/17/rails-quick-guide/</loc>
+    <loc>http://wdxtub.com/2017/03/26/wdxtub-v1-release-note/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2017/03/26/wdxtub-v1-release-note/</loc>
+    <loc>http://wdxtub.com/2016/06/17/rails-quick-guide/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
@@ -506,6 +513,13 @@
   </url>
   
   <url>
+    <loc>http://wdxtub.com/2016/11/30/wdxtub-beta-release-notes/</loc>
+    
+    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wdxtub.com/2016/01/23/programmer-startline-10/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
@@ -521,13 +535,6 @@
   
   <url>
     <loc>http://wdxtub.com/2016/07/28/problem-chinese-cs-textbook/</loc>
-    
-    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/30/wdxtub-beta-release-notes/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
@@ -590,14 +597,14 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/09/08/nginx-guide/</loc>
+    <loc>http://wdxtub.com/2017/01/04/wise-roadmap/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2017/01/04/wise-roadmap/</loc>
+    <loc>http://wdxtub.com/2016/09/08/nginx-guide/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
@@ -612,6 +619,13 @@
   
   <url>
     <loc>http://wdxtub.com/2016/02/07/naruto-ios/</loc>
+    
+    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/08/12/women-in-computer-science/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
@@ -660,13 +674,6 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/08/12/women-in-computer-science/</loc>
-    
-    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wdxtub.com/2016/09/11/work-page/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
@@ -689,13 +696,6 @@
   
   <url>
     <loc>http://wdxtub.com/2016/03/05/maupassant-icon-config/</loc>
-    
-    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2014/09/11/programmer-45-habits/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
@@ -730,7 +730,14 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2014/09/11/readable-code-clip/</loc>
+    <loc>http://wdxtub.com/2016/03/30/tmux-guide/</loc>
+    
+    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2014/09/11/programmer-45-habits/</loc>
     
     <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
@@ -744,16 +751,9 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-7-4/</loc>
+    <loc>http://wdxtub.com/2014/09/11/readable-code-clip/</loc>
     
-    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/08/18/logstash-kafka-guide/</loc>
-    
-    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
+    <lastmod>2017-07-04T07:48:48.000Z</lastmod>
     
   </url>
   
@@ -772,7 +772,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2017/02/08/linear-algebra/</loc>
+    <loc>http://wdxtub.com/2016/03/26/csapp-book-note/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -807,7 +807,14 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/03/26/csapp-book-note/</loc>
+    <loc>http://wdxtub.com/2017/02/08/linear-algebra/</loc>
+    
+    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/07/24/logstash-guide/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -954,7 +961,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-7-6/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-7-4/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1129,13 +1136,6 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-4-0/</loc>
-    
-    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wdxtub.com/2016/06/10/csapp-related-textbooks/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
@@ -1157,14 +1157,14 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-3-5/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-4-0/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-3-6/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-3-5/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1192,6 +1192,13 @@
   </url>
   
   <url>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-3-6/</loc>
+    
+    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wdxtub.com/1984/09/11/ics-draft-3-4/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
@@ -1206,13 +1213,6 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-3-3/</loc>
-    
-    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wdxtub.com/2016/10/13/data-scientist-engineer-guide/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
@@ -1220,7 +1220,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-3-1/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-3-3/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1234,7 +1234,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-2-3/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-3-1/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1249,6 +1249,13 @@
   
   <url>
     <loc>http://wdxtub.com/2017/06/05/deep-learning-platform-design/</loc>
+    
+    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-2-3/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1277,13 +1284,6 @@
   
   <url>
     <loc>http://wdxtub.com/1984/09/11/ics-draft-3-0/</loc>
-    
-    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/03/26/linux-basic-soup/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1437,7 +1437,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/07/24/logstash-guide/</loc>
+    <loc>http://wdxtub.com/2016/08/18/logstash-kafka-guide/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1465,14 +1465,14 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-0-3/</loc>
+    <loc>http://wdxtub.com/2016/03/26/linux-basic-soup/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-1-0/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-0-3/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1486,7 +1486,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-0-1/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-1-0/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1500,7 +1500,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-0-0/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-0-1/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1508,6 +1508,13 @@
   
   <url>
     <loc>http://wdxtub.com/2016/07/26/elk-guide/</loc>
+    
+    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-0-0/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1528,13 +1535,6 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/03/20/java-note/</loc>
-    
-    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wdxtub.com/2016/01/05/hexo-github-site/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
@@ -1549,7 +1549,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2014/09/11/inspired-create-product/</loc>
+    <loc>http://wdxtub.com/2016/03/20/java-note/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1584,7 +1584,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-7-2/</loc>
+    <loc>http://wdxtub.com/2014/09/11/inspired-create-product/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1626,14 +1626,14 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-4-4/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-7-2/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wdxtub.com/1984/09/11/ics-draft-0-2/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-4-4/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1654,7 +1654,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2014/09/11/happy-programmer-clip/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-0-2/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1662,6 +1662,13 @@
   
   <url>
     <loc>http://wdxtub.com/2016/08/24/go-plane-1/</loc>
+    
+    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2014/09/11/happy-programmer-clip/</loc>
     
     <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
@@ -1689,224 +1696,14 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/03/03/cc-rethink-2/</loc>
+    <loc>http://wdxtub.com/1984/09/11/ics-draft-7-6/</loc>
     
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-go/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2014/09/11/beauty-of-simplicity-clip/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/08/01/computer-science-corner/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/07/26/crontab-guide/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-java/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/12/07/cs-hall-of-fame/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2014/09/11/beauty-of-simple-clip/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/08/02/cs-quote/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    <lastmod>2017-07-04T07:48:47.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://wdxtub.com/2016/12/20/csapp-book-note-3rd/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-ios/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-js/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2017/02/15/bzs-ai-dataset/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-latex/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-editor/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/24/buzhoushan-series-intro/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2017/05/26/cloud-computing-platform/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2017/02/26/babel-team-culture/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/09/21/byobu-guide/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/12/12/babel-team-good-member-guide/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2017/02/01/bzs-dl-basis/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/19/babel-series-intro/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/27/bzs-dm-internet/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/12/03/bzs-linux-concept-guide/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-8/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/03/20/cpp-note/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-7/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-6/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-4/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-docker/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/27/bzs-dm-basis/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2017/01/29/cpp-style-guide/</loc>
     
     <lastmod>2017-07-04T07:48:46.000Z</lastmod>
     
@@ -1920,13 +1717,6 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-5/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wdxtub.com/2015/12/03/actionbar-basic/</loc>
     
     <lastmod>2017-07-04T07:48:46.000Z</lastmod>
@@ -1934,161 +1724,21 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/11/25/bzs-ml-basis/</loc>
+    <loc>http://wdxtub.com/2017/01/29/cpp-style-guide/</loc>
     
     <lastmod>2017-07-04T07:48:46.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-3/</loc>
+    <loc>http://wdxtub.com/2016/08/02/cs-quote/</loc>
     
     <lastmod>2017-07-04T07:48:46.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-2/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2017/05/26/cloud-computing-overview/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2017/02/06/calculus/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/07/31/cloud-arch-thought/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-1/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-0/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-web/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-linux/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-cpp/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2014/09/11/church-and-market-clip/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-version-control/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-swift/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-unix/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-blog/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-android/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-objc/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/02/08/cc-rethink-1/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/03/29/cc-rethink-4/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/03/15/cc-rethink-3/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-storage-stream/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/03/31/cc-rethink-5/</loc>
+    <loc>http://wdxtub.com/2016/12/07/cs-hall-of-fame/</loc>
     
     <lastmod>2017-07-04T07:48:46.000Z</lastmod>
     
@@ -2102,34 +1752,6 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-process-engine/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-sql/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-shell/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-search/</loc>
-    
-    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wdxtub.com/2016/07/17/arch-summit-slides/</loc>
     
     <lastmod>2017-07-04T07:48:46.000Z</lastmod>
@@ -2137,7 +1759,147 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2012/09/11/awesome-ruby/</loc>
+    <loc>http://wdxtub.com/2016/07/26/crontab-guide/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/08/01/computer-science-corner/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-android/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/05/26/cloud-computing-platform/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/05/26/cloud-computing-overview/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-blog/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-cpp/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-docker/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/07/31/cloud-arch-thought/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-editor/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-ios/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2014/09/11/church-and-market-clip/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-go/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-java/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-js/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-latex/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-linux/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/03/31/cc-rethink-5/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/03/15/cc-rethink-3/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-objc/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-process-engine/</loc>
     
     <lastmod>2017-07-04T07:48:46.000Z</lastmod>
     
@@ -2152,6 +1914,258 @@
   
   <url>
     <loc>http://wdxtub.com/2012/09/11/awesome-python/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-ruby/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-search/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-shell/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-sql/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-storage-stream/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-unix/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-swift/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-version-control/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2012/09/11/awesome-web/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-0/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-1/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-2/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-3/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-5/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/03/20/cpp-note/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-6/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-7/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-8/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/19/babel-series-intro/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/03/29/cc-rethink-4/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/12/12/babel-team-good-member-guide/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/02/26/babel-team-culture/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/02/08/cc-rethink-1/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/03/03/cc-rethink-2/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/02/06/calculus/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/25/bzs-ml-basis/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2014/09/11/beauty-of-simple-clip/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/27/bzs-dm-basis/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/12/03/bzs-linux-concept-guide/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2014/09/11/beauty-of-simplicity-clip/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/02/15/bzs-ai-dataset/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/24/buzhoushan-series-intro/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/09/21/byobu-guide/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/02/01/bzs-dl-basis/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/27/bzs-dm-internet/</loc>
+    
+    <lastmod>2017-07-04T07:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/19/babel-log-analysis-platform-4/</loc>
     
     <lastmod>2017-07-04T07:48:46.000Z</lastmod>
     
@@ -2196,13 +2210,6 @@
     <loc>http://wdxtub.com/2016/03/25/rhythm-inspiration/</loc>
     
     <lastmod>2017-06-12T12:08:41.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/thanks/index.html</loc>
-    
-    <lastmod>2017-06-10T00:16:59.000Z</lastmod>
     
   </url>
   
@@ -2452,21 +2459,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2017/02/23/game-changes-the-world-clip/</loc>
-    
-    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/01/19/a-little-work/</loc>
-    
-    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2017/02/20/mr-nobody/</loc>
+    <loc>http://wdxtub.com/2017/02/18/dallas-buyers-club/</loc>
     
     <lastmod>2017-03-01T11:41:44.000Z</lastmod>
     
@@ -2480,56 +2473,7 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2017/02/23/history-of-future-clip/</loc>
-    
-    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2017/02/23/think-and-grow-rich-clip/</loc>
-    
-    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wdxtub.com/2017/02/23/just-for-fun-clip/</loc>
-    
-    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/18/information-clippings-tech/</loc>
-    
-    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/18/information-clippings-society/</loc>
-    
-    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2017/02/17/chase-light/</loc>
-    
-    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2017/02/24/time-pass-env-change/</loc>
-    
-    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/11/18/information-clippings-perspective/</loc>
     
     <lastmod>2017-03-01T11:41:44.000Z</lastmod>
     
@@ -2543,7 +2487,70 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2017/02/18/dallas-buyers-club/</loc>
+    <loc>http://wdxtub.com/2017/02/23/think-and-grow-rich-clip/</loc>
+    
+    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/02/17/chase-light/</loc>
+    
+    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/01/19/a-little-work/</loc>
+    
+    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/18/information-clippings-tech/</loc>
+    
+    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/02/24/time-pass-env-change/</loc>
+    
+    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/18/information-clippings-society/</loc>
+    
+    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/11/18/information-clippings-perspective/</loc>
+    
+    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/02/23/history-of-future-clip/</loc>
+    
+    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/02/20/mr-nobody/</loc>
+    
+    <lastmod>2017-03-01T11:41:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2017/02/23/game-changes-the-world-clip/</loc>
     
     <lastmod>2017-03-01T11:41:44.000Z</lastmod>
     
@@ -3488,20 +3495,6 @@
   </url>
   
   <url>
-    <loc>http://wdxtub.com/2016/05/27/credit-card-guide/</loc>
-    
-    <lastmod>2016-09-13T11:32:35.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wdxtub.com/2016/03/26/car-guide/</loc>
-    
-    <lastmod>2016-09-13T11:32:35.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wdxtub.com/2013/07/19/travel-alone-guide/</loc>
     
     <lastmod>2016-09-13T11:32:35.000Z</lastmod>
@@ -3509,7 +3502,21 @@
   </url>
   
   <url>
+    <loc>http://wdxtub.com/2016/05/27/credit-card-guide/</loc>
+    
+    <lastmod>2016-09-13T11:32:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wdxtub.com/2016/03/26/oven-guide/</loc>
+    
+    <lastmod>2016-09-13T11:32:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wdxtub.com/2016/03/26/car-guide/</loc>
     
     <lastmod>2016-09-13T11:32:35.000Z</lastmod>
     
