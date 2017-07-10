@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wdxtub.com/"/>
-  <updated>2017-07-09T05:27:10.000Z</updated>
+  <updated>2017-07-10T03:44:30.000Z</updated>
   <id>http://wdxtub.com/</id>
   
   <author>
@@ -14,6 +14,105 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux 常用操作指南</title>
+    <link href="http://wdxtub.com/2017/07/10/linux-operation-guide/"/>
+    <id>http://wdxtub.com/2017/07/10/linux-operation-guide/</id>
+    <published>2017-07-10T01:04:50.000Z</published>
+    <updated>2017-07-10T03:44:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>大家在工作中肯定少不了跟服务器打交道，对于我来说，各种命令各种参数我常常是记不住的，与其每次上网搜，不如一边学一边记录。</p>
+<a id="more"></a>
+<hr>
+<p>更新历史</p>
+<ul>
+<li>2017.07.10: 完成初稿</li>
+</ul>
+<h2 id="压缩解压-tar"><a href="#压缩解压-tar" class="headerlink" title="压缩解压 tar"></a>压缩解压 tar</h2><p>如果要在服务器之间发送大量数据，肯定少不了压缩和解压这两步，但是 <code>tar</code> 这个命令的参数之多，让我很绝望，于是我发明了一个简单的记忆方法。</p>
+<p>使用 <code>tar</code> 命令只要记得参数是『必选+自选+<code>f</code>』即可，我们先来看看『必选！五选一』:</p>
+<ol>
+<li><code>-c</code> 意为 create，表示创建压缩包</li>
+<li><code>-x</code> 意为 extract，表示解压</li>
+<li><code>-t</code> 表示查看内容</li>
+<li><code>-r</code> 给压缩包追加文件</li>
+<li><code>-u</code> 意为 update，更新压缩包中的文件</li>
+</ol>
+<p>注意了，上面是一定要五选一的，不能一个都不选，也不能同时选俩。但是自选的部分就可以按照需要挑选了，比如：</p>
+<ul>
+<li><code>-z</code> 使用 gzip 属性</li>
+<li><code>-j</code> 使用 bz2 属性</li>
+<li><code>-Z</code> 使用 compress 属性</li>
+<li><code>-v</code> 意为 verbose，显示详细的操作过程</li>
+<li><code>-O</code> 将文件输出到标准输出</li>
+</ul>
+<p>然后最后一个一定要是 <code>f</code> 后面跟压缩包名（无论是要解压还是要压缩，都是指压缩包的名字）。接下来我们看看具体实例，就很容易理解具体的用法了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 假设我们有很多 .md 文件需要打包，那么可以使用</span></div><div class="line">tar -cf posts.tar *.md <span class="comment"># c 是创建压缩包，也就是压缩，然后是 f，给出压缩包名，最后是要压缩的文件</span></div><div class="line"></div><div class="line"><span class="comment"># 然后我们发现还有一些 .txt 文件也需要打包进去，那么可以使用</span></div><div class="line">tar -rf posts.tar *.txt <span class="comment"># r 是追加文件</span></div><div class="line"></div><div class="line"><span class="comment"># 然后我们发现 hello.md 弄错了，修正后需要更新到压缩包中，可以使用</span></div><div class="line">tar -uf post.tar hello.md <span class="comment"># u 是更新</span></div><div class="line"></div><div class="line"><span class="comment"># 压缩好了，我们来看看压缩包的内容，可以使用</span></div><div class="line">tar -tf posts.tar <span class="comment"># t 是列出文件内容</span></div><div class="line"></div><div class="line"><span class="comment"># 把压缩包发送到其他位置之后，需要解压，可以使用</span></div><div class="line">tar -xf posts.tar <span class="comment"># x 是解压</span></div></pre></td></tr></table></figure>
+<p>加入自选参数后的用法（要不要加 v 可以看个人喜好）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># tar.gz 相关</span></div><div class="line">tar -czf posts.tar.gz *.md <span class="comment"># 压缩</span></div><div class="line">tar -xzf posts.tar.gz <span class="comment"># 解压</span></div><div class="line"></div><div class="line"><span class="comment"># tar.bz2 相关</span></div><div class="line">tar -cjf posts.tar.bz2 *.md <span class="comment"># 压缩</span></div><div class="line">tar -xjf posts.tar.bz2 <span class="comment"># 解压</span></div><div class="line"></div><div class="line"><span class="comment"># tar.Z 相关</span></div><div class="line">tar -cZf posts.tar.Z *.md <span class="comment"># 压缩</span></div><div class="line">tar -xZf posts.tar.Z <span class="comment"># 解压</span></div></pre></td></tr></table></figure>
+<p>总结一波，遇到不同类型的文件，请用不同的套路来应对：</p>
+<ul>
+<li><code>*.tar</code> -&gt; <code>tar -xf</code></li>
+<li><code>*.tar.gz</code> -&gt; <code>tar -xzf</code></li>
+<li><code>*.tar.bz2</code> -&gt; <code>tar -xjf</code></li>
+<li><code>*.tar.Z</code> -&gt; <code>tar -xZf</code></li>
+<li><code>*.gz</code> -&gt; <code>gzip -d</code></li>
+<li><code>*.rar</code> -&gt; <code>unrar e</code></li>
+<li><code>*.zip</code> -&gt; <code>unzip</code></li>
+</ul>
+<h2 id="空间占用-du"><a href="#空间占用-du" class="headerlink" title="空间占用 du"></a>空间占用 du</h2><p>很多时候磁盘被写满了是各种奇怪错误的源头，所以如何快速找到问题所在就很重要了，</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 显示当前文件下 Top 10 空间占用的文件/目录，</span></div><div class="line"><span class="comment"># s 表示不显示每个子目录或文件的大小</span></div><div class="line"><span class="comment"># h 表示用更加自然的方式显示（比如 K/M/G 这样）</span></div><div class="line">du -sh * | sort -nr | head</div></pre></td></tr></table></figure>
+<h2 id="系统状态-top"><a href="#系统状态-top" class="headerlink" title="系统状态 top"></a>系统状态 top</h2><p>了解系统状态一般少不了 <code>top</code> 命令，虽然基本上不需要做任何操作，但是还是有一些可以自定义的内容的，比如</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 查看某用户的进程</span></div><div class="line">top -u wdxtub</div><div class="line"></div><div class="line"><span class="comment"># 进入系统状态显示后，具体值代表的意思是</span></div><div class="line"><span class="comment"># PR    进程优先级，越小优先级越高</span></div><div class="line"><span class="comment"># VIRT  占用的虚拟内存</span></div><div class="line"><span class="comment"># RES   占用的物理内存</span></div><div class="line"><span class="comment"># SHR   占用的共享内存</span></div><div class="line"><span class="comment"># S     进程状态（S - 休眠，R - 正在运行，Z - 僵死状态，N - 优先级为负数）</span></div><div class="line"><span class="comment"># TIME+ 进程启动后占用的总 CPU 时间</span></div><div class="line"></div><div class="line"><span class="comment"># 可以按照不同的指标排序显示，按对应键即可</span></div><div class="line"><span class="comment"># P 按照 CPU 使用率排序</span></div><div class="line"><span class="comment"># T 按照 MITE+ 排序</span></div><div class="line"><span class="comment"># M 按内存使用占比排序</span></div></pre></td></tr></table></figure>
+<p>其他查看进程相关信息的命令有</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 查看进程内存分布</span></div><div class="line">pmap <span class="_">-d</span> 12345 <span class="comment"># 12345 是进程号</span></div><div class="line"></div><div class="line"><span class="comment"># 按照内存排序，这里的 grep 可以过滤特定的用户</span></div><div class="line">ps <span class="_">-e</span> -o <span class="string">'pid,comm,srgs,pcpu,rsz,vsz,stime,user,uid'</span> | grep wdxtub | sort nrk5</div></pre></td></tr></table></figure>
+<h2 id="查找-find"><a href="#查找-find" class="headerlink" title="查找 find"></a>查找 find</h2><p>在命令行界面中进行查找是每个需要在服务器上执行操作的同学都必备的技能，这里用实例来说明常见的实用用法</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 找出七天前的文件</span></div><div class="line">find / -type f -mtime +7 -print</div><div class="line"><span class="comment"># / 表示从根目录中查找</span></div><div class="line"><span class="comment"># -type f 表示找出系统普通文件，不包含目录</span></div><div class="line"><span class="comment"># -mtime +n 表示寻找 n 天前的数据</span></div><div class="line"><span class="comment"># -print 打印文件名称</span></div><div class="line"></div><div class="line"><span class="comment"># 找出并删除七天前的文件</span></div><div class="line">find /temp/ -type f -mtime +7 -print -exec rm <span class="_">-f</span> &#123;&#125; \;</div><div class="line"><span class="comment"># -exec 表示后面执行系统命令</span></div><div class="line"><span class="comment"># &#123;&#125; 只有该符号能跟在命令你后面</span></div><div class="line"><span class="comment"># \; 结束符号</span></div><div class="line">find /temp/ -type f -mtime +7 -print | xargs rm <span class="_">-f</span></div><div class="line"><span class="comment"># 使用管道和 xargs = -exec</span></div><div class="line"></div><div class="line"><span class="comment"># 查找 /var 下最大的十个文件</span></div><div class="line">find /var -type f -ls | sort -k 7 -r -n | head</div><div class="line"></div><div class="line"><span class="comment"># 查找 /var/log 下大于 5GB 的文件</span></div><div class="line">find /var/<span class="built_in">log</span>/ -type f -size +5120M -exec ls -lh &#123;&#125; \;</div><div class="line"></div><div class="line"><span class="comment"># 找出今天所有文件并将它们拷贝到另一个目录</span></div><div class="line">find /home/wdxtub/ -ctime 0 -print -exec cp &#123;&#125; /mnt/backup/&#123;&#125; \;</div></pre></td></tr></table></figure>
+<h2 id="远程登录-ssh"><a href="#远程登录-ssh" class="headerlink" title="远程登录 ssh"></a>远程登录 ssh</h2><ul>
+<li><code>ssh -vvv username@ip</code> ssh 的 debug 模式</li>
+<li><code>ssh -i key.pem username@ip</code> 用 pem key 登录 ssh</li>
+</ul>
+<h2 id="奇技淫巧"><a href="#奇技淫巧" class="headerlink" title="奇技淫巧"></a>奇技淫巧</h2><p>这里是一些比较零碎的命令行技巧</p>
+<ul>
+<li><code>openssl rand -hex n</code> 产生随机的十六进制数，n 是字符数 </li>
+<li><code>source /path/to/filename</code> 在当前 shell 里执行一个文件里的命令</li>
+<li><code>${variable:0:5}</code> 截取变量的前五个字符</li>
+<li><code>wget -r --no-parent --reject &quot;index.html*&quot; http://hostname/ -P /home/user/dirs</code> 用 wget 抓取完整的网站目录结构，存放到本地目录中</li>
+<li><code>mkdir -p /home/wdxtub/{test0,test1,test2}</code> 一次创建多个目录</li>
+<li><code>dd if=/dev/zero of=/tmp/output.img bs=8k count=256k; rm -rf /tmp/output.img</code> 测试硬盘写入速度</li>
+<li><code>hdparm -Tt /dev/sda</code> 测试硬盘读取速度</li>
+<li><code>echo -n &quot;test&quot; | md5sum</code> 获取文本的 md5</li>
+<li><code>curl -I http://wdxtub.com</code> 获取 HTTP 头信息</li>
+<li><code>netstat -tln4 | awk &#39;{print $4}&#39; | cut -f2 -d: | grep -o &#39;[0-9]*&#39;</code> 显示所有 tcp4 监听端口</li>
+<li><code>time command</code> 查看命令的运行时间</li>
+<li><code>export</code> 查看所有的环境变量</li>
+<li><code>cmp file1 file2</code> 文件内容对比</li>
+<li><code>cat -n file</code> 内容前面会显示行号</li>
+<li><code>lsof -i:22</code> 查看 22 端口现在运行的程序</li>
+<li><code>lsof -c abc</code> 显示 abc 进程现在打开的文件</li>
+<li><code>lsof -p 12</code> 看进程号为 12 的进程打开了哪些文件</li>
+</ul>
+<h2 id="广告时间"><a href="#广告时间" class="headerlink" title="广告时间"></a>广告时间</h2><p>优秀人才不缺工作机会，只缺适合自己的好机会。但是他们往往没有精力从海量机会中找到最适合的那个。100offer 会对平台上的人才和企业进行严格筛选，让「最好的人才」和「最好的公司」相遇。</p>
+<p><a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&amp;utm_medium=display&amp;utm_campaign=wdxtub_20170703&amp;utm_content=find_new_job&amp;campaign_code=wdxtub" target="_blank" rel="external">点击注册 100offer</a>，谈谈你对下一份工作的期待，收获 5-10 个满足你要求的好机会。</p>
+ <a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&utm_medium=display&utm_campaign=wdxtub_20170703&utm_content=find_new_job&campaign_code=wdxtub" target="_blank" rel="external"> <img src="/misc/100offer.jpg" alt=""> </a>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;大家在工作中肯定少不了跟服务器打交道，对于我来说，各种命令各种参数我常常是记不住的，与其每次上网搜，不如一边学一边记录。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Technique" scheme="http://wdxtub.com/categories/Technique/"/>
+    
+    
+      <category term="工作" scheme="http://wdxtub.com/tags/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Linux" scheme="http://wdxtub.com/tags/Linux/"/>
+    
+      <category term="运维" scheme="http://wdxtub.com/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>大海啊都是水 - 马来西亚游记</title>
@@ -1846,44 +1945,6 @@
       <category term="技术" scheme="http://wdxtub.com/tags/%E6%8A%80%E6%9C%AF/"/>
     
       <category term="纪念" scheme="http://wdxtub.com/tags/%E7%BA%AA%E5%BF%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第四十八周 - 星星点灯</title>
-    <link href="http://wdxtub.com/2017/05/12/star-light/"/>
-    <id>http://wdxtub.com/2017/05/12/star-light/</id>
-    <published>2017-05-12T12:35:31.000Z</published>
-    <updated>2017-05-12T13:11:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>抬头的一片天，是男儿的一片天，曾经在满天的星光下做梦的少年。</p>
-<a id="more"></a>
-<hr>
-<p>更新历史</p>
-<ul>
-<li>2017.05.12: 完成初稿</li>
-</ul>
-<p>这一周可能是今年最累的一周（但是我很确定这一定不是），白天晚上连轴转，满脑子都是代码文档解决方案，真有点走火入魔的感觉。每到这种时候就想躲回家，或者说只是想一个人离开浮岛，在温暖的港湾中踏实一会儿。不过每次回家都深感自己在深圳的的确确是『蜗居』，幸好我的要求不高，一张床一张书桌，干净整洁也就够了。</p>
-<p>接手别人的代码和器官移植一样很容易出现『排异反应』，尤其是在没太多繁文缛节的创业公司，快糙猛出活要比代码的优雅重要得多，不过这也就让代码接盘侠（也就是我）头皮发麻。好的代码是需要思考和设计的，没有灵性的代码非常脆弱，容易出错不说，也很难进行改动。不过很多时候时间和代码质量是成正比的，在各种压力的逼迫下，代码腐化也就在所难免了。</p>
-<p>因为事情多，某天早上忽然意识到，解决熬夜问题的根本在于让今天和明天有连续性，即今天没有做完的事情，晚上可以快速存档明天可以快速读档。关键在于把自己的工作流和睡觉解耦，即不会因为睡觉而打断节奏。用牺牲健康的方式来弥补做事没有连续性，其实是得不偿失的，休息好精神好，其实比瞎熬夜效率要高得多。随着事情越做越大，总有事情是注定 24 小时做不完的。不让自己因为睡觉断了 combo，才是我们最需要解决的。</p>
-<p>昨天去看了《摔跤吧爸爸》，最打动我的地方其实是那种不顾旁人眼光，专注做好自己事情的精气神。当你做到一件别人都认为不可能做到的事情，冥冥之中就会改变一切。大家可能会因此意识到，那些以为自己做不到的事情，也许是可以做到的。这其实才是最重要的改变。</p>
-<p>虽说『正入万山圈子里，一山放过一山拦』，但只要抱着『会当凌绝顶，一览众山小』的信念，就不怕『远征难』。</p>
-<p>今天恰好是五一二汶川大地震九周年的日子，还记得之前路过雅安时看到的场景，只要大家团结一心，就没有迈不过去的坎儿和克服不了的困难。</p>
-<p>星星点灯，照亮我的家门，让迷失的孩子找到来时的路。星星点灯，照亮我的前程，用一点光，温暖孩子的心。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;抬头的一片天，是男儿的一片天，曾经在满天的星光下做梦的少年。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Gossip" scheme="http://wdxtub.com/categories/Gossip/"/>
-    
-    
-      <category term="周记" scheme="http://wdxtub.com/tags/%E5%91%A8%E8%AE%B0/"/>
-    
-      <category term="工作" scheme="http://wdxtub.com/tags/%E5%B7%A5%E4%BD%9C/"/>
     
   </entry>
   

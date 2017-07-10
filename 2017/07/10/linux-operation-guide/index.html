@@ -1,0 +1,1046 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="工作,Linux,运维," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="大家在工作中肯定少不了跟服务器打交道，对于我来说，各种命令各种参数我常常是记不住的，与其每次上网搜，不如一边学一边记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 常用操作指南">
+<meta property="og:url" content="http://wdxtub.com/2017/07/10/linux-operation-guide/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="大家在工作中肯定少不了跟服务器打交道，对于我来说，各种命令各种参数我常常是记不住的，与其每次上网搜，不如一边学一边记录。">
+<meta property="og:image" content="http://wdxtub.com/misc/100offer.jpg">
+<meta property="og:updated_time" content="2017-07-10T03:44:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 常用操作指南">
+<meta name="twitter:description" content="大家在工作中肯定少不了跟服务器打交道，对于我来说，各种命令各种参数我常常是记不住的，与其每次上网搜，不如一边学一边记录。">
+<meta name="twitter:image" content="http://wdxtub.com/misc/100offer.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: false,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/2017/07/10/linux-operation-guide/"/>
+
+
+
+
+
+  <title> Linux 常用操作指南 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/2017/07/10/linux-operation-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux 常用操作指南
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-10T09:04:50+08:00">
+                2017-07-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-10T11:44:30+08:00">
+                2017-07-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technique/" itemprop="url" rel="index">
+                    <span itemprop="name">Technique</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/07/10/linux-operation-guide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      1,719
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      7
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>大家在工作中肯定少不了跟服务器打交道，对于我来说，各种命令各种参数我常常是记不住的，与其每次上网搜，不如一边学一边记录。</p>
+<a id="more"></a>
+<hr>
+<p>更新历史</p>
+<ul>
+<li>2017.07.10: 完成初稿</li>
+</ul>
+<h2 id="压缩解压-tar"><a href="#压缩解压-tar" class="headerlink" title="压缩解压 tar"></a>压缩解压 tar</h2><p>如果要在服务器之间发送大量数据，肯定少不了压缩和解压这两步，但是 <code>tar</code> 这个命令的参数之多，让我很绝望，于是我发明了一个简单的记忆方法。</p>
+<p>使用 <code>tar</code> 命令只要记得参数是『必选+自选+<code>f</code>』即可，我们先来看看『必选！五选一』:</p>
+<ol>
+<li><code>-c</code> 意为 create，表示创建压缩包</li>
+<li><code>-x</code> 意为 extract，表示解压</li>
+<li><code>-t</code> 表示查看内容</li>
+<li><code>-r</code> 给压缩包追加文件</li>
+<li><code>-u</code> 意为 update，更新压缩包中的文件</li>
+</ol>
+<p>注意了，上面是一定要五选一的，不能一个都不选，也不能同时选俩。但是自选的部分就可以按照需要挑选了，比如：</p>
+<ul>
+<li><code>-z</code> 使用 gzip 属性</li>
+<li><code>-j</code> 使用 bz2 属性</li>
+<li><code>-Z</code> 使用 compress 属性</li>
+<li><code>-v</code> 意为 verbose，显示详细的操作过程</li>
+<li><code>-O</code> 将文件输出到标准输出</li>
+</ul>
+<p>然后最后一个一定要是 <code>f</code> 后面跟压缩包名（无论是要解压还是要压缩，都是指压缩包的名字）。接下来我们看看具体实例，就很容易理解具体的用法了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 假设我们有很多 .md 文件需要打包，那么可以使用</span></div><div class="line">tar -cf posts.tar *.md <span class="comment"># c 是创建压缩包，也就是压缩，然后是 f，给出压缩包名，最后是要压缩的文件</span></div><div class="line"></div><div class="line"><span class="comment"># 然后我们发现还有一些 .txt 文件也需要打包进去，那么可以使用</span></div><div class="line">tar -rf posts.tar *.txt <span class="comment"># r 是追加文件</span></div><div class="line"></div><div class="line"><span class="comment"># 然后我们发现 hello.md 弄错了，修正后需要更新到压缩包中，可以使用</span></div><div class="line">tar -uf post.tar hello.md <span class="comment"># u 是更新</span></div><div class="line"></div><div class="line"><span class="comment"># 压缩好了，我们来看看压缩包的内容，可以使用</span></div><div class="line">tar -tf posts.tar <span class="comment"># t 是列出文件内容</span></div><div class="line"></div><div class="line"><span class="comment"># 把压缩包发送到其他位置之后，需要解压，可以使用</span></div><div class="line">tar -xf posts.tar <span class="comment"># x 是解压</span></div></pre></td></tr></table></figure>
+<p>加入自选参数后的用法（要不要加 v 可以看个人喜好）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># tar.gz 相关</span></div><div class="line">tar -czf posts.tar.gz *.md <span class="comment"># 压缩</span></div><div class="line">tar -xzf posts.tar.gz <span class="comment"># 解压</span></div><div class="line"></div><div class="line"><span class="comment"># tar.bz2 相关</span></div><div class="line">tar -cjf posts.tar.bz2 *.md <span class="comment"># 压缩</span></div><div class="line">tar -xjf posts.tar.bz2 <span class="comment"># 解压</span></div><div class="line"></div><div class="line"><span class="comment"># tar.Z 相关</span></div><div class="line">tar -cZf posts.tar.Z *.md <span class="comment"># 压缩</span></div><div class="line">tar -xZf posts.tar.Z <span class="comment"># 解压</span></div></pre></td></tr></table></figure>
+<p>总结一波，遇到不同类型的文件，请用不同的套路来应对：</p>
+<ul>
+<li><code>*.tar</code> -&gt; <code>tar -xf</code></li>
+<li><code>*.tar.gz</code> -&gt; <code>tar -xzf</code></li>
+<li><code>*.tar.bz2</code> -&gt; <code>tar -xjf</code></li>
+<li><code>*.tar.Z</code> -&gt; <code>tar -xZf</code></li>
+<li><code>*.gz</code> -&gt; <code>gzip -d</code></li>
+<li><code>*.rar</code> -&gt; <code>unrar e</code></li>
+<li><code>*.zip</code> -&gt; <code>unzip</code></li>
+</ul>
+<h2 id="空间占用-du"><a href="#空间占用-du" class="headerlink" title="空间占用 du"></a>空间占用 du</h2><p>很多时候磁盘被写满了是各种奇怪错误的源头，所以如何快速找到问题所在就很重要了，</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 显示当前文件下 Top 10 空间占用的文件/目录，</span></div><div class="line"><span class="comment"># s 表示不显示每个子目录或文件的大小</span></div><div class="line"><span class="comment"># h 表示用更加自然的方式显示（比如 K/M/G 这样）</span></div><div class="line">du -sh * | sort -nr | head</div></pre></td></tr></table></figure>
+<h2 id="系统状态-top"><a href="#系统状态-top" class="headerlink" title="系统状态 top"></a>系统状态 top</h2><p>了解系统状态一般少不了 <code>top</code> 命令，虽然基本上不需要做任何操作，但是还是有一些可以自定义的内容的，比如</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 查看某用户的进程</span></div><div class="line">top -u wdxtub</div><div class="line"></div><div class="line"><span class="comment"># 进入系统状态显示后，具体值代表的意思是</span></div><div class="line"><span class="comment"># PR    进程优先级，越小优先级越高</span></div><div class="line"><span class="comment"># VIRT  占用的虚拟内存</span></div><div class="line"><span class="comment"># RES   占用的物理内存</span></div><div class="line"><span class="comment"># SHR   占用的共享内存</span></div><div class="line"><span class="comment"># S     进程状态（S - 休眠，R - 正在运行，Z - 僵死状态，N - 优先级为负数）</span></div><div class="line"><span class="comment"># TIME+ 进程启动后占用的总 CPU 时间</span></div><div class="line"></div><div class="line"><span class="comment"># 可以按照不同的指标排序显示，按对应键即可</span></div><div class="line"><span class="comment"># P 按照 CPU 使用率排序</span></div><div class="line"><span class="comment"># T 按照 MITE+ 排序</span></div><div class="line"><span class="comment"># M 按内存使用占比排序</span></div></pre></td></tr></table></figure>
+<p>其他查看进程相关信息的命令有</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 查看进程内存分布</span></div><div class="line">pmap <span class="_">-d</span> 12345 <span class="comment"># 12345 是进程号</span></div><div class="line"></div><div class="line"><span class="comment"># 按照内存排序，这里的 grep 可以过滤特定的用户</span></div><div class="line">ps <span class="_">-e</span> -o <span class="string">'pid,comm,srgs,pcpu,rsz,vsz,stime,user,uid'</span> | grep wdxtub | sort nrk5</div></pre></td></tr></table></figure>
+<h2 id="查找-find"><a href="#查找-find" class="headerlink" title="查找 find"></a>查找 find</h2><p>在命令行界面中进行查找是每个需要在服务器上执行操作的同学都必备的技能，这里用实例来说明常见的实用用法</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 找出七天前的文件</span></div><div class="line">find / -type f -mtime +7 -print</div><div class="line"><span class="comment"># / 表示从根目录中查找</span></div><div class="line"><span class="comment"># -type f 表示找出系统普通文件，不包含目录</span></div><div class="line"><span class="comment"># -mtime +n 表示寻找 n 天前的数据</span></div><div class="line"><span class="comment"># -print 打印文件名称</span></div><div class="line"></div><div class="line"><span class="comment"># 找出并删除七天前的文件</span></div><div class="line">find /temp/ -type f -mtime +7 -print -exec rm <span class="_">-f</span> &#123;&#125; \;</div><div class="line"><span class="comment"># -exec 表示后面执行系统命令</span></div><div class="line"><span class="comment"># &#123;&#125; 只有该符号能跟在命令你后面</span></div><div class="line"><span class="comment"># \; 结束符号</span></div><div class="line">find /temp/ -type f -mtime +7 -print | xargs rm <span class="_">-f</span></div><div class="line"><span class="comment"># 使用管道和 xargs = -exec</span></div><div class="line"></div><div class="line"><span class="comment"># 查找 /var 下最大的十个文件</span></div><div class="line">find /var -type f -ls | sort -k 7 -r -n | head</div><div class="line"></div><div class="line"><span class="comment"># 查找 /var/log 下大于 5GB 的文件</span></div><div class="line">find /var/<span class="built_in">log</span>/ -type f -size +5120M -exec ls -lh &#123;&#125; \;</div><div class="line"></div><div class="line"><span class="comment"># 找出今天所有文件并将它们拷贝到另一个目录</span></div><div class="line">find /home/wdxtub/ -ctime 0 -print -exec cp &#123;&#125; /mnt/backup/&#123;&#125; \;</div></pre></td></tr></table></figure>
+<h2 id="远程登录-ssh"><a href="#远程登录-ssh" class="headerlink" title="远程登录 ssh"></a>远程登录 ssh</h2><ul>
+<li><code>ssh -vvv username@ip</code> ssh 的 debug 模式</li>
+<li><code>ssh -i key.pem username@ip</code> 用 pem key 登录 ssh</li>
+</ul>
+<h2 id="奇技淫巧"><a href="#奇技淫巧" class="headerlink" title="奇技淫巧"></a>奇技淫巧</h2><p>这里是一些比较零碎的命令行技巧</p>
+<ul>
+<li><code>openssl rand -hex n</code> 产生随机的十六进制数，n 是字符数 </li>
+<li><code>source /path/to/filename</code> 在当前 shell 里执行一个文件里的命令</li>
+<li><code>${variable:0:5}</code> 截取变量的前五个字符</li>
+<li><code>wget -r --no-parent --reject &quot;index.html*&quot; http://hostname/ -P /home/user/dirs</code> 用 wget 抓取完整的网站目录结构，存放到本地目录中</li>
+<li><code>mkdir -p /home/wdxtub/{test0,test1,test2}</code> 一次创建多个目录</li>
+<li><code>dd if=/dev/zero of=/tmp/output.img bs=8k count=256k; rm -rf /tmp/output.img</code> 测试硬盘写入速度</li>
+<li><code>hdparm -Tt /dev/sda</code> 测试硬盘读取速度</li>
+<li><code>echo -n &quot;test&quot; | md5sum</code> 获取文本的 md5</li>
+<li><code>curl -I http://wdxtub.com</code> 获取 HTTP 头信息</li>
+<li><code>netstat -tln4 | awk &#39;{print $4}&#39; | cut -f2 -d: | grep -o &#39;[0-9]*&#39;</code> 显示所有 tcp4 监听端口</li>
+<li><code>time command</code> 查看命令的运行时间</li>
+<li><code>export</code> 查看所有的环境变量</li>
+<li><code>cmp file1 file2</code> 文件内容对比</li>
+<li><code>cat -n file</code> 内容前面会显示行号</li>
+<li><code>lsof -i:22</code> 查看 22 端口现在运行的程序</li>
+<li><code>lsof -c abc</code> 显示 abc 进程现在打开的文件</li>
+<li><code>lsof -p 12</code> 看进程号为 12 的进程打开了哪些文件</li>
+</ul>
+<h2 id="广告时间"><a href="#广告时间" class="headerlink" title="广告时间"></a>广告时间</h2><p>优秀人才不缺工作机会，只缺适合自己的好机会。但是他们往往没有精力从海量机会中找到最适合的那个。100offer 会对平台上的人才和企业进行严格筛选，让「最好的人才」和「最好的公司」相遇。</p>
+<p><a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&amp;utm_medium=display&amp;utm_campaign=wdxtub_20170703&amp;utm_content=find_new_job&amp;campaign_code=wdxtub" target="_blank" rel="external">点击注册 100offer</a>，谈谈你对下一份工作的期待，收获 5-10 个满足你要求的好机会。</p>
+ <a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&utm_medium=display&utm_campaign=wdxtub_20170703&utm_content=find_new_job&campaign_code=wdxtub" target="_blank" rel="external"> <img src="/misc/100offer.jpg" alt=""> </a>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工作/" rel="tag"># 工作</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/运维/" rel="tag"># 运维</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/09/sea-all-water/" rel="next" title="大海啊都是水 - 马来西亚游记">
+                <i class="fa fa-chevron-left"></i> 大海啊都是水 - 马来西亚游记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">865</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">956</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩解压-tar"><span class="nav-number">1.</span> <span class="nav-text">压缩解压 tar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间占用-du"><span class="nav-number">2.</span> <span class="nav-text">空间占用 du</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统状态-top"><span class="nav-number">3.</span> <span class="nav-text">系统状态 top</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找-find"><span class="nav-number">4.</span> <span class="nav-text">查找 find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程登录-ssh"><span class="nav-number">5.</span> <span class="nav-text">远程登录 ssh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#奇技淫巧"><span class="nav-number">6.</span> <span class="nav-text">奇技淫巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告时间"><span class="nav-number">7.</span> <span class="nav-text">广告时间</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
