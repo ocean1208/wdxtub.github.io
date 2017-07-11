@@ -1,0 +1,1104 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Go,Web,语音," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小土刀" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="语音识别哪家强，腾讯百度讯飞谁称王？如果想自己动手体验一下各家的语音识别服务却又不只从何入手，那么相信这篇文章就是你需要的。废话不多说，我们直接开动吧！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="语音识别动手玩">
+<meta property="og:url" content="http://wdxtub.com/2017/07/10/hands-on-speech-recognition/index.html">
+<meta property="og:site_name" content="小土刀">
+<meta property="og:description" content="语音识别哪家强，腾讯百度讯飞谁称王？如果想自己动手体验一下各家的语音识别服务却又不只从何入手，那么相信这篇文章就是你需要的。废话不多说，我们直接开动吧！">
+<meta property="og:image" content="http://wdxtub.com/misc/100offer.jpg">
+<meta property="og:updated_time" content="2017-07-11T02:05:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="语音识别动手玩">
+<meta name="twitter:description" content="语音识别哪家强，腾讯百度讯飞谁称王？如果想自己动手体验一下各家的语音识别服务却又不只从何入手，那么相信这篇文章就是你需要的。废话不多说，我们直接开动吧！">
+<meta name="twitter:image" content="http://wdxtub.com/misc/100offer.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: false,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '小土刀'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wdxtub.com/2017/07/10/hands-on-speech-recognition/"/>
+
+
+
+
+
+  <title> 语音识别动手玩 | 小土刀 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59042340";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500421623");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小土刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Agony is my triumph</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-work">
+          <a href="/2016/09/11/work-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wifi"></i> <br />
+            
+            不周山
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/2009/09/11/tech-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gear"></i> <br />
+            
+            通天塔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/1990/09/11/life-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-compass"></i> <br />
+            
+            好望角
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/1997/09/11/booklist-page" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-diamond"></i> <br />
+            
+            书影音
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-thanks">
+          <a href="/thanks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wdxtub.com/2017/07/10/hands-on-speech-recognition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wdxtub">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/misc/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小土刀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                语音识别动手玩
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-10T17:28:08+08:00">
+                2017-07-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-11T10:05:18+08:00">
+                2017-07-11
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technique/" itemprop="url" rel="index">
+                    <span itemprop="name">Technique</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/07/10/hands-on-speech-recognition/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      5,545
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      24
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>语音识别哪家强，腾讯百度讯飞谁称王？如果想自己动手体验一下各家的语音识别服务却又不只从何入手，那么相信这篇文章就是你需要的。废话不多说，我们直接开动吧！</p>
+<a id="more"></a>
+<hr>
+<p>更新历史</p>
+<ul>
+<li>2017.07.10: 完成初稿</li>
+</ul>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>上周因为工作需要，用 HTML5 + Go 搭了一个简单的语音识别评测的 demo，用户可以直接打开网页 -&gt; 说一句话 -&gt; 查看来自不同服务提供商的语音识别结果（目前是科大讯飞、腾讯 AI 加速器和百度语音三家）。因为之前的项目很少直接跟硬件打交道，所以这次依然是摸着石头过河。好在之前有做过语音识别的项目，所以基本的概念还是懂的（因为涉及到数据格式，不懂的话即使看代码也容易云里雾里）。</p>
+<p>俗话说的好，授人以鱼不如授人以渔，这个小项目的代码固然不多，但如何一个人把项目做好可能比源代码本身更重要，所以更多会记录整个项目是如何开展的过程（以及我的思考和选择）。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>编码之前的准备工作有很多，从需求分析、技术调研到技术选型，每一步都走好了，项目才能顺利。</p>
+<h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><p>在领到一个新任务之后，最重要的工作不是动手，而是弄清楚到底需要做什么。为什么这么说？因为很多时候老大们只是有一个想法想要验证，并不会有一个很清晰的图景，这就需要我们主动沟通，去和老大们一起弄清楚到底需要做一个什么东西，然后才是具体技术方案的选择。</p>
+<p>经过和老大的沟通，确定了是要做一个大家都方便访问的评测不同语音识别服务提供商的 demo，老大倾向于做一个页面，只要有浏览器和麦克风就可以体验，至于交互这些只要达到能用的平均线即可。</p>
+<h3 id="技术调研"><a href="#技术调研" class="headerlink" title="技术调研"></a>技术调研</h3><p>因为需要依赖第三方的服务，所以首先要弄清楚第三方提供了什么服务，尤其是具体的接入方式需要特别注意。经过一番搜索和阅读，我得到了下面的表格：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">提供商\SDK平台</th>
+<th style="text-align:center">iOS</th>
+<th style="text-align:center">android</th>
+<th style="text-align:center">Linux(c)</th>
+<th style="text-align:center">Java</th>
+<th style="text-align:center">REST API</th>
+<th style="text-align:center">Windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">百度</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:center">科大</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">腾讯</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">x</td>
+</tr>
+</tbody>
+</table>
+<p>对应的文档在 </p>
+<ul>
+<li><a href="http://yuyin.baidu.com/docs" target="_blank" rel="external">百度语音</a> - <a href="http://ai.baidu.com/docs#/ASR-Android-SDK/top" target="_blank" rel="external">文档1</a> <a href="http://yuyin.baidu.com/docs/asr/166" target="_blank" rel="external">文档2</a></li>
+<li><a href="http://www.xfyun.cn/services/voicedictation" target="_blank" rel="external">科大讯飞</a> - <a href="http://doc.xfyun.cn/msc_linux/290898" target="_blank" rel="external">Linux 文档</a></li>
+<li><a href="http://ai.qq.com/" target="_blank" rel="external">腾讯 AI 加速器</a></li>
+</ul>
+<p>支持的格式</p>
+<ul>
+<li>百度 Rest API: 原始 PCM 的录音参数必须符合 8k/16k 采样率、16bit 位深、单声道，支持的压缩格式有：pcm（不压缩）、wav（不压缩，pcm编码）、amr（压缩格式）</li>
+<li>腾讯 Rest API: 必须符合16k采样率、16bit采样位数、单声道，语音格式    PCM、WAV、AMR、 SILK</li>
+<li>讯飞 SDK: 采样率16KHZ或者8KHZ，单声道，采样精度16bit的PCM或者WAV格式的音频</li>
+</ul>
+<p>在调研到这些信息之后，我们就可以轻松做出技术选型了。</p>
+<h3 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h3><p>首先的考虑因素是快速出成果，所以能用 Restful API 就尽量用（毕竟直接对好接口即可）。但是讯飞在这个方面非常不友好，只提供了 Linux C 和 Java 的 SDK，所以得另外想办法处理讯飞这个问题。</p>
+<p>注：最快的方法其实是用 android 或 iOS 的 SDK，集成到项目中直接用即可，但因为前面老大已经要求要用 html 方案，因此这些不予考虑（除非 html 做不出来，才弄其他方案）</p>
+<p>因为讯飞只提供了 Linux C 的 SDK(Java 我是不太想用的)，所以得想个办法集成到后端(Go)，正当我一筹莫展之际，一个名为 <a href="https://github.com/imroc/ontts" target="_blank" rel="external">imroc/ontts</a> 的项目进入了我的眼帘（科大讯飞语音linux在线语音合成后台服务），虽然并不是使用讯飞的语音识别而是语音合成功能，但证明了用 Go 封装讯飞的 C SDK 是可能的。于是我赶紧看了一波代码，并很快完成了用 Go 封装的讯飞语音识别 SDK（也算是给讯飞做了一点微小的工作）。</p>
+<p>好，那么现在问题解决，前端 html5 + js，后端 Go + Go 封装的 C SDK，直接在之前为公司开发的深度学习平台上开一个接口即可。</p>
+<h3 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h3><p>准备工作的最后一步就是到各家的开放平台上创建应用，得到我们调用 API 或 SDK 的凭证。百度语音的最好申请，腾讯 AI 加速器的需要申请内测（我们公司有合作所以不用申请），讯飞的需要审核（不然每天只有 500 次）。</p>
+<p>创建完成之后把各家的 App ID/APP Key 之类的信息记录下来，后面需要用。</p>
+<h2 id="开始编码"><a href="#开始编码" class="headerlink" title="开始编码"></a>开始编码</h2><p>之所以要后端，是因为前端 JS 发请求会遇到跨域的问题，另外后端处理我也更加熟悉（事实证明离开了后端还真不行）</p>
+<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><p>前端部分的难点在于如何通过浏览器调用麦克风，尤其是在 Chrome 上，要求全程 HTTPS 加密（当然也有另外的办法就是本地打开）。那用其他浏览器可不可以呢？可以！比如 Firefox，但是感觉 Firefox 对 Mac 的麦克风支持的一般，经常出现问题，所以我一直都是用 Chrome 在测试的。</p>
+<p>因为毕竟前端写得少，大部分代码都是参照 <a href="http://www.cnblogs.com/blqw/p/3782420.html" target="_blank" rel="external">HTML5网页录音和压缩,边猜边做..(附源码)</a> 这篇博客写的。主要是两个文件 <code>index.html</code> 和 <code>recorder.js</code>，接下来分别说明一下。</p>
+<p>先说 <code>index.html</code> 的部分，代码不长，主要做的事情就是申请麦克风访问，然后给按钮添加动作，最后就是用 audio 控件来播放音频了。audio 控件还是比较好用的，给出音源地址即可，播放和音量都自带，很省心。我还加了个日志区域方便调试，其他的没什么难度，在此略去不表。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>语音识别评测 Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>追一语音识别评测 Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>评测科大讯飞、百度语音与腾讯 AI 加速器的语音识别接口<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>由于 Chrome47 以上以及 QQ 浏览器需要 HTTPS 的支持，请更换至 360、FireFox、Edge 进行体验<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>另：IE 和 Safari 全版本不支持录音功能<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"start"</span> <span class="attr">class</span>=<span class="string">"ui-btn ui-btn-primary"</span>&gt;</span>录音<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"stop"</span> <span class="attr">class</span>=<span class="string">"ui-btn ui-btn-primary"</span> <span class="attr">disabled</span>&gt;</span>停止<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--&lt;button id="upload" class="ui-btn ui-btn-primary" disabled&gt;上传&lt;/button&gt;--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"audio-container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>操作日志<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pre</span> <span class="attr">id</span>=<span class="string">"log"</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/recorder.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">        function __log(e, data) &#123;</div><div class="line">            log.innerHTML += "\n" + getNowFormatDate() + " " + e + " " + (data || '');</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        function getNowFormatDate() &#123;</div><div class="line">            var date = new Date();</div><div class="line">            var seperator1 = "/";</div><div class="line">            var seperator2 = ":";</div><div class="line">            var month = date.getMonth() + 1;</div><div class="line">            var strDate = date.getDate();</div><div class="line">            if (month &gt;= 1 &amp;&amp; month &lt;= 9) &#123;</div><div class="line">                month = "0" + month;</div><div class="line">            &#125;</div><div class="line">            if (strDate &gt;= 0 &amp;&amp; strDate &lt;= 9) &#123;</div><div class="line">                strDate = "0" + strDate;</div><div class="line">            &#125;</div><div class="line">            var hours = date.getHours()</div><div class="line">            if (hours &lt; 10) &#123;</div><div class="line">                hours = "0" + hours</div><div class="line">            &#125;</div><div class="line">            var minutes = date.getMinutes()</div><div class="line">            if (minutes &lt; 10) &#123;</div><div class="line">                minutes = "0" + minutes</div><div class="line">            &#125;</div><div class="line">            var seconds = date.getSeconds()</div><div class="line">            if (seconds &lt; 10) &#123;</div><div class="line">                seconds = "0" + seconds</div><div class="line">            &#125;</div><div class="line">            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +</div><div class="line">                "-" + hours + seperator2 + minutes + seperator2 + seconds;</div><div class="line">            return currentdate;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        window.onload = function() &#123;</div><div class="line">            var start = document.querySelector('#start');</div><div class="line">            var stop = document.querySelector('#stop');</div><div class="line">            //var upload = document.querySelector('#upload');</div><div class="line">            var download = document.querySelector('#download');</div><div class="line">            var container = document.querySelector('#audio-container');</div><div class="line">            var recorder;</div><div class="line"></div><div class="line">            HZRecorder.get(function(rec) &#123;</div><div class="line">                recorder = rec;</div><div class="line">            &#125;)</div><div class="line"></div><div class="line">            start.addEventListener('click', function() &#123;</div><div class="line">                __log("开始录音")</div><div class="line">                this.disabled = true;</div><div class="line">                stop.disabled = false;</div><div class="line">                //upload.disabled = true;</div><div class="line">                var audio = document.querySelectorAll('audio');</div><div class="line">                for (var i = 0; i &lt; audio.length; i++) &#123;</div><div class="line">                    if (!audio[i].paused) &#123;</div><div class="line">                        audio[i].pause();</div><div class="line">                    &#125;</div><div class="line">                    container.removeChild(audio[i]) // 移除之前的录音</div><div class="line">                &#125;</div><div class="line">                recorder.start();</div><div class="line">            &#125;);</div><div class="line">            stop.addEventListener('click', function() &#123;</div><div class="line">                this.disabled = true;</div><div class="line">                start.disabled = false;</div><div class="line">                //upload.disabled = false;</div><div class="line">                recorder.stop();</div><div class="line"></div><div class="line">                var audio = document.createElement('audio');</div><div class="line">                recorder.play(audio)</div><div class="line">                container.appendChild(audio);</div><div class="line"></div><div class="line">                // 下载音频文件</div><div class="line">                // var link = window.document.createElement('a');</div><div class="line">                // var link = document.createElement('a');</div><div class="line">                // link.href = audio.src;</div><div class="line">                // link.download = 'output.wav';</div><div class="line">                // link.click();</div><div class="line"></div><div class="line">                recorder.upload("http://127.0.0.1:8778/v1/api/qq/voice_recog", function(state, e) &#123;</div><div class="line">                    switch (state) &#123;</div><div class="line">                        case 'uploading':</div><div class="line">                            __log("上传中，会在后端进行转码与识别");</div><div class="line">                            break;</div><div class="line">                        case 'ok':</div><div class="line">                            //__log("上传成功");</div><div class="line">                            break;</div><div class="line">                        case 'error':</div><div class="line">                            __log("上传失败");</div><div class="line">                            break;</div><div class="line">                        case 'cancel':</div><div class="line">                            __log("上传被取消");</div><div class="line">                            break;</div><div class="line">                    &#125;</div><div class="line">                &#125;)</div><div class="line">            &#125;);</div><div class="line">        &#125;;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>然后是 <code>recorder.js</code>（基本是照抄上面提到的原博客），主要做的工作就是处理浏览器采集到的音频信号，编码成 wav。注意这里没有更改采样率（采用默认的 44100），因为直接截取的话音调会有变化，导致识别结果较差。但其他的部分都尽量按照前面提到的标准来弄，即 16 位采样。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">window</span>) </span>&#123;</div><div class="line">    <span class="comment">//兼容</span></div><div class="line">    <span class="built_in">window</span>.URL = <span class="built_in">window</span>.URL || <span class="built_in">window</span>.webkitURL;</div><div class="line">    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> HZRecorder = <span class="function"><span class="keyword">function</span>(<span class="params">stream, config</span>) </span>&#123;</div><div class="line">        config = config || &#123;&#125;;</div><div class="line">        config.sampleBits = config.sampleBits || <span class="number">16</span>; <span class="comment">//采样数位 8, 16</span></div><div class="line">        config.sampleRate = config.sampleRate || <span class="number">44100</span>; <span class="comment">//采样率 16000（会变慢）</span></div><div class="line"></div><div class="line">        <span class="keyword">var</span> context = <span class="keyword">new</span>(<span class="built_in">window</span>.webkitAudioContext || <span class="built_in">window</span>.AudioContext)();</div><div class="line">        <span class="keyword">var</span> audioInput = context.createMediaStreamSource(stream);</div><div class="line">        <span class="keyword">var</span> createScript = context.createScriptProcessor || context.createJavaScriptNode;</div><div class="line">        <span class="keyword">var</span> recorder = createScript.apply(context, [<span class="number">4096</span>, <span class="number">1</span>, <span class="number">1</span>]);</div><div class="line"></div><div class="line">        <span class="keyword">var</span> audioData = &#123;</div><div class="line">            <span class="attr">size</span>: <span class="number">0</span>, <span class="comment">//录音文件长度</span></div><div class="line">            buffer: [], <span class="comment">//录音缓存</span></div><div class="line">            inputSampleRate: context.sampleRate, <span class="comment">//输入采样率</span></div><div class="line">            inputSampleBits: <span class="number">16</span>, <span class="comment">//输入采样数位 8, 16</span></div><div class="line">            outputSampleRate: config.sampleRate, <span class="comment">//输出采样率</span></div><div class="line">            oututSampleBits: config.sampleBits, <span class="comment">//输出采样数位 8, 16</span></div><div class="line">            input: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">                <span class="keyword">this</span>.buffer.push(<span class="keyword">new</span> <span class="built_in">Float32Array</span>(data));</div><div class="line">                <span class="keyword">this</span>.size += data.length;</div><div class="line">            &#125;,</div><div class="line">            <span class="attr">compress</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//合并压缩</span></div><div class="line">                <span class="comment">//合并</span></div><div class="line">                <span class="keyword">var</span> data = <span class="keyword">new</span> <span class="built_in">Float32Array</span>(<span class="keyword">this</span>.size);</div><div class="line">                <span class="keyword">var</span> offset = <span class="number">0</span>;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.buffer.length; i++) &#123;</div><div class="line">                    data.set(<span class="keyword">this</span>.buffer[i], offset);</div><div class="line">                    offset += <span class="keyword">this</span>.buffer[i].length;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">//压缩</span></div><div class="line">                <span class="keyword">var</span> compression = <span class="built_in">parseInt</span>(<span class="keyword">this</span>.inputSampleRate / <span class="keyword">this</span>.outputSampleRate);</div><div class="line">                <span class="keyword">var</span> length = data.length / compression;</div><div class="line">                <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Float32Array</span>(length);</div><div class="line">                <span class="keyword">var</span> index = <span class="number">0</span>,</div><div class="line">                    j = <span class="number">0</span>;</div><div class="line">                <span class="keyword">while</span> (index &lt; length) &#123;</div><div class="line">                    result[index] = data[j];</div><div class="line">                    j += compression;</div><div class="line">                    index++;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> result;</div><div class="line">            &#125;,</div><div class="line">            <span class="attr">encodeWAV</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="keyword">var</span> sampleRate = <span class="built_in">Math</span>.min(<span class="keyword">this</span>.inputSampleRate, <span class="keyword">this</span>.outputSampleRate);</div><div class="line">                <span class="keyword">var</span> sampleBits = <span class="built_in">Math</span>.min(<span class="keyword">this</span>.inputSampleBits, <span class="keyword">this</span>.oututSampleBits);</div><div class="line">                <span class="keyword">var</span> bytes = <span class="keyword">this</span>.compress();</div><div class="line">                <span class="keyword">var</span> dataLength = bytes.length * (sampleBits / <span class="number">8</span>);</div><div class="line">                <span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">44</span> + dataLength);</div><div class="line">                <span class="keyword">var</span> data = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer);</div><div class="line"></div><div class="line">                <span class="keyword">var</span> channelCount = <span class="number">1</span>; <span class="comment">//单声道</span></div><div class="line">                <span class="keyword">var</span> offset = <span class="number">0</span>;</div><div class="line"></div><div class="line">                <span class="keyword">var</span> writeString = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</div><div class="line">                        data.setUint8(offset + i, str.charCodeAt(i));</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="comment">// 资源交换文件标识符 </span></div><div class="line">                writeString(<span class="string">'RIFF'</span>);</div><div class="line">                offset += <span class="number">4</span>;</div><div class="line">                <span class="comment">// 下个地址开始到文件尾总字节数,即文件大小-8 </span></div><div class="line">                data.setUint32(offset, <span class="number">36</span> + dataLength, <span class="literal">true</span>);</div><div class="line">                offset += <span class="number">4</span>;</div><div class="line">                <span class="comment">// WAV文件标志</span></div><div class="line">                writeString(<span class="string">'WAVE'</span>);</div><div class="line">                offset += <span class="number">4</span>;</div><div class="line">                <span class="comment">// 波形格式标志 </span></div><div class="line">                writeString(<span class="string">'fmt '</span>);</div><div class="line">                offset += <span class="number">4</span>;</div><div class="line">                <span class="comment">// 过滤字节,一般为 0x10 = 16 </span></div><div class="line">                data.setUint32(offset, <span class="number">16</span>, <span class="literal">true</span>);</div><div class="line">                offset += <span class="number">4</span>;</div><div class="line">                <span class="comment">// 格式类别 (PCM形式采样数据) </span></div><div class="line">                data.setUint16(offset, <span class="number">1</span>, <span class="literal">true</span>);</div><div class="line">                offset += <span class="number">2</span>;</div><div class="line">                <span class="comment">// 通道数 </span></div><div class="line">                data.setUint16(offset, channelCount, <span class="literal">true</span>);</div><div class="line">                offset += <span class="number">2</span>;</div><div class="line">                <span class="comment">// 采样率,每秒样本数,表示每个通道的播放速度 </span></div><div class="line">                data.setUint32(offset, sampleRate, <span class="literal">true</span>);</div><div class="line">                offset += <span class="number">4</span>;</div><div class="line">                <span class="comment">// 波形数据传输率 (每秒平均字节数) 单声道×每秒数据位数×每样本数据位/8 </span></div><div class="line">                data.setUint32(offset, channelCount * sampleRate * (sampleBits / <span class="number">8</span>), <span class="literal">true</span>);</div><div class="line">                offset += <span class="number">4</span>;</div><div class="line">                <span class="comment">// 快数据调整数 采样一次占用字节数 单声道×每样本的数据位数/8 </span></div><div class="line">                data.setUint16(offset, channelCount * (sampleBits / <span class="number">8</span>), <span class="literal">true</span>);</div><div class="line">                offset += <span class="number">2</span>;</div><div class="line">                <span class="comment">// 每样本数据位数 </span></div><div class="line">                data.setUint16(offset, sampleBits, <span class="literal">true</span>);</div><div class="line">                offset += <span class="number">2</span>;</div><div class="line">                <span class="comment">// 数据标识符 </span></div><div class="line">                writeString(<span class="string">'data'</span>);</div><div class="line">                offset += <span class="number">4</span>;</div><div class="line">                <span class="comment">// 采样数据总数,即数据总大小-44 </span></div><div class="line">                data.setUint32(offset, dataLength, <span class="literal">true</span>);</div><div class="line">                offset += <span class="number">4</span>;</div><div class="line">                <span class="comment">// 写入采样数据 </span></div><div class="line">                <span class="keyword">if</span> (sampleBits === <span class="number">8</span>) &#123;</div><div class="line">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; bytes.length; i++, offset++) &#123;</div><div class="line">                        <span class="keyword">var</span> s = <span class="built_in">Math</span>.max(<span class="number">-1</span>, <span class="built_in">Math</span>.min(<span class="number">1</span>, bytes[i]));</div><div class="line">                        <span class="keyword">var</span> val = s &lt; <span class="number">0</span> ? s * <span class="number">0x8000</span> : s * <span class="number">0x7FFF</span>;</div><div class="line">                        val = <span class="built_in">parseInt</span>(<span class="number">255</span> / (<span class="number">65535</span> / (val + <span class="number">32768</span>)));</div><div class="line">                        data.setInt8(offset, val, <span class="literal">true</span>);</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; bytes.length; i++, offset += <span class="number">2</span>) &#123;</div><div class="line">                        <span class="keyword">var</span> s = <span class="built_in">Math</span>.max(<span class="number">-1</span>, <span class="built_in">Math</span>.min(<span class="number">1</span>, bytes[i]));</div><div class="line">                        data.setInt16(offset, s &lt; <span class="number">0</span> ? s * <span class="number">0x8000</span> : s * <span class="number">0x7FFF</span>, <span class="literal">true</span>);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="keyword">return</span> <span class="keyword">new</span> Blob([data], &#123; <span class="attr">type</span>: <span class="string">'audio/wav'</span> &#125;);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        <span class="comment">//开始录音</span></div><div class="line">        <span class="keyword">this</span>.start = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="comment">// 需要先清理 buffer</span></div><div class="line">            audioData.size = <span class="number">0</span>;</div><div class="line">            audioData.buffer = [];</div><div class="line">            audioInput.connect(recorder);</div><div class="line">            recorder.connect(context.destination);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//停止</span></div><div class="line">        <span class="keyword">this</span>.stop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            recorder.disconnect();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//获取音频文件</span></div><div class="line">        <span class="keyword">this</span>.getBlob = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.stop();</div><div class="line">            <span class="keyword">return</span> audioData.encodeWAV();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//回放</span></div><div class="line">        <span class="keyword">this</span>.play = <span class="function"><span class="keyword">function</span>(<span class="params">audio</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> blob = <span class="keyword">this</span>.getBlob()</div><div class="line">            audio.src = <span class="built_in">window</span>.URL.createObjectURL(blob);</div><div class="line">            __log(<span class="string">"录音结束，Wav 大小: "</span> + blob.size + <span class="string">"B Wav 地址: "</span> + audio.src)</div><div class="line">            audio.controls = <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//上传</span></div><div class="line">        <span class="keyword">this</span>.upload = <span class="function"><span class="keyword">function</span>(<span class="params">url, callback</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> fd = <span class="keyword">new</span> FormData();</div><div class="line">            fd.append(<span class="string">"audioData"</span>, <span class="keyword">this</span>.getBlob());</div><div class="line">            <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">            xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span> &amp;&amp; xhr.status == <span class="number">200</span>) &#123;</div><div class="line"></div><div class="line">                    __log(xhr.responseText)</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (callback) &#123;</div><div class="line">                xhr.upload.addEventListener(<span class="string">"progress"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">                    callback(<span class="string">'uploading'</span>, e);</div><div class="line">                &#125;, <span class="literal">false</span>);</div><div class="line">                xhr.addEventListener(<span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">                    callback(<span class="string">'ok'</span>, e);</div><div class="line">                &#125;, <span class="literal">false</span>);</div><div class="line">                xhr.addEventListener(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                    callback(<span class="string">'error'</span>, e);</div><div class="line">                &#125;, <span class="literal">false</span>);</div><div class="line">                xhr.addEventListener(<span class="string">"abort"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">                    callback(<span class="string">'cancel'</span>, e);</div><div class="line">                &#125;, <span class="literal">false</span>);</div><div class="line">            &#125;</div><div class="line">            xhr.open(<span class="string">"POST"</span>, url);</div><div class="line">            xhr.send(fd);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//音频采集</span></div><div class="line">        recorder.onaudioprocess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">            audioData.input(e.inputBuffer.getChannelData(<span class="number">0</span>));</div><div class="line">            <span class="comment">//record(e.inputBuffer.getChannelData(0));</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;;</div><div class="line">    <span class="comment">//抛出异常</span></div><div class="line">    HZRecorder.throwError = <span class="function"><span class="keyword">function</span>(<span class="params">message</span>) </span>&#123;</div><div class="line">            alert(message);</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">this</span>.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> message; &#125; &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//是否支持录音</span></div><div class="line">    HZRecorder.canRecording = (navigator.getUserMedia != <span class="literal">null</span>);</div><div class="line">    <span class="comment">//获取录音机</span></div><div class="line">    HZRecorder.get = <span class="function"><span class="keyword">function</span>(<span class="params">callback, config</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (callback) &#123;</div><div class="line">            <span class="keyword">if</span> (navigator.getUserMedia) &#123;</div><div class="line">                navigator.getUserMedia(&#123; <span class="attr">audio</span>: <span class="literal">true</span> &#125; <span class="comment">//只启用音频</span></div><div class="line">                    ,</div><div class="line">                    <span class="function"><span class="keyword">function</span>(<span class="params">stream</span>) </span>&#123;</div><div class="line">                        <span class="keyword">var</span> rec = <span class="keyword">new</span> HZRecorder(stream, config);</div><div class="line">                        callback(rec);</div><div class="line">                    &#125;,</div><div class="line">                    <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</div><div class="line">                        <span class="keyword">switch</span> (error.code || error.name) &#123;</div><div class="line">                            <span class="keyword">case</span> <span class="string">'PERMISSION_DENIED'</span>:</div><div class="line">                            <span class="keyword">case</span> <span class="string">'PermissionDeniedError'</span>:</div><div class="line">                                HZRecorder.throwError(<span class="string">'用户拒绝提供信息。'</span>);</div><div class="line">                                <span class="keyword">break</span>;</div><div class="line">                            <span class="keyword">case</span> <span class="string">'NOT_SUPPORTED_ERROR'</span>:</div><div class="line">                            <span class="keyword">case</span> <span class="string">'NotSupportedError'</span>:</div><div class="line">                                HZRecorder.throwError(<span class="string">'浏览器不支持硬件设备。'</span>);</div><div class="line">                                <span class="keyword">break</span>;</div><div class="line">                            <span class="keyword">case</span> <span class="string">'MANDATORY_UNSATISFIED_ERROR'</span>:</div><div class="line">                            <span class="keyword">case</span> <span class="string">'MandatoryUnsatisfiedError'</span>:</div><div class="line">                                HZRecorder.throwError(<span class="string">'无法发现指定的硬件设备。'</span>);</div><div class="line">                                <span class="keyword">break</span>;</div><div class="line">                            <span class="keyword">default</span>:</div><div class="line">                                HZRecorder.throwError(<span class="string">'无法打开麦克风。异常信息:'</span> + (error.code || error.name));</div><div class="line">                                <span class="keyword">break</span>;</div><div class="line">                        &#125;</div><div class="line">                    &#125;);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                HZRecorder.throwErr(<span class="string">'当前浏览器不支持录音功能。'</span>);</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">window</span>.HZRecorder = HZRecorder;</div><div class="line"></div><div class="line">&#125;)(<span class="built_in">window</span>);</div></pre></td></tr></table></figure>
+<p>至此，前端的工作就告一段落，主要工作就是录音，并把 44100Hz 16bit 的 wav 文件上传到后端，并等待后端返回语音识别结果。</p>
+<h3 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h3><p>虽然前端做的工作不多，但其实后端要做的也不多，毕竟是调用别人的接口嘛，要再这么麻烦就没有人用啦。所以后端要做的工作主要分两个部分，对于有 Restful API 的服务来说，就是准备数据，对于只有 Linux C SDK 的服务来说，就是用 Go 去调用 C SDK，接下来我们先讲讲共用的部分，然后分别说说不同服务需要注意的地方。</p>
+<p>共用的部分就是改变录音的采样率，前面提到浏览器默认的采样率是 44100Hz，我们需要转变成 16000Hz 的，考虑到 44100 并不能整除 16000，所以简单的采样一定会导致频率的变化，但是不用紧张，我们还有两大法宝 <code>ffmpeg</code> 和 <code>sox</code>。转码的命令也很简单，以下两个任选一个即可：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ffmpeg -i input.wav -ar 16000 output.wav</div><div class="line"><span class="comment"># or</span></div><div class="line">sox input.wav -r 16000 output.wav</div></pre></td></tr></table></figure>
+<p>然后我们就要以转码后的 <code>output.wav</code> 为基础，进行下面的操作了。使用 Restful API 需要注意的就是不同平台有不同的加密、验证方式和不同的参数，但无论如何音频文件需要用 Base64 编码，然后只要写一个通用的工具方法即可，这里不多说，主要还是说一下如何去用 Go 调用 C SDK（主要参考的是 <a href="https://github.com/imroc/ontts" target="_blank" rel="external">imroc/ontts - 科大讯飞语音linux在线语音合成后台服务</a> 的代码）。</p>
+<p>首先就是从讯飞的语音云平台上下载 SDK，然后把 SDK 内的文件放到一个名为 <code>xf</code> 的文件夹中，就叫做 <code>package xf</code> 好了。目录大概是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">├── README.md</div><div class="line">├── include</div><div class="line">│   ├── convert.h</div><div class="line">│   ├── msp_cmn.h</div><div class="line">│   ├── msp_errors.h</div><div class="line">│   ├── msp_types.h</div><div class="line">│   ├── qise.h</div><div class="line">│   ├── qisr.h</div><div class="line">│   └── qtts.h</div><div class="line">├── libs</div><div class="line">│   ├── x64</div><div class="line">│   │   └── libmsc.so</div><div class="line">│   └── x86</div><div class="line">│       └── libmsc.so</div><div class="line">└── xf.go</div></pre></td></tr></table></figure>
+<p>着重讲两个文件，一个是 <code>xf.go</code>（相当于是 C SDK 的 Wrapper），另一个是 <code>convert.h</code>（是参照讯飞的官方例子改的）。我们先来看看 <code>convert.h</code>，实际上就是用 C 来完成语音识别的调用（代码略长，感兴趣的同学估计得慢慢理解）。留意一下 <code>run_iat</code> 这个核心函数的返回值 <code>char *</code>，后面在 <code>xf.go</code> 中有用：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"qisr.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"msp_cmn.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"msp_errors.h"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	BUFFER_SIZE	4096</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> FRAME_LEN	640 </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> HINTS_SIZE  100</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">char</span>* <span class="title">run_iat</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* audio_file)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* session_begin_params	=	<span class="string">"sub = iat, domain = iat, language = zh_cn, accent = mandarin, sample_rate = 16000, result_type = plain, result_encoding = utf8"</span>;</div><div class="line">    <span class="keyword">char</span> *retstr = <span class="literal">NULL</span>;</div><div class="line"></div><div class="line">	<span class="keyword">const</span> <span class="keyword">char</span>*		session_id					=	<span class="literal">NULL</span>;</div><div class="line">	<span class="keyword">char</span>			rec_result[BUFFER_SIZE]		=	&#123;<span class="string">'\0'</span>&#125;;	</div><div class="line">	<span class="keyword">char</span>			hints[HINTS_SIZE]			=	&#123;<span class="string">'\0'</span>&#125;; <span class="comment">//hints为结束本次会话的原因描述，由用户自定义</span></div><div class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span>	total_len					=	<span class="number">0</span>; </div><div class="line">	<span class="keyword">int</span>				aud_stat					=	MSP_AUDIO_SAMPLE_CONTINUE ;		<span class="comment">//音频状态</span></div><div class="line">	<span class="keyword">int</span>				ep_stat						=	MSP_EP_LOOKING_FOR_SPEECH;		<span class="comment">//端点检测</span></div><div class="line">	<span class="keyword">int</span>				rec_stat					=	MSP_REC_STATUS_SUCCESS ;			<span class="comment">//识别状态</span></div><div class="line">	<span class="keyword">int</span>				errcode						=	MSP_SUCCESS ;</div><div class="line"></div><div class="line">	FILE*			f_pcm						=	<span class="literal">NULL</span>;</div><div class="line">	<span class="keyword">char</span>*			p_pcm						=	<span class="literal">NULL</span>;</div><div class="line">	<span class="keyword">long</span>			pcm_count					=	<span class="number">0</span>;</div><div class="line">	<span class="keyword">long</span>			pcm_size					=	<span class="number">0</span>;</div><div class="line">	<span class="keyword">long</span>			read_size					=	<span class="number">0</span>;</div><div class="line"></div><div class="line">	</div><div class="line">	<span class="keyword">if</span> (<span class="literal">NULL</span> == audio_file)</div><div class="line">    &#123;</div><div class="line">        retstr = <span class="string">"[Error] 文件名为空"</span>;</div><div class="line">        <span class="keyword">goto</span> iat_exit;</div><div class="line">    &#125;</div><div class="line">		</div><div class="line"></div><div class="line">	f_pcm = fopen(audio_file, <span class="string">"rb"</span>);</div><div class="line">	<span class="keyword">if</span> (<span class="literal">NULL</span> == f_pcm) </div><div class="line">	&#123;</div><div class="line">        retstr = <span class="string">"[Error] 打开音频文件失败"</span>;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"\nopen [%s] failed! \n"</span>, audio_file);</div><div class="line">		<span class="keyword">goto</span> iat_exit;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	fseek(f_pcm, <span class="number">0</span>, SEEK_END);</div><div class="line">	pcm_size = ftell(f_pcm); <span class="comment">//获取音频文件大小 </span></div><div class="line">	fseek(f_pcm, <span class="number">0</span>, SEEK_SET);		</div><div class="line"></div><div class="line">	p_pcm = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(pcm_size);</div><div class="line">	<span class="keyword">if</span> (<span class="literal">NULL</span> == p_pcm)</div><div class="line">	&#123;</div><div class="line">        retstr = <span class="string">"[Error] 无法分配内存"</span>;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"\nout of memory! \n"</span>);</div><div class="line">		<span class="keyword">goto</span> iat_exit;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	read_size = fread((<span class="keyword">void</span> *)p_pcm, <span class="number">1</span>, pcm_size, f_pcm); <span class="comment">//读取音频文件内容</span></div><div class="line">	<span class="keyword">if</span> (read_size != pcm_size)</div><div class="line">	&#123;</div><div class="line">        retstr = <span class="string">"[Error] 读取音频文件失败"</span>;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"\nread [%s] error!\n"</span>, audio_file);</div><div class="line">		<span class="keyword">goto</span> iat_exit;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"\n开始语音听写 ...\n"</span>);</div><div class="line">	session_id = QISRSessionBegin(<span class="literal">NULL</span>, session_begin_params, &amp;errcode); <span class="comment">//听写不需要语法，第一个参数为NULL</span></div><div class="line">	<span class="keyword">if</span> (MSP_SUCCESS != errcode)</div><div class="line">	&#123;</div><div class="line">        retstr = <span class="string">"[Error] QISRSessionBegin 失败"</span>;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"\nQISRSessionBegin failed! error code:%d\n"</span>, errcode);</div><div class="line">		<span class="keyword">goto</span> iat_exit;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">while</span> (<span class="number">1</span>) </div><div class="line">	&#123;</div><div class="line">		<span class="keyword">unsigned</span> <span class="keyword">int</span> len = <span class="number">10</span> * FRAME_LEN; <span class="comment">// 每次写入200ms音频(16k，16bit)：1帧音频20ms，10帧=200ms。16k采样率的16位音频，一帧的大小为640Byte</span></div><div class="line">		<span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (pcm_size &lt; <span class="number">2</span> * len) </div><div class="line">			len = pcm_size;</div><div class="line">		<span class="keyword">if</span> (len &lt;= <span class="number">0</span>)</div><div class="line">			<span class="keyword">break</span>;</div><div class="line"></div><div class="line">		aud_stat = MSP_AUDIO_SAMPLE_CONTINUE;</div><div class="line">		<span class="keyword">if</span> (<span class="number">0</span> == pcm_count)</div><div class="line">			aud_stat = MSP_AUDIO_SAMPLE_FIRST;</div><div class="line"></div><div class="line">		<span class="built_in">printf</span>(<span class="string">"&gt;"</span>);</div><div class="line">		ret = QISRAudioWrite(session_id, (<span class="keyword">const</span> <span class="keyword">void</span> *)&amp;p_pcm[pcm_count], len, aud_stat, &amp;ep_stat, &amp;rec_stat);</div><div class="line">		<span class="keyword">if</span> (MSP_SUCCESS != ret)</div><div class="line">		&#123;</div><div class="line">            retstr = <span class="string">"[Error] QISRAudioWrite 失败"</span>;</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"\nQISRAudioWrite failed! error code:%d\n"</span>, ret);</div><div class="line">			<span class="keyword">goto</span> iat_exit;</div><div class="line">		&#125;</div><div class="line">			</div><div class="line">		pcm_count += (<span class="keyword">long</span>)len;</div><div class="line">		pcm_size  -= (<span class="keyword">long</span>)len;</div><div class="line">		</div><div class="line">		<span class="keyword">if</span> (MSP_REC_STATUS_SUCCESS == rec_stat) <span class="comment">//已经有部分听写结果</span></div><div class="line">		&#123;</div><div class="line">			<span class="keyword">const</span> <span class="keyword">char</span> *rslt = QISRGetResult(session_id, &amp;rec_stat, <span class="number">0</span>, &amp;errcode);</div><div class="line">			<span class="keyword">if</span> (MSP_SUCCESS != errcode)</div><div class="line">			&#123;</div><div class="line">                retstr = <span class="string">"QISRGetResult failed"</span>;</div><div class="line">				<span class="built_in">printf</span>(<span class="string">"\nQISRGetResult failed! error code: %d\n"</span>, errcode);</div><div class="line">				<span class="keyword">goto</span> iat_exit;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (<span class="literal">NULL</span> != rslt)</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">unsigned</span> <span class="keyword">int</span> rslt_len = <span class="built_in">strlen</span>(rslt);</div><div class="line">				total_len += rslt_len;</div><div class="line">				<span class="keyword">if</span> (total_len &gt;= BUFFER_SIZE)</div><div class="line">				&#123;</div><div class="line">					<span class="built_in">printf</span>(<span class="string">"\nno enough buffer for rec_result !\n"</span>);</div><div class="line">					retstr = <span class="string">"[Error] Buffer 太小"</span>;</div><div class="line">                    <span class="keyword">goto</span> iat_exit;</div><div class="line">				&#125;</div><div class="line">				<span class="built_in">strncat</span>(rec_result, rslt, rslt_len);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (MSP_EP_AFTER_SPEECH == ep_stat)</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		usleep(<span class="number">200</span>*<span class="number">1000</span>); <span class="comment">//模拟人说话时间间隙。200ms对应10帧的音频</span></div><div class="line">	&#125;</div><div class="line">	errcode = QISRAudioWrite(session_id, <span class="literal">NULL</span>, <span class="number">0</span>, MSP_AUDIO_SAMPLE_LAST, &amp;ep_stat, &amp;rec_stat);</div><div class="line">	<span class="keyword">if</span> (MSP_SUCCESS != errcode)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"\nQISRAudioWrite failed! error code:%d \n"</span>, errcode);</div><div class="line">		<span class="keyword">goto</span> iat_exit;	</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">while</span> (MSP_REC_STATUS_COMPLETE != rec_stat) </div><div class="line">	&#123;</div><div class="line">		<span class="keyword">const</span> <span class="keyword">char</span> *rslt = QISRGetResult(session_id, &amp;rec_stat, <span class="number">0</span>, &amp;errcode);</div><div class="line">		<span class="keyword">if</span> (MSP_SUCCESS != errcode)</div><div class="line">		&#123;</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"\nQISRGetResult failed, error code: %d\n"</span>, errcode);</div><div class="line">			<span class="keyword">goto</span> iat_exit;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (<span class="literal">NULL</span> != rslt)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">unsigned</span> <span class="keyword">int</span> rslt_len = <span class="built_in">strlen</span>(rslt);</div><div class="line">			total_len += rslt_len;</div><div class="line">			<span class="keyword">if</span> (total_len &gt;= BUFFER_SIZE)</div><div class="line">			&#123;</div><div class="line">				<span class="built_in">printf</span>(<span class="string">"\nno enough buffer for rec_result !\n"</span>);</div><div class="line">				<span class="keyword">goto</span> iat_exit;</div><div class="line">			&#125;</div><div class="line">			<span class="built_in">strncat</span>(rec_result, rslt, rslt_len);</div><div class="line">		&#125;</div><div class="line">		usleep(<span class="number">150</span>*<span class="number">1000</span>); <span class="comment">//防止频繁占用CPU</span></div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"\n语音听写结束\n"</span>);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"=============================================================\n"</span>);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>,rec_result);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"=============================================================\n"</span>);</div><div class="line"></div><div class="line">    retstr = rec_result;</div><div class="line"></div><div class="line">iat_exit:</div><div class="line">	<span class="keyword">if</span> (<span class="literal">NULL</span> != f_pcm)</div><div class="line">	&#123;</div><div class="line">		fclose(f_pcm);</div><div class="line">		f_pcm = <span class="literal">NULL</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (<span class="literal">NULL</span> != p_pcm)</div><div class="line">	&#123;	<span class="built_in">free</span>(p_pcm);</div><div class="line">		p_pcm = <span class="literal">NULL</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	QISRSessionEnd(session_id, hints);</div><div class="line"></div><div class="line">   <span class="keyword">return</span> retstr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后我们来看看对 C SDK 的封装，这里采用了 cgo 的方案，具体的不展开，我们直接上 <code>xf.go</code> 的代码（很短，没想到吧，另外 <code>import &quot;C&quot;</code> 这句和上面的注释之间不能有空行）：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> xf</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"></div><div class="line">#cgo CFLAGS:-g -Wall -I ./include</div><div class="line">#cgo LDFLAGS:-L./lib -lmsc -lrt -ldl -lpthread</div><div class="line"></div><div class="line">#include "convert.h"</div><div class="line"></div><div class="line">*/</div><div class="line"><span class="keyword">import</span> <span class="string">"C"</span></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Login</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	loginParams := <span class="string">"appid = your_app_id, work_dir = ."</span></div><div class="line">	ret := C.MSPLogin(<span class="literal">nil</span>, <span class="literal">nil</span>, C.CString(loginParams))</div><div class="line">	<span class="keyword">if</span> ret != C.MSP_SUCCESS &#123;</div><div class="line">		fmt.Println(<span class="string">"登录失败，错误码: %d"</span>, <span class="keyword">int</span>(ret))</div><div class="line">		<span class="keyword">return</span> fmt.Errorf(<span class="string">"登录失败，错误码: %d"</span>, <span class="keyword">int</span>(ret))</div><div class="line">	&#125;</div><div class="line">	fmt.Println(<span class="string">"登录成功"</span>)</div><div class="line">	<span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Logout</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	ret := C.MSPLogout()</div><div class="line">	<span class="keyword">if</span> ret != C.MSP_SUCCESS &#123;</div><div class="line">		fmt.Println(<span class="string">"注销失败，错误码: %d"</span>, <span class="keyword">int</span>(ret))</div><div class="line">		<span class="keyword">return</span> fmt.Errorf(<span class="string">"注销失败，错误码: %d"</span>, <span class="keyword">int</span>(ret))</div><div class="line">	&#125;</div><div class="line">	fmt.Println(<span class="string">"注销成功"</span>)</div><div class="line">	<span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">SpeechToText</span><span class="params">(filename <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">string</span>, error)</span></span> &#123;</div><div class="line">	<span class="comment">// https://golang.org/cmd/cgo/</span></div><div class="line">	<span class="comment">// 需要在执行前 export LD_LIBRARY_PATH=/usr/local/lib</span></div><div class="line">	<span class="comment">// 如果改动了 c++ 文件，需要改动这个调用 C 的文件，才会进行重新编译，不然一直是老的</span></div><div class="line">	<span class="comment">// 官方例子中是支持 wav 的（不需要转换了）</span></div><div class="line">	<span class="comment">// ffmpeg -i output.wav -f s16be -acodec pcm_s16be output.pcm</span></div><div class="line">	fmt.Println(<span class="string">"004"</span>)</div><div class="line">	retstr := C.run_iat(C.CString(filename))</div><div class="line">	<span class="keyword">return</span> C.GoString(retstr), <span class="literal">nil</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从 Go 的 <code>string</code> 到 C 的 <code>char*</code> 可以使用 <code>C.CString()</code>，反过来可以使用 <code>C.GoString()</code> 来转换。转换完成之后，把结果返回给前端即可。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>像游戏评测一样，来个打分，满分十分</p>
+<ul>
+<li>接入方便程度<ul>
+<li>腾讯: 9.0</li>
+<li>百度: 8.5</li>
+<li>讯飞: 5.0</li>
+</ul>
+</li>
+<li>用户体验<ul>
+<li>百度: 9.0</li>
+<li>腾讯: 8.0</li>
+<li>讯飞: 6.0</li>
+</ul>
+</li>
+<li>识别效果（基于小样本的主观判断）<ul>
+<li>讯飞: 8.0</li>
+<li>百度: 7.5</li>
+<li>腾讯: 6.0</li>
+</ul>
+</li>
+</ul>
+<p>在这里希望讯飞能够更加互联网/接地气一些，不然用起来真的挺麻烦的（不知道大客户是不是有其他待遇）</p>
+<h2 id="附录-音频格式知识"><a href="#附录-音频格式知识" class="headerlink" title="附录: 音频格式知识"></a>附录: 音频格式知识</h2><p>WAV：wav是一种无损的音频文件格式，WAV符合 PIFF(Resource Interchange File Format)规范。所有的WAV都有一个文件头，这个文件头音频流的编码参数。WAV对音频流的编码没有硬性规定，除了PCM之外，还有几乎所有支持ACM规范的编码都可以为WAV的音频流进行编码。</p>
+<p>PCM:PCM（Pulse Code Modulation—-脉码调制录音)。所谓PCM录音就是将声音等模拟信号变成符号化的脉冲列，再予以记录。PCM信号是由[1]、[0]等符号构成的数字信号，而未经过任何编码和压缩处理。与模拟信号比，它不易受传送系统的杂波及失真的影响。动态范围宽，可得到音质相当好的影响效果。</p>
+<p>简单来说：wav是一种无损的音频文件格式，pcm是没有压缩的编码方式。</p>
+<p>WAV可以使用多种音频编码来压缩其音频流，不过我们常见的都是音频流被PCM编码处理的WAV，但这不表示WAV只能使用PCM编码，MP3编码同样也可以运用在WAV中，和AVI一样，只要安装好了相应的Decode，就可以欣赏这些WAV了。在Windows平台下，基于PCM编码的WAV是被支持得最好的音频格式，所有音频软件都能完美支持，由于本身可以达到较高的音质的要求，因此，WAV也是音乐编辑创作的首选格式，适合保存音乐素材。因此，基于PCM编码的WAV被作为了一种中介的格式，常常使用在其他编码的相互转换之中，例如MP3转换成WMA。<a href="http://blog.csdn.net/u014434080/article/details/53261433" target="_blank" rel="external">来源</a></p>
+<p>采样的位数指的是描述数字信号所使用的位数。8 位(8 bit)代表 2 的 8 次方即 256，16 位(16 bit)则代表 2 的 16 次方即 65536 / 1024 = 64K</p>
+<p>采样率是一秒钟内对声音信号的采样次数</p>
+<p>网络接收一个音频的时长是 20ms, 已知音频采样率是 8kHz，采样的位数是 16bit。<code>[时长]20ms * [采样率]8kHz * [采样的位数]16bit = 320 byte</code></p>
+<p>例如，CD 采用16位的采样精度，44.1KHz 的采样频率，为双声道，它每秒所需要的数据量为 <code>16×44100×2÷8＝176400</code> 字节。这样算下来，比特率应该是 1400 多 Kbps，如果采用 MP3、WMA 编码格式，比特率能够更小。<a href="http://www.wuroom.com/post/122/" target="_blank" rel="external">来源</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="http://www.cnblogs.com/blqw/p/3782420.html" target="_blank" rel="external">HTML5网页录音和压缩,边猜边做..(附源码)</a></li>
+<li><a href="https://www.v2ex.com/t/342898" target="_blank" rel="external">纯 HTML5 实现的录音功能，支持回放和上传</a></li>
+<li><a href="https://github.com/imroc/ontts" target="_blank" rel="external">imroc/ontts - 科大讯飞语音linux在线语音合成后台服务</a></li>
+</ul>
+<h2 id="广告时间"><a href="#广告时间" class="headerlink" title="广告时间"></a>广告时间</h2><p>优秀人才不缺工作机会，只缺适合自己的好机会。但是他们往往没有精力从海量机会中找到最适合的那个。100offer 会对平台上的人才和企业进行严格筛选，让「最好的人才」和「最好的公司」相遇。</p>
+<p><a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&amp;utm_medium=display&amp;utm_campaign=wdxtub_20170703&amp;utm_content=find_new_job&amp;campaign_code=wdxtub" target="_blank" rel="external">点击注册 100offer</a>，谈谈你对下一份工作的期待，收获 5-10 个满足你要求的好机会。</p>
+ <a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&utm_medium=display&utm_campaign=wdxtub_20170703&utm_content=find_new_job&campaign_code=wdxtub" target="_blank" rel="external"> <img src="/misc/100offer.jpg" alt=""> </a>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>捧个钱场？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/misc/wechat.jpg" alt="wdxtub WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/misc/alipay.jpg" alt="wdxtub Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Go/" rel="tag"># Go</a>
+          
+            <a href="/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/tags/语音/" rel="tag"># 语音</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/10/linux-operation-guide/" rel="next" title="Linux 常用操作指南">
+                <i class="fa fa-chevron-left"></i> Linux 常用操作指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/misc/avatar.jpg"
+               alt="wdxtub" />
+          <p class="site-author-name" itemprop="name">wdxtub</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">866</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">957</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wdxtub" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wdxtub" target="_blank" title="微博">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/wdx" target="_blank" title="豆瓣">
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wdxtub" target="_blank" title="知乎">
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-nd.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              不妨看看
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhchbin.github.io/" title="zhchbin" target="_blank">zhchbin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.algorithmdog.com/" title="算法狗" target="_blank">算法狗</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.52cs.org/" title="我爱计算机" target="_blank">我爱计算机</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.lofter.com/" title="我的 Lofter" target="_blank">我的 Lofter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wdxtub.com/interview/" title="刷题笔记" target="_blank">刷题笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求分析"><span class="nav-number">2.1.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术调研"><span class="nav-number">2.2.</span> <span class="nav-text">技术调研</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术选型"><span class="nav-number">2.3.</span> <span class="nav-text">技术选型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建应用"><span class="nav-number">2.4.</span> <span class="nav-text">创建应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始编码"><span class="nav-number">3.</span> <span class="nav-text">开始编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前端"><span class="nav-number">3.1.</span> <span class="nav-text">前端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后端"><span class="nav-number">3.2.</span> <span class="nav-text">后端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录-音频格式知识"><span class="nav-number">5.</span> <span class="nav-text">附录: 音频格式知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告时间"><span class="nav-number">7.</span> <span class="nav-text">广告时间</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wdxtub</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "617c94df1165440eaa2e0f239c18d092",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
