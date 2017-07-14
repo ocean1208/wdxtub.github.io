@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wdxtub.com/"/>
-  <updated>2017-07-11T02:05:18.000Z</updated>
+  <updated>2017-07-14T15:52:04.000Z</updated>
   <id>http://wdxtub.com/</id>
   
   <author>
@@ -14,6 +14,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第五十七周 - 将进酒</title>
+    <link href="http://wdxtub.com/2017/07/14/lets-drink-wine/"/>
+    <id>http://wdxtub.com/2017/07/14/lets-drink-wine/</id>
+    <published>2017-07-14T15:00:07.000Z</published>
+    <updated>2017-07-14T15:52:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>君不见黄河之水天上来，奔流到海不复回。</p>
+<a id="more"></a>
+<hr>
+<p>连绵的雨天终于有了要结束的迹象，炎炎夏日重新成为了生活的背景板，早点起床早点上班不但能躲烈日还能早点下班回家吃饭，怎么看都是一个好习惯。结束了上周的高强度工作，这周的工作更多回归到了我的主线任务 - 深度学习平台。在不断的迭代开发中，慢慢意识到最适合公司发展的系统，才是最好的。从最简单的做起，不搞太多花里胡哨的，大巧不工，大智若愚。</p>
+<p>自从开发了电饭煲的『煮粥』功能，喝粥就成了我最新的快速填饱肚子兼食疗的方法。半杯米，两三把绿豆，一两把薏仁，煮上三四个小时，那就是一锅清凉去火的绿豆粥了。早上煲好，中午晚上都不会饿肚子，除了时不时想吃肉之外，其他都很好。不油腻，简简单单清清淡淡，给身体的负担没那么重，就很舒服。</p>
+<p>几个月前，我之前用的多说评论系统宣布停止服务，于是我换成了网易云跟帖，而现在网易云跟帖也要停止服务了，我还能怎么办呢？数字时代的生存法则和现实生活有很大的不同，那些无形的数据资产，很可能因为服务提供方的一个决策而成为空中楼阁，给我的生活和工作流程带来很大的影响。</p>
+<p>既然别人的服务靠不住，那我就自己搞吧！于是轰轰烈烈的博客搬迁升级计划悄然展开。梳理了自己生活工作流程中的痛点时发现，有技术有心情的人可以自己折腾（自建服务器并搭建专属服务）；没有技术也没有心情的人最好直接付费（省心省力）；如果不想付费，要么就得忍受广告，要么就是拿自己的数据资产不当回事儿。</p>
+<p>博客搬迁的基础准备工作（云主机、域名和博客平台）基本已经完成。经过几番权衡比较，主机我选择了阿里云，博客平台我选用了 <a href="http://typecho.org/" target="_blank" rel="external">Typecho</a>（再也不用操心评论系统啦）。自建网站少不了备案，好在阿里云的备案流程还算简单，就是消耗点时间罢了。至于博客的重构计划，主要是针对原来博客中多而杂的内容。具体的组织形式会以系列的方式分不同维度进行划分：</p>
+<ul>
+<li>按照领域分类<ul>
+<li>机器学习（深度学习/数据挖掘）</li>
+<li>云计算（框架、架构）</li>
+<li>计算机科学（CSAPP，算法，数据结构）</li>
+<li>无人机</li>
+</ul>
+</li>
+<li>按照目的分类<ul>
+<li>求职</li>
+<li>团队建设</li>
+</ul>
+</li>
+<li>按照项目分类<ul>
+<li>Patriots</li>
+<li>日志分析平台</li>
+</ul>
+</li>
+<li>按照系列分类<ul>
+<li>朝花夕拾（周记和回忆）</li>
+<li>试说新屿（原来的所有效率类和乐活类文章会合并到这里，包括爱好、摄影、阅读、写作）。需要严格限制文章的篇数，一篇就讲清楚一个完整的事情。按章节分，不超过十二章（十二生肖作为章节名）</li>
+</ul>
+</li>
+</ul>
+<p>除了博客外，因为自己有了服务器，就顺带搭建了一个私有云笔记（使用 <a href="https://www.leanote.com/" target="_blank" rel="external">Leanote</a>），自建虽然不如云服务稳定，但至少数据比较安全，也算是一个备份。而原来的 MWeb + 文件同步流程因为 iCloud 的不给力和 Dropbox 的被墙而难以为继，所以已有 MWeb 更多会专注于本地的文档（比如技术积累和 Kindle 书摘），而 Leanote 则会接管我的日常笔记（可以方便同步查看）</p>
+<p>新老博客预计会并轨运行一段时间，后面 wdxtub.com 就会成为一个备份，大部分内容会转移到新的博客去。这么一想，整理房间，整理文件，整理思路，整理生活的思路都是一样的，持续断舍离，持续继承，持续交付。运用奥卡姆剃刀原理，如无必要勿增实体，还是要走极简风格。</p>
+<p>因为子妍有几天要加班，所以这周尝试了新的交通工具 - 单车。好久没有骑车走八九公里的路了，但是这种在路上的心情，这种想要相见的心情确实让每次一踩踏板都更有力了一些。生活中感情上最重要的就是螺旋式良性循环，因为只有这样才能每天都快快乐乐的，但更重要的是维持良性循环的动力，在偏离轨道后能快速纠正，而不是放任不理鸵鸟心态。很多问题，如果忘了我而记起我们，就不再是问题；很多困难，如果坚定我们而放下我，就不再是困难。希望我们能继续坚持和发扬优良品质，早睡早起，严肃活泼，积极向上，争取更大的胜利。</p>
+<p>天生我材必有用，古来圣贤皆寂寞，将进酒，杯莫停。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;君不见黄河之水天上来，奔流到海不复回。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Gossip" scheme="http://wdxtub.com/categories/Gossip/"/>
+    
+    
+      <category term="周记" scheme="http://wdxtub.com/tags/%E5%91%A8%E8%AE%B0/"/>
+    
+      <category term="工作" scheme="http://wdxtub.com/tags/%E5%B7%A5%E4%BD%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>语音识别动手玩</title>
@@ -631,9 +691,9 @@
       <category term="Gossip" scheme="http://wdxtub.com/categories/Gossip/"/>
     
     
-      <category term="旅行" scheme="http://wdxtub.com/tags/%E6%97%85%E8%A1%8C/"/>
-    
       <category term="周记" scheme="http://wdxtub.com/tags/%E5%91%A8%E8%AE%B0/"/>
+    
+      <category term="旅行" scheme="http://wdxtub.com/tags/%E6%97%85%E8%A1%8C/"/>
     
       <category term="工作" scheme="http://wdxtub.com/tags/%E5%B7%A5%E4%BD%9C/"/>
     
@@ -1934,128 +1994,6 @@
       <category term="云计算" scheme="http://wdxtub.com/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
     
       <category term="导论" scheme="http://wdxtub.com/tags/%E5%AF%BC%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Q Con 2017 PPT 学习笔记</title>
-    <link href="http://wdxtub.com/2017/05/21/q-con-2017-note/"/>
-    <id>http://wdxtub.com/2017/05/21/q-con-2017-note/</id>
-    <published>2017-05-21T07:06:50.000Z</published>
-    <updated>2017-07-04T07:48:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>我一直觉得，每次开技术会议之后，花时间把相关的 PPT 过一遍，无论是预习还是复习，都是开拓视野和思路的好方法。所以凡是能找到下载的，我都会看看，这里是我的学习笔记。</p>
-<a id="more"></a>
-<hr>
-<p>更新历史</p>
-<ul>
-<li>2017.05.24: 完成 Day1 PPT</li>
-<li>2017.05.21: 开始更新</li>
-</ul>
-<p>这里我简单划分成为几大类（及子分类），大家可以使用页面右边的目录挑选自己感兴趣的。</p>
-<h2 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h2><h3 id="基于-Impala-构建实时用户行为分析引擎"><a href="#基于-Impala-构建实时用户行为分析引擎" class="headerlink" title="基于 Impala 构建实时用户行为分析引擎"></a>基于 Impala 构建实时用户行为分析引擎</h3><ul>
-<li>用户行为：Who, When, Where, How, What，本质是一种特殊的日志数据</li>
-<li>典型应用<ul>
-<li>运营监控：PV, UV, 销售，活跃用户</li>
-<li>产品改进：用户粘性，核心流程转化，新功能使用情况</li>
-<li>商业决策</li>
-</ul>
-</li>
-<li>灵活性 &gt; 及时性 &gt; 时效性</li>
-<li>查询引擎：支持 SQL（足够灵活），交互式查询（足够快）</li>
-<li>架构：底层 HBase + HDFS，上面是 Impala<ul>
-<li>基于 MPP 的查询引擎</li>
-<li>较低的容错性</li>
-<li>较高的内存需求</li>
-<li>较高的查询效率</li>
-</ul>
-</li>
-<li>数据存储 Kudu + Parquet<ul>
-<li>Kudu 存实时数据，Parquet 存历史数据</li>
-<li>定期进行数据转储 Kudu -&gt; Parquet</li>
-</ul>
-</li>
-<li>优化逻辑<ul>
-<li>使用每天的活跃用户数据构建 Bloom Filter</li>
-<li>Join 之前先用 Bloom Filter 进行过滤</li>
-</ul>
-</li>
-</ul>
-<h3 id="FreeWheel-大数据处理实践"><a href="#FreeWheel-大数据处理实践" class="headerlink" title="FreeWheel 大数据处理实践"></a>FreeWheel 大数据处理实践</h3><ul>
-<li>架构：Kafka + Speed Layer(流处理，Spark，HBase) + Batch Layer(Hadoop，Spark，HDFS) + presto</li>
-<li>Slider + Docker 弹性部署</li>
-<li>Presto + Slider + YARN</li>
-</ul>
-<h2 id="人工智能"><a href="#人工智能" class="headerlink" title="人工智能"></a>人工智能</h2><h3 id="人工智能技术打造智能商业体"><a href="#人工智能技术打造智能商业体" class="headerlink" title="人工智能技术打造智能商业体"></a>人工智能技术打造智能商业体</h3><ul>
-<li>人工智能产生价值需要跨越两个门槛<ul>
-<li>海量精准的大数据：为机器学习提供有价值的素材，需要企业完整的数字化、信息化流程</li>
-<li>丰富明确的应用场景</li>
-</ul>
-</li>
-<li>京东智能客服机器人<ul>
-<li>用户需求<ul>
-<li>售前咨询：咨询商品、查询参数、选择尺码、筛选对比</li>
-<li>售后咨询：查询订单、查询物流、处理售后</li>
-</ul>
-</li>
-<li>用户数据：聊天意图、聊天日志、订单信息、账户信息、访问记录</li>
-<li>其他数据：商品数据、活动数据、物流数据、评价数据、网络数据</li>
-<li>智能服务<ul>
-<li>实时响应</li>
-<li>个性化应答</li>
-<li>主动关怀</li>
-<li>多终端支持</li>
-</ul>
-</li>
-<li>核心价值：提升服务体验、降低客服成本</li>
-</ul>
-</li>
-</ul>
-<h2 id="团队"><a href="#团队" class="headerlink" title="团队"></a>团队</h2><h3 id="技术管理的思考和实践"><a href="#技术管理的思考和实践" class="headerlink" title="技术管理的思考和实践"></a>技术管理的思考和实践</h3><ul>
-<li>技术团队常见问题：忙乱无章、团队不稳定、缺乏技术含量、结果不满意、看不到发展</li>
-<li>规划：路线图、目标选择、目标拆解、人才盘点</li>
-<li>结果：结果呈现、项目总结、绩效结果和沟通</li>
-<li>过程：把需求篮子建设好、技术需求、梯队建设、有章法地推进事情、能力模型和用人之道、助力员工提升</li>
-<li>人才盘点：数量、资历、技能、类型、引入方式</li>
-<li>需求原则<ul>
-<li>客户为中心</li>
-<li>平衡搭配，远近结合，有自己的节奏</li>
-<li>关注价值和痛点</li>
-<li>前瞻研究</li>
-</ul>
-</li>
-</ul>
-<h3 id="团队和工程管理取舍的实践"><a href="#团队和工程管理取舍的实践" class="headerlink" title="团队和工程管理取舍的实践"></a>团队和工程管理取舍的实践</h3><ul>
-<li>70% 的工作不是研发过程，而是软件维护</li>
-<li>70% 的人看到告警之后不会马上采取行动</li>
-<li>70% 的运维天然对故障和告警敏感</li>
-<li>没有完整工具链支持，DevOPS 就是瞎扯</li>
-<li>OPSDev 可能更符合国情</li>
-<li>基于一个成熟产品去研发，最保险，见效快，更从容</li>
-<li>团队技能书不具备对应的产品要求，千万不要自研</li>
-<li>直接面向开源去做自研，不仅代码质量号，文档也会更好</li>
-<li>自研有很大风险，但能提升团队的技术追求和欲望</li>
-<li>成熟开源软件不解决的问题，通常都是不重要的问题</li>
-<li>周会是用来同步信息的，不是用来讨论具体问题的</li>
-</ul>
-<h2 id="广告时间"><a href="#广告时间" class="headerlink" title="广告时间"></a>广告时间</h2><p>优秀人才不缺工作机会，只缺适合自己的好机会。但是他们往往没有精力从海量机会中找到最适合的那个。100offer 会对平台上的人才和企业进行严格筛选，让「最好的人才」和「最好的公司」相遇。</p>
-<p><a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&amp;utm_medium=display&amp;utm_campaign=wdxtub_20170703&amp;utm_content=find_new_job&amp;campaign_code=wdxtub" target="_blank" rel="external">点击注册 100offer</a>，谈谈你对下一份工作的期待，收获 5-10 个满足你要求的好机会。</p>
- <a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&utm_medium=display&utm_campaign=wdxtub_20170703&utm_content=find_new_job&campaign_code=wdxtub" target="_blank" rel="external"> <img src="/misc/100offer.jpg" alt=""> </a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我一直觉得，每次开技术会议之后，花时间把相关的 PPT 过一遍，无论是预习还是复习，都是开拓视野和思路的好方法。所以凡是能找到下载的，我都会看看，这里是我的学习笔记。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Technique" scheme="http://wdxtub.com/categories/Technique/"/>
-    
-    
-      <category term="会议" scheme="http://wdxtub.com/tags/%E4%BC%9A%E8%AE%AE/"/>
-    
-      <category term="PPT" scheme="http://wdxtub.com/tags/PPT/"/>
-    
-      <category term="视野" scheme="http://wdxtub.com/tags/%E8%A7%86%E9%87%8E/"/>
     
   </entry>
   
