@@ -91,12 +91,10 @@
 <meta property="og:url" content="http://wdxtub.com/2015/12/08/libsvm-guide/index.html">
 <meta property="og:site_name" content="小土刀">
 <meta property="og:description" content="CMU 15 Fall 10601b 机器学习的期末作业是在 CIFAR-10 数据集上的图像分类，我们小组已经实现了 LR, NN, NB 等比较『朴素』的机器学习算法，对于如何实现 SVM 倒是一直没有什么思路。他山之石，可以攻玉，我打算从 libSVM 入手，看看能不能找到点思路。">
-<meta property="og:image" content="http://wdxtub.com/misc/100offer.jpg">
-<meta property="og:updated_time" content="2017-07-21T10:22:40.000Z">
+<meta property="og:updated_time" content="2017-08-03T14:09:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="libsvm 简易指南">
 <meta name="twitter:description" content="CMU 15 Fall 10601b 机器学习的期末作业是在 CIFAR-10 数据集上的图像分类，我们小组已经实现了 LR, NN, NB 等比较『朴素』的机器学习算法，对于如何实现 SVM 倒是一直没有什么思路。他山之石，可以攻玉，我打算从 libSVM 入手，看看能不能找到点思路。">
-<meta name="twitter:image" content="http://wdxtub.com/misc/100offer.jpg">
 
 
 
@@ -363,8 +361,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-21T18:22:40+08:00">
-                2017-07-21
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-03T22:09:14+08:00">
+                2017-08-03
               </time>
             
           </span>
@@ -425,7 +423,7 @@
                 </span>
                   
                     <span title="Words count in article" }}">
-                      2,463
+                      2,352
                     </span>
               
 
@@ -558,9 +556,7 @@
 <p>这个函数有三个输入，分别为保存的文件名、样本的类标和对应的特征（必须为double类型的稀疏矩阵）。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总体来说训练时间还是很长的（怪电脑），尤其是随着分类的增多所需要的分类器会增长得更快，难以想象要分一百类会怎么样。不过 libSVM 在不同的平台下都有实现，哪怕想要在手机上实现最简单的机器学习，也都可以用这个包，还是非常方便的。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://noalgo.info/363.html" target="_blank" rel="external">LIBSVM在Matlab下的使用</a></p>
-<h2 id="广告时间"><a href="#广告时间" class="headerlink" title="广告时间"></a>广告时间</h2><p>优秀人才不缺工作机会，只缺适合自己的好机会。但是他们往往没有精力从海量机会中找到最适合的那个。100offer 会对平台上的人才和企业进行严格筛选，让「最好的人才」和「最好的公司」相遇。</p>
-<p><a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&amp;utm_medium=display&amp;utm_campaign=wdxtub_20170703&amp;utm_content=find_new_job&amp;campaign_code=wdxtub" target="_blank" rel="external">点击注册 100offer</a>，谈谈你对下一份工作的期待，收获 5-10 个满足你要求的好机会。</p>
- <a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&utm_medium=display&utm_campaign=wdxtub_20170703&utm_content=find_new_job&campaign_code=wdxtub" target="_blank" rel="external"> <img src="/misc/100offer.jpg" alt=""> </a>
+
       
     </div>
 
@@ -860,7 +856,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一：下载编译安装"><span class="nav-number">1.</span> <span class="nav-text">一：下载编译安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二：原理"><span class="nav-number">2.</span> <span class="nav-text">二：原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三：使用"><span class="nav-number">3.</span> <span class="nav-text">三：使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练"><span class="nav-number">3.1.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测"><span class="nav-number">3.2.</span> <span class="nav-text">预测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四：参数"><span class="nav-number">4.</span> <span class="nav-text">四：参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五：返回数据模型"><span class="nav-number">5.</span> <span class="nav-text">五：返回数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练返回的内容"><span class="nav-number">5.1.</span> <span class="nav-text">训练返回的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测返回的内容"><span class="nav-number">5.2.</span> <span class="nav-text">预测返回的内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六：读取或保存"><span class="nav-number">6.</span> <span class="nav-text">六：读取或保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告时间"><span class="nav-number">9.</span> <span class="nav-text">广告时间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一：下载编译安装"><span class="nav-number">1.</span> <span class="nav-text">一：下载编译安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二：原理"><span class="nav-number">2.</span> <span class="nav-text">二：原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三：使用"><span class="nav-number">3.</span> <span class="nav-text">三：使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练"><span class="nav-number">3.1.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测"><span class="nav-number">3.2.</span> <span class="nav-text">预测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四：参数"><span class="nav-number">4.</span> <span class="nav-text">四：参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五：返回数据模型"><span class="nav-number">5.</span> <span class="nav-text">五：返回数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练返回的内容"><span class="nav-number">5.1.</span> <span class="nav-text">训练返回的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测返回的内容"><span class="nav-number">5.2.</span> <span class="nav-text">预测返回的内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六：读取或保存"><span class="nav-number">6.</span> <span class="nav-text">六：读取或保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>

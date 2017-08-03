@@ -91,12 +91,10 @@
 <meta property="og:url" content="http://wdxtub.com/2016/08/06/art-of-unix-programming-clip/index.html">
 <meta property="og:site_name" content="小土刀">
 <meta property="og:description" content="不懂 Unix 的人注定最终还要重复发明一个蹩脚的 Unix。">
-<meta property="og:image" content="http://wdxtub.com/misc/100offer.jpg">
-<meta property="og:updated_time" content="2017-07-21T10:22:38.000Z">
+<meta property="og:updated_time" content="2017-08-03T14:09:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Unix 编程艺术】读书笔记">
 <meta name="twitter:description" content="不懂 Unix 的人注定最终还要重复发明一个蹩脚的 Unix。">
-<meta name="twitter:image" content="http://wdxtub.com/misc/100offer.jpg">
 
 
 
@@ -363,8 +361,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-21T18:22:38+08:00">
-                2017-07-21
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-03T22:09:13+08:00">
+                2017-08-03
               </time>
             
           </span>
@@ -425,7 +423,7 @@
                 </span>
                   
                     <span title="Words count in article" }}">
-                      9,492
+                      9,381
                     </span>
               
 
@@ -678,9 +676,7 @@
 <li>版本控制：git</li>
 <li>性能分析：profiler</li>
 </ul>
-<h2 id="广告时间"><a href="#广告时间" class="headerlink" title="广告时间"></a>广告时间</h2><p>优秀人才不缺工作机会，只缺适合自己的好机会。但是他们往往没有精力从海量机会中找到最适合的那个。100offer 会对平台上的人才和企业进行严格筛选，让「最好的人才」和「最好的公司」相遇。</p>
-<p><a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&amp;utm_medium=display&amp;utm_campaign=wdxtub_20170703&amp;utm_content=find_new_job&amp;campaign_code=wdxtub" target="_blank" rel="external">点击注册 100offer</a>，谈谈你对下一份工作的期待，收获 5-10 个满足你要求的好机会。</p>
- <a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&utm_medium=display&utm_campaign=wdxtub_20170703&utm_content=find_new_job&campaign_code=wdxtub" target="_blank" rel="external"> <img src="/misc/100offer.jpg" alt=""> </a>
+
       
     </div>
 
@@ -978,7 +974,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#哲学"><span class="nav-number">1.</span> <span class="nav-text">哲学</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史"><span class="nav-number">2.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块性：保持清晰，保持简洁"><span class="nav-number">3.</span> <span class="nav-text">模块性：保持清晰，保持简洁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装和最佳模块大小"><span class="nav-number">3.1.</span> <span class="nav-text">封装和最佳模块大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#紧凑型和正交性"><span class="nav-number">3.2.</span> <span class="nav-text">紧凑型和正交性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件是多层的"><span class="nav-number">3.3.</span> <span class="nav-text">软件是多层的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序库"><span class="nav-number">3.4.</span> <span class="nav-text">程序库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix-和面向对象语言"><span class="nav-number">3.5.</span> <span class="nav-text">Unix 和面向对象语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块式编码"><span class="nav-number">3.6.</span> <span class="nav-text">模块式编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本化：好协议产生好实践"><span class="nav-number">4.</span> <span class="nav-text">文本化：好协议产生好实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文本化的重要性"><span class="nav-number">4.1.</span> <span class="nav-text">文本化的重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据文件元格式"><span class="nav-number">4.2.</span> <span class="nav-text">数据文件元格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix-文本文件格式的约定"><span class="nav-number">4.3.</span> <span class="nav-text">Unix 文本文件格式的约定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透明性：来点光"><span class="nav-number">5.</span> <span class="nav-text">透明性：来点光</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多道程序设计：分离进程为独立的功能"><span class="nav-number">6.</span> <span class="nav-text">多道程序设计：分离进程为独立的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置：迈出正确的第一步"><span class="nav-number">7.</span> <span class="nav-text">配置：迈出正确的第一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口：Unix-环境下的用户接口设计模式"><span class="nav-number">8.</span> <span class="nav-text">接口：Unix 环境下的用户接口设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">9.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具：开发的战术"><span class="nav-number">10.</span> <span class="nav-text">工具：开发的战术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告时间"><span class="nav-number">11.</span> <span class="nav-text">广告时间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#哲学"><span class="nav-number">1.</span> <span class="nav-text">哲学</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史"><span class="nav-number">2.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块性：保持清晰，保持简洁"><span class="nav-number">3.</span> <span class="nav-text">模块性：保持清晰，保持简洁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装和最佳模块大小"><span class="nav-number">3.1.</span> <span class="nav-text">封装和最佳模块大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#紧凑型和正交性"><span class="nav-number">3.2.</span> <span class="nav-text">紧凑型和正交性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件是多层的"><span class="nav-number">3.3.</span> <span class="nav-text">软件是多层的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序库"><span class="nav-number">3.4.</span> <span class="nav-text">程序库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix-和面向对象语言"><span class="nav-number">3.5.</span> <span class="nav-text">Unix 和面向对象语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块式编码"><span class="nav-number">3.6.</span> <span class="nav-text">模块式编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本化：好协议产生好实践"><span class="nav-number">4.</span> <span class="nav-text">文本化：好协议产生好实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文本化的重要性"><span class="nav-number">4.1.</span> <span class="nav-text">文本化的重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据文件元格式"><span class="nav-number">4.2.</span> <span class="nav-text">数据文件元格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix-文本文件格式的约定"><span class="nav-number">4.3.</span> <span class="nav-text">Unix 文本文件格式的约定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透明性：来点光"><span class="nav-number">5.</span> <span class="nav-text">透明性：来点光</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多道程序设计：分离进程为独立的功能"><span class="nav-number">6.</span> <span class="nav-text">多道程序设计：分离进程为独立的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置：迈出正确的第一步"><span class="nav-number">7.</span> <span class="nav-text">配置：迈出正确的第一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口：Unix-环境下的用户接口设计模式"><span class="nav-number">8.</span> <span class="nav-text">接口：Unix 环境下的用户接口设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">9.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具：开发的战术"><span class="nav-number">10.</span> <span class="nav-text">工具：开发的战术</span></a></li></ol></div>
             
 
           </div>

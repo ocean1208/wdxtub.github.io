@@ -92,8 +92,7 @@
 <meta property="og:site_name" content="小土刀">
 <meta property="og:description" content="万事开头难，尤其是和 0 与 1 打交道，和后面的实验相比，这次只能算个热身。但是喜欢运动的都知道，热身很重要！">
 <meta property="og:image" content="http://wdxtub.com/images/csapp36.jpg">
-<meta property="og:image" content="http://wdxtub.com/misc/100offer.jpg">
-<meta property="og:updated_time" content="2017-07-21T10:22:40.000Z">
+<meta property="og:updated_time" content="2017-08-03T14:09:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【不周山之读厚 CSAPP】I Data Lab">
 <meta name="twitter:description" content="万事开头难，尤其是和 0 与 1 打交道，和后面的实验相比，这次只能算个热身。但是喜欢运动的都知道，热身很重要！">
@@ -364,8 +363,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-21T18:22:40+08:00">
-                2017-07-21
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-03T22:09:14+08:00">
+                2017-08-03
               </time>
             
           </span>
@@ -426,7 +425,7 @@
                 </span>
                   
                     <span title="Words count in article" }}">
-                      3,749
+                      3,638
                     </span>
               
 
@@ -440,7 +439,7 @@
                 </span>
                   
                     <span title="Reading time" }}">
-                      17
+                      16
                     </span>
               
             </div>
@@ -806,9 +805,7 @@
 <p>和上题一样，这个就是考察基本的对于 IEEE 浮点数格式的转换了，思路也比较清晰，就是根据不同的部分来求出对应的值</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">float_f2i</span><span class="params">(<span class="keyword">unsigned</span> uf)</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> <span class="built_in">exp</span> = (uf &gt;&gt; <span class="number">23</span>) &amp; <span class="number">0xFF</span>;</div><div class="line">  <span class="keyword">int</span> frac = uf &amp; <span class="number">0x007FFFFF</span>;</div><div class="line">  <span class="keyword">int</span> sign = uf &amp; <span class="number">0x80000000</span>;</div><div class="line">  <span class="keyword">int</span> bias = <span class="built_in">exp</span> - <span class="number">127</span>;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">exp</span> == <span class="number">255</span> || bias &gt; <span class="number">30</span>) &#123;</div><div class="line">    <span class="comment">// exponent is 255 (NaN), or number is too large for an int</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0x80000000</span>u;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="built_in">exp</span> || bias &lt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="comment">// number is very small, round down to 0</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// append a 1 to the front to normalize</span></div><div class="line">  frac = frac | <span class="number">1</span> &lt;&lt; <span class="number">23</span>;</div><div class="line"></div><div class="line">  <span class="comment">// float based on the bias</span></div><div class="line">  <span class="keyword">if</span> (bias &gt; <span class="number">23</span>) &#123;</div><div class="line">    frac = frac &lt;&lt; (bias - <span class="number">23</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    frac = frac &gt;&gt; (<span class="number">23</span> - bias);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (sign) &#123;</div><div class="line">    <span class="comment">// original number was negative, make the new number negative</span></div><div class="line">    frac = ~(frac) + <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> frac;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个实验通过各种限制让我们尽可能去寻找不同的解法，相信做完之后对于数据的表示和操作，都会有更深层次的理解。</p>
-<h2 id="广告时间"><a href="#广告时间" class="headerlink" title="广告时间"></a>广告时间</h2><p>优秀人才不缺工作机会，只缺适合自己的好机会。但是他们往往没有精力从海量机会中找到最适合的那个。100offer 会对平台上的人才和企业进行严格筛选，让「最好的人才」和「最好的公司」相遇。</p>
-<p><a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&amp;utm_medium=display&amp;utm_campaign=wdxtub_20170703&amp;utm_content=find_new_job&amp;campaign_code=wdxtub" target="_blank" rel="external">点击注册 100offer</a>，谈谈你对下一份工作的期待，收获 5-10 个满足你要求的好机会。</p>
- <a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&utm_medium=display&utm_campaign=wdxtub_20170703&utm_content=find_new_job&campaign_code=wdxtub" target="_blank" rel="external"> <img src="/misc/100offer.jpg" alt=""> </a>
+
       
     </div>
 
@@ -1106,7 +1103,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#系列文章"><span class="nav-number">1.</span> <span class="nav-text">系列文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务目标"><span class="nav-number">2.</span> <span class="nav-text">任务目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上手指南"><span class="nav-number">3.</span> <span class="nav-text">上手指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目及解法"><span class="nav-number">4.</span> <span class="nav-text">题目及解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#thirdBits"><span class="nav-number">4.1.</span> <span class="nav-text">thirdBits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isTmin"><span class="nav-number">4.2.</span> <span class="nav-text">isTmin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isNotEqual"><span class="nav-number">4.3.</span> <span class="nav-text">isNotEqual</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#anyOddBit"><span class="nav-number">4.4.</span> <span class="nav-text">anyOddBit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#negate"><span class="nav-number">4.5.</span> <span class="nav-text">negate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conditional"><span class="nav-number">4.6.</span> <span class="nav-text">conditional</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subOK"><span class="nav-number">4.7.</span> <span class="nav-text">subOK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isGreater"><span class="nav-number">4.8.</span> <span class="nav-text">isGreater</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bitParity"><span class="nav-number">4.9.</span> <span class="nav-text">bitParity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#howManyBits"><span class="nav-number">4.10.</span> <span class="nav-text">howManyBits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#float-half"><span class="nav-number">4.11.</span> <span class="nav-text">float_half</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#float-i2f"><span class="nav-number">4.12.</span> <span class="nav-text">float_i2f</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#float-f2i"><span class="nav-number">4.13.</span> <span class="nav-text">float_f2i</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告时间"><span class="nav-number">6.</span> <span class="nav-text">广告时间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#系列文章"><span class="nav-number">1.</span> <span class="nav-text">系列文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务目标"><span class="nav-number">2.</span> <span class="nav-text">任务目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上手指南"><span class="nav-number">3.</span> <span class="nav-text">上手指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目及解法"><span class="nav-number">4.</span> <span class="nav-text">题目及解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#thirdBits"><span class="nav-number">4.1.</span> <span class="nav-text">thirdBits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isTmin"><span class="nav-number">4.2.</span> <span class="nav-text">isTmin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isNotEqual"><span class="nav-number">4.3.</span> <span class="nav-text">isNotEqual</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#anyOddBit"><span class="nav-number">4.4.</span> <span class="nav-text">anyOddBit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#negate"><span class="nav-number">4.5.</span> <span class="nav-text">negate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conditional"><span class="nav-number">4.6.</span> <span class="nav-text">conditional</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subOK"><span class="nav-number">4.7.</span> <span class="nav-text">subOK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isGreater"><span class="nav-number">4.8.</span> <span class="nav-text">isGreater</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bitParity"><span class="nav-number">4.9.</span> <span class="nav-text">bitParity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#howManyBits"><span class="nav-number">4.10.</span> <span class="nav-text">howManyBits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#float-half"><span class="nav-number">4.11.</span> <span class="nav-text">float_half</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#float-i2f"><span class="nav-number">4.12.</span> <span class="nav-text">float_i2f</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#float-f2i"><span class="nav-number">4.13.</span> <span class="nav-text">float_f2i</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

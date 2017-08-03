@@ -91,12 +91,10 @@
 <meta property="og:url" content="http://wdxtub.com/2016/09/20/redis-in-action-clip/index.html">
 <meta property="og:site_name" content="小土刀">
 <meta property="og:description" content="Redis 是一个速度非常快的非关系型数据库，可以将存储在内存的键值对数据，可以使用复制特性来扩展性能，还可以使用客户端分片来扩展写性能。这本书从消灭瓶颈、简化代码、收集数据、分发数据、构建实用程序出发，并最终帮助读者更轻松地完成构建软件的任务。">
-<meta property="og:image" content="http://wdxtub.com/misc/100offer.jpg">
-<meta property="og:updated_time" content="2017-07-21T10:22:40.000Z">
+<meta property="og:updated_time" content="2017-08-03T14:09:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Redis 实战】读书笔记">
 <meta name="twitter:description" content="Redis 是一个速度非常快的非关系型数据库，可以将存储在内存的键值对数据，可以使用复制特性来扩展性能，还可以使用客户端分片来扩展写性能。这本书从消灭瓶颈、简化代码、收集数据、分发数据、构建实用程序出发，并最终帮助读者更轻松地完成构建软件的任务。">
-<meta name="twitter:image" content="http://wdxtub.com/misc/100offer.jpg">
 
 
 
@@ -363,8 +361,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-21T18:22:40+08:00">
-                2017-07-21
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-03T22:09:14+08:00">
+                2017-08-03
               </time>
             
           </span>
@@ -425,7 +423,7 @@
                 </span>
                   
                     <span title="Words count in article" }}">
-                      8,786
+                      8,675
                     </span>
               
 
@@ -594,9 +592,7 @@
 <li>移除 WATCH/MULTI/EXEC 事务</li>
 <li>对列表进行分片</li>
 </ul>
-<h2 id="广告时间"><a href="#广告时间" class="headerlink" title="广告时间"></a>广告时间</h2><p>优秀人才不缺工作机会，只缺适合自己的好机会。但是他们往往没有精力从海量机会中找到最适合的那个。100offer 会对平台上的人才和企业进行严格筛选，让「最好的人才」和「最好的公司」相遇。</p>
-<p><a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&amp;utm_medium=display&amp;utm_campaign=wdxtub_20170703&amp;utm_content=find_new_job&amp;campaign_code=wdxtub" target="_blank" rel="external">点击注册 100offer</a>，谈谈你对下一份工作的期待，收获 5-10 个满足你要求的好机会。</p>
- <a href="https://cn.100offer.com/how-it-works/?utm_source=wdxtub&utm_medium=display&utm_campaign=wdxtub_20170703&utm_content=find_new_job&campaign_code=wdxtub" target="_blank" rel="external"> <img src="/misc/100offer.jpg" alt=""> </a>
+
       
     </div>
 
@@ -890,7 +886,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章投票"><span class="nav-number">2.</span> <span class="nav-text">文章投票</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-应用中的-Redis"><span class="nav-number">3.</span> <span class="nav-text">Web 应用中的 Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">4.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过期时间"><span class="nav-number">5.</span> <span class="nav-text">过期时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化"><span class="nav-number">6.</span> <span class="nav-text">持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快照"><span class="nav-number">6.1.</span> <span class="nav-text">快照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-持久化"><span class="nav-number">6.2.</span> <span class="nav-text">AOF 持久化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能"><span class="nav-number">7.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于搜索的应用程序"><span class="nav-number">8.</span> <span class="nav-text">基于搜索的应用程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告定向"><span class="nav-number">9.</span> <span class="nav-text">广告定向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算广告的价格"><span class="nav-number">9.1.</span> <span class="nav-text">计算广告的价格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让广告的价格保持一致"><span class="nav-number">9.2.</span> <span class="nav-text">让广告的价格保持一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算-CPC-广告的-eCPM"><span class="nav-number">9.3.</span> <span class="nav-text">计算 CPC 广告的 eCPM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算-CPA-广告的-eCPM"><span class="nav-number">9.4.</span> <span class="nav-text">计算 CPA 广告的 eCPM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将广告插入索引"><span class="nav-number">9.5.</span> <span class="nav-text">将广告插入索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行广告定向操作"><span class="nav-number">9.6.</span> <span class="nav-text">执行广告定向操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建简单的社交网站"><span class="nav-number">10.</span> <span class="nav-text">构建简单的社交网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶内容"><span class="nav-number">11.</span> <span class="nav-text">进阶内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#短结构"><span class="nav-number">11.1.</span> <span class="nav-text">短结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分片结构"><span class="nav-number">11.2.</span> <span class="nav-text">分片结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包存储二进制位和字节"><span class="nav-number">11.3.</span> <span class="nav-text">打包存储二进制位和字节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lua-脚本"><span class="nav-number">12.</span> <span class="nav-text">Lua 脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告时间"><span class="nav-number">13.</span> <span class="nav-text">广告时间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章投票"><span class="nav-number">2.</span> <span class="nav-text">文章投票</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-应用中的-Redis"><span class="nav-number">3.</span> <span class="nav-text">Web 应用中的 Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">4.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过期时间"><span class="nav-number">5.</span> <span class="nav-text">过期时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化"><span class="nav-number">6.</span> <span class="nav-text">持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快照"><span class="nav-number">6.1.</span> <span class="nav-text">快照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-持久化"><span class="nav-number">6.2.</span> <span class="nav-text">AOF 持久化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能"><span class="nav-number">7.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于搜索的应用程序"><span class="nav-number">8.</span> <span class="nav-text">基于搜索的应用程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告定向"><span class="nav-number">9.</span> <span class="nav-text">广告定向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算广告的价格"><span class="nav-number">9.1.</span> <span class="nav-text">计算广告的价格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让广告的价格保持一致"><span class="nav-number">9.2.</span> <span class="nav-text">让广告的价格保持一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算-CPC-广告的-eCPM"><span class="nav-number">9.3.</span> <span class="nav-text">计算 CPC 广告的 eCPM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算-CPA-广告的-eCPM"><span class="nav-number">9.4.</span> <span class="nav-text">计算 CPA 广告的 eCPM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将广告插入索引"><span class="nav-number">9.5.</span> <span class="nav-text">将广告插入索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行广告定向操作"><span class="nav-number">9.6.</span> <span class="nav-text">执行广告定向操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建简单的社交网站"><span class="nav-number">10.</span> <span class="nav-text">构建简单的社交网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶内容"><span class="nav-number">11.</span> <span class="nav-text">进阶内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#短结构"><span class="nav-number">11.1.</span> <span class="nav-text">短结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分片结构"><span class="nav-number">11.2.</span> <span class="nav-text">分片结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包存储二进制位和字节"><span class="nav-number">11.3.</span> <span class="nav-text">打包存储二进制位和字节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lua-脚本"><span class="nav-number">12.</span> <span class="nav-text">Lua 脚本</span></a></li></ol></div>
             
 
           </div>
